@@ -33,6 +33,8 @@ abstract class TableAbstract implements TableInterface
     private TableItemActionCollection $itemActionCollection;
     /** @var TableAction[] */
     private array $tableActions = [];
+    /** @var TableAction */
+    private array $toolbarActions = [];
     private ?string $orderField = null;
     private string $orderDirection = 'asc';
     private string $searchValue = '';
@@ -193,17 +195,21 @@ abstract class TableAbstract implements TableInterface
 
     public function addTableAction(string $name, string $icon, string|TranslatableMessage $labelKey, null|string|TranslatableMessage $confirmationKey = null): TableAction
     {
-        if (!$labelKey instanceof TranslatableMessage) {
-            $labelKey = new TranslatableMessage($labelKey, [], EMSCoreBundle::TRANS_DOMAIN);
-        }
-        if (null !== $confirmationKey && !$confirmationKey instanceof TranslatableMessage) {
-            $confirmationKey = new TranslatableMessage($confirmationKey, [], EMSCoreBundle::TRANS_DOMAIN);
-        }
-
-        $action = new TableAction($name, $icon, $labelKey, $confirmationKey);
+        $action = TableAction::create($name, $icon, $labelKey, $confirmationKey);
         $this->tableActions[] = $action;
 
         return $action;
+    }
+
+    public function addToolbarAction(TranslatableMessage $label, string $icon, string $routeName, array $routeParams = []): TableAction
+    {
+        $toolbarAction = TableAction::create($label->getMessage(), $icon, $label);
+        $toolbarAction->setRoute($routeName, $routeParams);
+        $toolbarAction->setCssClass('btn btn-primary');
+
+        $this->toolbarActions[] = $toolbarAction;
+
+        return $toolbarAction;
     }
 
     /**
@@ -212,6 +218,14 @@ abstract class TableAbstract implements TableInterface
     public function getTableActions(): iterable
     {
         return $this->tableActions;
+    }
+
+    /**
+     * @return TableAction[]
+     */
+    public function getToolbarActions(): array
+    {
+        return $this->toolbarActions;
     }
 
     public function setDefaultOrder(string $orderField, string $direction = 'asc'): self

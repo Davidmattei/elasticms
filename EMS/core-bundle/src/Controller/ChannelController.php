@@ -17,6 +17,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use function Symfony\Component\Translation\t;
 
 final class ChannelController extends AbstractController
 {
@@ -32,7 +33,9 @@ final class ChannelController extends AbstractController
     {
         $table = $this->dataTableFactory->create(ChannelDataTableType::class);
 
-        $form = $this->createForm(TableType::class, $table);
+        $form = $this->createForm(TableType::class, $table, [
+            'reorder_label' => t('admin.channel.reorder',[],'emsco-core')
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form instanceof Form && ($action = $form->getClickedButton()) instanceof SubmitButton) {

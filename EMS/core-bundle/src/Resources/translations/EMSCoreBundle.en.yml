@@ -494,12 +494,6 @@ channel:
         save: Save
         title: 'Edit a channel'
     index:
-        column:
-            alias: Alias
-            label: Label
-            name: Name
-            public: 'Public access'
-        reorder: 'Reorder channels'
         title: 'List of channels'
     menu: Channels
 environment:
