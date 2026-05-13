@@ -61,6 +61,7 @@
     "jquery": "^3.7.1",
     "jquery-lazyload": "^1.9.7",
     "jquery-ui-bundle": "^1.12.1-migrate",
+    "lit": "^3.3.2",
     "promise": "^8.3.0",
     "sortablejs": "^1.15.3",
     "swagger-ui": "^5.20.8",
