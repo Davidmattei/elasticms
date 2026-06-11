@@ -6,7 +6,7 @@ import { Modules, HtmlTransform, TiptapModule } from './types.ts'
 import { WysiwygOptions, WysiwygProfile } from '../wysiwyg/wysiwyg.ts'
 import { CkeditorStyle } from '../wysiwyg/ckeditorConfig.ts'
 import { isTransLocale, Locale, trans, TranslationKey } from './translations.ts'
-import { Dialog } from '../dialog.ts'
+import { Dialog } from './../dialog.ts'
 
 interface TiptapEditorOptions {
     content?: string
