@@ -1,0 +1,36 @@
+{
+  "name": "@elasticms/wysiwyg",
+  "version": "0.0.1",
+  "description": "ElasticMS WYSIWYG editor package",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite build --watch",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "elasticms",
+    "wysiwyg",
+    "editor"
+  ],
+  "license": "LGPL-3.0-or-later",
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vite": "^6.0.0",
+    "vite-plugin-dts": "^4.0.0",
+    "vitest": "^3.0.0"
+  }
+}
