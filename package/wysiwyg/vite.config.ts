@@ -13,7 +13,6 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      // externe dependencies hier toevoegen (bijv. 'vue', 'react')
       external: [],
     },
   },
