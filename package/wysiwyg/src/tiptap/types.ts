@@ -8,10 +8,7 @@ import { TranslationKey } from './translations.ts'
 
 export type ContextType = 'table'
 
-export const Modules: TiptapModule[] = [
-    ...basicStyleModule,
-    cleanupModule,
-]
+export const Modules: TiptapModule[] = [...basicStyleModule, cleanupModule]
 
 export interface HtmlTransform {
     name: string

@@ -141,7 +141,7 @@ export default class Ckeditor4 {
             editor.on(opt.onChangeEvent ?? 'key', () => {
                 // @todo changeEvent
                 //const changeEvent = new ChangeEvent(self.element)
-               // changeEvent.dispatch()
+                // changeEvent.dispatch()
             })
         }
 
