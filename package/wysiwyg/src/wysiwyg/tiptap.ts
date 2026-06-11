@@ -1,13 +1,13 @@
-import './../../../../css/core/components/_wysiwyg_tiptap.scss'
-import tiptapIframeCss from './../../../../css/core/components/_wysiwyg_tiptap_iframe.scss?inline'
+// import './../../../../css/core/components/_wysiwyg_tiptap.scss'
+// import tiptapIframeCss from './../../../../css/core/components/_wysiwyg_tiptap_iframe.scss?inline'
 
 import { TiptapEditor } from '../tiptap/editor.ts'
 import { TiptapModule } from '../tiptap/types.ts'
-import ChangeEvent from '../../events/changeEvent.ts'
-import IconSource from '@tabler/icons/outline/code.svg?raw'
-import IconSourceOff from '@tabler/icons/outline/code-off.svg?raw'
-import IconMaximize from '@tabler/icons/outline/arrows-maximize.svg?raw'
-import IconMinimize from '@tabler/icons/outline/arrows-minimize.svg?raw'
+// import ChangeEvent from '../../events/changeEvent.ts'
+import IconSource from '@tabler/icons/icons/outline/code.svg?raw'
+import IconSourceOff from '@tabler/icons/icons/outline/code-off.svg?raw'
+import IconMaximize from '@tabler/icons/icons/outline/arrows-maximize.svg?raw'
+import IconMinimize from '@tabler/icons/icons/outline/arrows-minimize.svg?raw'
 import { getWysiwygOptions, getWysiwygProfile, WysiwygOptions } from './wysiwyg.ts'
 
 export default class Tiptap {
@@ -57,8 +57,8 @@ export default class Tiptap {
             this.textarea.value = tiptapEditor.getHTML()
 
             if (this.wysiwygOptions.inRevision) {
-                const changeEvent = new ChangeEvent(this.textarea)
-                changeEvent.dispatch()
+                // const changeEvent = new ChangeEvent(this.textarea)
+                // changeEvent.dispatch()
             }
         })
     }
@@ -74,9 +74,9 @@ export default class Tiptap {
                     const doc = iframe.contentDocument as Document
                     doc.documentElement.lang = this.wysiwygOptions.lang ?? 'en'
 
-                    const style = doc.createElement('style')
-                    style.textContent = tiptapIframeCss
-                    doc.head.appendChild(style)
+                   // const style = doc.createElement('style')
+                   // style.textContent = tiptapIframeCss
+                   // doc.head.appendChild(style)
 
                     if (this.wysiwygOptions.contentCss) {
                         const link = doc.createElement('link')

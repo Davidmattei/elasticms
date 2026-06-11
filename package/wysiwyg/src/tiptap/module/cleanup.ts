@@ -1,4 +1,4 @@
-import IconClear from '@tabler/icons/outline/eraser.svg?raw'
+import IconClear from '@tabler/icons/icons/outline/eraser.svg?raw'
 import { EditorState, Transaction } from '@tiptap/pm/state'
 import { Node as PMNode } from '@tiptap/pm/model'
 import { liftTarget } from '@tiptap/pm/transform'
