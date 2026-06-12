@@ -1,7 +1,7 @@
 {
-  "name": "@elasticms/wysiwyg",
+  "name": "@elasticms/tiptap",
   "version": "0.0.1",
-  "description": "ElasticMS WYSIWYG editor package",
+  "description": "ElasticMS tiptap editor",
   "type": "module",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -26,7 +26,7 @@
   "keywords": [
     "elasticms",
     "wysiwyg",
-    "editor"
+    "tiptap"
   ],
   "license": "LGPL-3.0-or-later",
   "dependencies": {
