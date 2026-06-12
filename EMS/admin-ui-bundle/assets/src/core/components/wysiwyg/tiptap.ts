@@ -10,6 +10,8 @@ import IconMaximize from '@tabler/icons/outline/arrows-maximize.svg?raw'
 import IconMinimize from '@tabler/icons/outline/arrows-minimize.svg?raw'
 import { getWysiwygOptions, getWysiwygProfile, WysiwygOptions } from './wysiwyg.ts'
 
+import { version } from '@elasticms/tiptap'
+
 export default class Tiptap {
     textarea: HTMLTextAreaElement
 
@@ -22,6 +24,8 @@ export default class Tiptap {
         this.textarea = element
         this.container = document.createElement('div')
         this.wysiwygOptions = getWysiwygOptions(element)
+
+        console.debug(version);
 
         void this.init()
     }

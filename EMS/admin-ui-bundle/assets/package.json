@@ -38,6 +38,7 @@
     "dependencies": {
         "@a2lix/symfony-collection": "0.6.1",
         "@elasticms/file-uploader": "1.0.2",
+        "@elasticms/tiptap": "0.0.1",
         "@eonasdan/tempus-dominus": "6.9.11",
         "@eslint/compat": "2.0.3",
         "@eslint/js": "10.0.1",
