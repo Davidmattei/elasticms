@@ -16,10 +16,10 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsc && vite build",
+        "build": "vite build",
         "dev": "vite build --watch",
-        "format": "prettier --write src/ --config ../prettier.config.js",
-        "lint": "eslint src/ --config ../eslint.config.js",
+        "format": "prettier --write src/ --config ../prettier.config.mjs",
+        "lint": "eslint src/ --config ../eslint.config.mjs",
         "typecheck": "tsc --noEmit"
     },
     "keywords": [

@@ -1,7 +1,7 @@
 {
     "private": true,
     "workspaces": [
-        "package/ui",
+        "package/*",
         "EMS/admin-ui-bundle/assets"
     ],
     "scripts": {
@@ -16,7 +16,8 @@
         "prettier": "3.8.4",
         "typescript": "6.0.3",
         "typescript-eslint": "8.61.0",
-        "vite": "8.0.16"
+        "vite": "8.0.16",
+        "vite-plugin-dts": "^5.0.2"
     },
     "overrides": {
         "vite-plugin-live-reload": {

@@ -1,1 +1,1 @@
-export const version = '0.0.4'
+export { Dialog, type DialogButton, type DialogOptions } from './components/dialog/dialog'
