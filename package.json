@@ -1,0 +1,8 @@
+{
+    "private": true,
+    "workspaces": [
+        "package/tiptap",
+        "package/admin-ui",
+        "EMS/admin-ui-bundle/assets"
+    ]
+}
