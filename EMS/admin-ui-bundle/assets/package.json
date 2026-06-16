@@ -1,9 +1,9 @@
 {
     "name": "admin-ui",
-    "private": true,
     "version": "0.0.0",
-    "type": "module",
+    "private": true,
     "license": "LGPL-3.0-or-later",
+    "type": "module",
     "scripts": {
         "build": "tsc && vite build",
         "dev": "vite",
@@ -13,21 +13,14 @@
         "preview": "vite preview",
         "watch": "tsc && vite build --watch"
     },
-    "devDependencies": {
-        "@rollup/plugin-inject": "5.0.5",
-        "@rushstack/eslint-patch": "1.16.1",
-        "@types/bootstrap": "5.2.10",
-        "@types/node": "22.19.17",
-        "@types/sortablejs": "1.15.9",
-        "esbuild": "0.28.1",
-        "eslint-plugin-cypress": "3.6.0",
-        "sass-embedded": "1.77.5",
-        "vite-plugin-live-reload": "3.1.0"
+    "overrides": {
+        "vite-plugin-live-reload": {
+            "vite": "$vite"
+        }
     },
     "dependencies": {
         "@a2lix/symfony-collection": "0.6.1",
         "@elasticms/file-uploader": "1.0.2",
-        "@elasticms/ui": "*",
         "@eonasdan/tempus-dominus": "6.9.11",
         "@fontsource/inter": "5.2.8",
         "@fortawesome/fontawesome-free": "6.7.2",
@@ -69,5 +62,26 @@
         "sortablejs": "1.15.7",
         "swagger-ui": "5.32.1",
         "uuid": "14.0.0"
+    },
+    "devDependencies": {
+        "@eslint/compat": "2.1.0",
+        "@eslint/js": "10.0.1",
+        "@rollup/plugin-inject": "5.0.5",
+        "@rushstack/eslint-patch": "1.16.1",
+        "@types/bootstrap": "5.2.10",
+        "@types/node": "22.19.17",
+        "@types/sortablejs": "1.15.9",
+        "@typescript-eslint/eslint-plugin": "8.61.0",
+        "@typescript-eslint/parser": "8.61.0",
+        "esbuild": "0.28.1",
+        "eslint": "10.5.0",
+        "eslint-plugin-cypress": "3.6.0",
+        "prettier": "3.8.4",
+        "sass-embedded": "1.77.5",
+        "typescript": "6.0.3",
+        "typescript-eslint": "8.61.0",
+        "vite": "8.0.16",
+        "vite-plugin-dts": "^5.0.2",
+        "vite-plugin-live-reload": "3.1.0"
     }
 }
