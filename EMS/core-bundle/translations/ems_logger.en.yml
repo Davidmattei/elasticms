@@ -1,7 +1,4 @@
 service:
-    contenttype:
-        mappings_error: 'Mappings update for %contenttype% in %environments% failed : %elasticsearch_dump%'
-        mappings_updated: 'Mappings successfully updated for content type %contenttype% in %environments%'
     data:
         not_able_to_load_the_private_key: 'It''s impossible to load the private key %private_key_filename% : %error_message%'
         not_a_data_field: 'Unexpected %field_name% field in the revision form'
@@ -28,9 +25,3 @@ service:
         unknown_update_type: 'The document "%label%" has not been replaced or replaced as the update type "%update_type%" is unknown'
         update_referrers_error: 'It was impossible to update document''s referrers'
         unlock_revisions_error: 'Unexpected unlock exception'
-api:
-    admin:
-        entities:
-            create: 'An %entity% has been created with id %id%'
-            update: 'An %entity% has been updated with id %id%'
-            delete: 'An %entity% has been deleted with id %id%'

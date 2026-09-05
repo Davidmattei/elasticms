@@ -13,6 +13,11 @@ message:
     user_profile_updated: 'The profile has been updated.'
     user_profile_changed_password: 'The password has been changed.'
     user_resetting_success: 'The password has been reset successfully.'
+    contenttype_mappings_error: 'Mappings update for {content_type} in {environments} failed: {elasticsearch_dump}'
+    contenttype_mappings_updated: 'Mappings successfully updated for content type {content_type} in {environments}'
+    api_entity_created: 'Entity {entity} has been created with id {id}'
+    api_entity_updated: 'Entity {entity} "{name}" has been updated with id {id}'
+    api_entity_deleted: 'Entity {entity} "{name}" has been deleted with id {id}'
 action:
     activate: Activate
     add: Add
