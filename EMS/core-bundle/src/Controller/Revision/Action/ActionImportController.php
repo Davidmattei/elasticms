@@ -141,11 +141,13 @@ class ActionImportController
             $this->logger->messageError(t('message.import_file_missing_columns', [
                 'columns' => \implode(', ', $columns),
             ], 'emsco-core'));
+
             return null;
         }
 
         if (\count($data) < 2) {
             $this->logger->messageError(t('message.import_file_missing_data', [], 'emsco-core'));
+
             return null;
         }
 
