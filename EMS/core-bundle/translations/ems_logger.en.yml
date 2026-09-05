@@ -1,9 +1,5 @@
 service:
     data:
-        not_able_to_load_the_private_key: 'It''s impossible to load the private key %private_key_filename% : %error_message%'
-        not_a_data_field: 'Unexpected %field_name% field in the revision form'
-        already_unpublished: 'The document "%label%" was already unpublished from %environment%'
-        cant_finalize_field: '%error_message%'
         check_signature_failed: 'Signature mismatch in %environment% for the document "%label%"'
         computed_hash_mismatch: 'Computed hash mismatch in %environment% for document "%label%"'
         data_not_consumed: '{1} A data of this revision was not consumed: %data%|]1,Inf[ Some data (%count%} of this revision were not consumed: %data%'

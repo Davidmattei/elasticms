@@ -332,7 +332,10 @@ class PublishService
             $this->dispatcher->dispatch(new RevisionUnpublishEvent($revision, $environment));
         } catch (\Throwable) {
             if (!$revision->getDeleted()) {
-                $this->logger->warning('service.publish.already_unpublished', LogRevisionContext::publish($revision, $environment));
+                $this->logger->messageWarning(t('message.data_already_unpublished', [
+                    'environment' => $environment->getLabel(),
+                    'label' => $revision->getLabel(),
+                ], 'emsco-core'), LogRevisionContext::unpublish($revision, $environment));
             }
         }
     }

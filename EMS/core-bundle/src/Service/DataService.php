@@ -18,6 +18,7 @@ use EMS\CommonBundle\Service\ElasticaService;
 use EMS\CommonBundle\Storage\StorageManager;
 use EMS\CoreBundle\Core\ContentType\ContentTypeRoles;
 use EMS\CoreBundle\Core\ContentType\ContentTypeSettings;
+use EMS\CoreBundle\Core\Log\LogRevisionContext;
 use EMS\CoreBundle\Core\Revision\EventType;
 use EMS\CoreBundle\Entity\ContentType;
 use EMS\CoreBundle\Entity\DataField;
@@ -116,11 +117,10 @@ class DataService
 
                 $this->privateKey = \openssl_pkey_get_private($privateKeyContent);
             } catch (\Exception $e) {
-                $this->logger->warning('service.data.not_able_to_load_the_private_key', [
-                    EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getMessage(),
-                    EmsFields::LOG_EXCEPTION_FIELD => $e,
+                $this->logger->messageWarning(t('message.data_not_able_to_load_private_key', [
+                    'error_message' => $e->getMessage(),
                     'private_key_filename' => $privateKey,
-                ]);
+                ], 'emsco-core'));
             }
         }
     }
@@ -421,9 +421,9 @@ class DataService
             if ($dataFieldType instanceof DataFieldType) {
                 $dataFieldType->generateInput($dataField);
             } elseif (!DataService::isInternalField($dataField->getFieldType()->getName())) {
-                $this->logger->warning('service.data.not_a_data_field', [
+                $this->logger->messageWarning(t('message.field_not_a_data_field', [
                     'field_name' => $dataField->getFieldType()->getName(),
-                ]);
+                ], 'emsco-core'));
             }
         }
     }
@@ -1263,14 +1263,10 @@ class DataService
                     ], 'emsco-core'));
                 } catch (NotFoundException $e) {
                     if (!$revision->getDeleted()) {
-                        $this->logger->warning('service.data.already_unpublished', [
+                        $this->logger->messageWarning(t('message.data_already_unpublished', [
+                            'environment' => $environment->getLabel(),
                             'label' => $revision->getLabel(),
-                            EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                            EmsFields::LOG_OUUID_FIELD => $revision->getOuuid(),
-                            EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                            EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_DELETE,
-                            EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getLabel(),
-                        ]);
+                        ], 'emsco-core'), LogRevisionContext::unpublish($revision, $environment));
                     }
                     throw $e;
                 }
@@ -1336,7 +1332,9 @@ class DataService
 
         $dataFieldType = $this->formRegistry->getType($fieldType->getType())->getInnerType();
         if (!$dataFieldType instanceof DataFieldType && !self::isInternalField($fieldType->getName())) {
-            $this->logger->warning('service.data.not_a_data_field', ['field_name' => $fieldType->getName()]);
+            $this->logger->messageWarning(t('message.field_not_a_data_field', [
+                'field_name' => $fieldType->getName(),
+            ], 'emsco-core'));
 
             return;
         }
@@ -1412,9 +1410,9 @@ class DataService
                 }
             }
         } elseif (!DataService::isInternalField($dataField->giveFieldType()->getName())) {
-            $this->logger->warning('service.data.not_a_data_field', [
+            $this->logger->messageWarning(t('message.field_not_a_data_field', [
                 'field_name' => $dataField->giveFieldType()->getName(),
-            ]);
+            ], 'emsco-core'));
         }
     }
 
@@ -1589,9 +1587,9 @@ class DataService
 
         if (!$viewData instanceof DataField) {
             if (!DataService::isInternalField($form->getName())) {
-                $this->logger->warning('service.data.not_a_data_field', [
+                $this->logger->messageWarning(t('message.field_not_a_data_field', [
                     'field_name' => $form->getName(),
-                ]);
+                ], 'emsco-core'));
             }
 
             return true;

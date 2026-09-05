@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EMS\CoreBundle\Service\Revision;
 
 use Doctrine\DBAL\Exception;
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CommonBundle\Json\JsonMenuNested;
 use EMS\CoreBundle\Core\Revision\RawDataTransformer;
@@ -22,17 +23,21 @@ use EMS\CoreBundle\Form\DataField\JsonMenuNestedEditorFieldType;
 use EMS\CoreBundle\Form\DataField\MultiplexedTabContainerFieldType;
 use EMS\CoreBundle\Form\Form\RevisionJsonMenuNestedType;
 use EMS\Helpers\Standard\Json;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Twig\Environment as Twig;
 use Twig\Error\SyntaxError;
 
+use function Symfony\Component\Translation\t;
+
 final readonly class PostProcessingService
 {
-    public function __construct(private Twig $twig, private FormFactoryInterface $formFactory, private LoggerInterface $logger)
-    {
+    public function __construct(
+        private Twig $twig,
+        private FormFactoryInterface $formFactory,
+        private LocalizedLoggerInterface $logger
+    ) {
     }
 
     /**
@@ -118,12 +123,15 @@ final readonly class PostProcessingService
                 if ($e->getPrevious() && $e->getPrevious() instanceof CantBeFinalizedException) {
                     if (!$migration) {
                         $form->addError(new FormError($e->getPrevious()->getMessage()));
-                        $this->logger->warning('service.data.cant_finalize_field', [
-                            '_id' => $context['_id'] ?? null,
-                            'field_name' => $dataField->giveFieldType()->getName(),
-                            'field_display' => isset($fieldType->getDisplayOptions()['label']) && !empty($fieldType->getDisplayOptions()['label']) ? $fieldType->getDisplayOptions()['label'] : $fieldType->getName(),
-                            EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getPrevious()->getMessage(),
-                        ]);
+                        $this->logger->messageWarning(
+                            message: t('message.data_cant_finalize_field', ['error_message' => $e->getMessage()], 'emsco-core'),
+                            context: [
+                                '_id' => $context['_id'] ?? null,
+                                'field_name' => $dataField->giveFieldType()->getName(),
+                                'field_display' => isset($fieldType->getDisplayOptions()['label']) && !empty($fieldType->getDisplayOptions()['label']) ? $fieldType->getDisplayOptions()['label'] : $fieldType->getName(),
+                                EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getPrevious()->getMessage(),
+                            ]
+                        );
                     }
                 } elseif ($e->getPrevious() && $e->getPrevious() instanceof Exception) {
                     throw $e->getPrevious();
