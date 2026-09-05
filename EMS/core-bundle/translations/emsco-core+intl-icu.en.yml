@@ -1,3 +1,7 @@
+message:
+    import_failed: 'Import failed'
+    import_file_missing_columns: 'Missing columns in import file, required columns "{columns}"'
+    import_file_missing_data: 'Missing data in import file'
 action:
     activate: Activate
     add: Add
