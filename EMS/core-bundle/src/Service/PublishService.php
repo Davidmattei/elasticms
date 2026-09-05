@@ -254,7 +254,10 @@ class PublishService
                 $this->auditLogger->messageNotice(t('message.revision_published', [
                     'label' => $revision->getLabel(),
                     'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
-                ], 'emsco-core'));
+                ], 'emsco-core'), [
+                    ...[EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_CREATE],
+                    ...$logContext,
+                ]);
             }
 
             $this->dispatcher->dispatch(new RevisionPublishEvent($revision, $environment));
@@ -327,7 +330,7 @@ class PublishService
             $this->auditLogger->messageNotice(t('message.revision_unpublished', [
                 'label' => $revision->getLabel(),
                 'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
-            ], 'emsco-core'));
+            ], 'emsco-core'), LogRevisionContext::unpublish($revision, $environment));
 
             $this->dispatcher->dispatch(new RevisionUnpublishEvent($revision, $environment));
         } catch (\Throwable) {

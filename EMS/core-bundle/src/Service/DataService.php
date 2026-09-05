@@ -120,7 +120,11 @@ class DataService
                 $this->logger->messageWarning(t('message.data_not_able_to_load_private_key', [
                     'error_message' => $e->getMessage(),
                     'private_key_filename' => $privateKey,
-                ], 'emsco-core'));
+                ], 'emsco-core'), [
+                    EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getMessage(),
+                    EmsFields::LOG_EXCEPTION_FIELD => $e,
+                    'private_key_filename' => $privateKey,
+                ]);
             }
         }
     }
@@ -832,7 +836,7 @@ class DataService
             $this->auditLogger->messageNotice(t('message.revision_finalized', [
                 'label' => $revision->getLabel(),
                 'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
-            ], 'emsco-core'));
+            ], 'emsco-core'), LogRevisionContext::update($revision));
 
             try {
                 $this->postFinalizeTreatment($revision->giveContentType()->getName(), $revision->giveOuuid(), $form->get('data'), $previousObjectArray);
@@ -1157,7 +1161,7 @@ class DataService
 
             $this->auditLogger->messageInfo(t('message.revision_draft_created', [
                 'label' => $revision->getLabel(),
-            ], 'emsco-core'));
+            ], 'emsco-core'), LogRevisionContext::update($revision));
 
             $this->dispatcher->dispatch(new RevisionNewDraftEvent($newDraft));
 
@@ -1224,7 +1228,7 @@ class DataService
 
         $this->auditLogger->messageInfo(t('message.revision_draft_deleted', [
             'label' => $revision->getLabel(),
-        ], 'emsco-core'));
+        ], 'emsco-core'), LogRevisionContext::update($revision));
 
         return $hasPreviousRevision;
     }
@@ -1260,7 +1264,7 @@ class DataService
                     $this->auditLogger->messageNotice(t('message.revision_unpublished', [
                         'label' => $revision->getLabel(),
                         'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
-                    ], 'emsco-core'));
+                    ], 'emsco-core'), LogRevisionContext::unpublish($revision, $environment));
                 } catch (NotFoundException $e) {
                     if (!$revision->getDeleted()) {
                         $this->logger->messageWarning(t('message.data_already_unpublished', [
@@ -1277,7 +1281,7 @@ class DataService
             if (null === $revision->getEndTime()) {
                 $this->auditLogger->messageNotice(t('message.revision_deleted', [
                     'label' => $revision->getLabel(),
-                ], 'emsco-core'));
+                ], 'emsco-core'), LogRevisionContext::delete($revision));
                 $this->dispatcher->dispatch(new RevisionDeleteEvent($revision));
             }
 
@@ -1311,7 +1315,7 @@ class DataService
                 $revision->setDraft(true);
                 $this->auditLogger->messageNotice(t('message.revision_restored', [
                     'label' => $revision->getLabel(),
-                ], 'emsco-core'));
+                ], 'emsco-core'), LogRevisionContext::update($revision));
             }
             $this->em->persist($revision);
             $this->unlockRevision($revision);

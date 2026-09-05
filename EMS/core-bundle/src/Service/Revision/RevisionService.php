@@ -15,6 +15,7 @@ use EMS\CommonBundle\Service\ElasticaService;
 use EMS\CoreBundle\Common\DocumentInfo;
 use EMS\CoreBundle\Contracts\Revision\RevisionServiceInterface;
 use EMS\CoreBundle\Core\ContentType\ContentTypeFields;
+use EMS\CoreBundle\Core\Log\LogRevisionContext;
 use EMS\CoreBundle\Core\Revision\Revisions;
 use EMS\CoreBundle\Core\User\UserManager;
 use EMS\CoreBundle\Entity\ContentType;
@@ -329,7 +330,7 @@ class RevisionService implements RevisionServiceInterface
 
         $this->auditLogger->messageInfo(t('message.revision_draft_updated', [
             'label' => $revision->getLabel(),
-        ], 'emsco-core'));
+        ], 'emsco-core'), LogRevisionContext::update($revision));
     }
 
     /** @param array<string, mixed> $autoSave */
