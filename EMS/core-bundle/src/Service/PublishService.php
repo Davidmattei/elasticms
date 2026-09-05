@@ -8,6 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception as DBALException;
 use Doctrine\ORM\NonUniqueResultException;
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CoreBundle\Core\ContentType\ContentTypeRoles;
 use EMS\CoreBundle\Core\ContentType\Version\VersionFields;
@@ -27,6 +28,8 @@ use Psr\Log\NullLogger;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
+use function Symfony\Component\Translation\t;
+
 class PublishService
 {
     private readonly RevisionRepository $revRepository;
@@ -41,8 +44,8 @@ class PublishService
         private readonly DataService $dataService,
         private readonly UserService $userService,
         private readonly EventDispatcherInterface $dispatcher,
-        private readonly LoggerInterface $logger,
-        private readonly LoggerInterface $auditLogger,
+        private readonly LocalizedLoggerInterface $logger,
+        private readonly LocalizedLoggerInterface $auditLogger,
         private readonly Bulker $bulker,
         private readonly EnvironmentRevisionRepository $environmentRevisionRepository,
     ) {
@@ -248,9 +251,10 @@ class PublishService
             $this->revRepository->save($revision);
 
             if (null === $commandUser) {
-                $this->auditLogger->notice('log.published.success', [...[
-                    EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_CREATE,
-                ], ...$logContext]);
+                $this->auditLogger->messageNotice(t('message.revision_published', [
+                    'label' => $revision->getLabel(),
+                    'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
+                ], 'emsco-core'));
             }
 
             $this->dispatcher->dispatch(new RevisionPublishEvent($revision, $environment));
@@ -320,7 +324,10 @@ class PublishService
 
         try {
             $this->indexService->delete($revision, $environment);
-            $this->auditLogger->notice('log.unpublished.success', LogRevisionContext::unpublish($revision, $environment));
+            $this->auditLogger->messageNotice(t('message.revision_unpublished', [
+                'label' => $revision->getLabel(),
+                'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
+            ], 'emsco-core'));
 
             $this->dispatcher->dispatch(new RevisionUnpublishEvent($revision, $environment));
         } catch (\Throwable) {

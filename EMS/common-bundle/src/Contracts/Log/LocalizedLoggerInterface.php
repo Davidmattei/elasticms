@@ -28,4 +28,9 @@ interface LocalizedLoggerInterface extends LoggerInterface
      * @param array<string, mixed> $context
      */
     public function messageNotice(TranslatableMessage $message, array $context = []): void;
+
+    /**
+     * @param array<string, mixed> $context
+     */
+    public function messageInfo(TranslatableMessage $message, array $context = []): void;
 }

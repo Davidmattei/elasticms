@@ -7,6 +7,7 @@ namespace EMS\CoreBundle\Service\Revision;
 use EMS\CommonBundle\Common\EMSLink;
 use EMS\CommonBundle\Common\EMSLinkCollection;
 use EMS\CommonBundle\Contracts\ExpressionServiceInterface;
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Elasticsearch\Document\DocumentInterface;
 use EMS\CommonBundle\Elasticsearch\Exception\NotFoundException as CommonNotFoundException;
 use EMS\CommonBundle\Helper\EmsFields;
@@ -14,7 +15,6 @@ use EMS\CommonBundle\Service\ElasticaService;
 use EMS\CoreBundle\Common\DocumentInfo;
 use EMS\CoreBundle\Contracts\Revision\RevisionServiceInterface;
 use EMS\CoreBundle\Core\ContentType\ContentTypeFields;
-use EMS\CoreBundle\Core\Log\LogRevisionContext;
 use EMS\CoreBundle\Core\Revision\Revisions;
 use EMS\CoreBundle\Core\User\UserManager;
 use EMS\CoreBundle\Entity\ContentType;
@@ -28,7 +28,6 @@ use EMS\CoreBundle\Service\DataService;
 use EMS\CoreBundle\Service\EnvironmentService;
 use EMS\CoreBundle\Service\Mapping;
 use EMS\CoreBundle\Service\PublishService;
-use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Form\FormFactory;
@@ -43,8 +42,8 @@ class RevisionService implements RevisionServiceInterface
     public function __construct(
         private readonly DataService $dataService,
         private readonly FormFactory $formFactory,
-        private readonly LoggerInterface $logger,
-        private readonly LoggerInterface $auditLogger,
+        private readonly LocalizedLoggerInterface $logger,
+        private readonly LocalizedLoggerInterface $auditLogger,
         private readonly RevisionRepository $revisionRepository,
         private readonly PublishService $publishService,
         private readonly ContentTypeService $contentTypeService,
@@ -326,13 +325,11 @@ class RevisionService implements RevisionServiceInterface
         }
         $revision->setRawData($rawData);
         $this->dataService->setMetaFields($revision);
-
-        $this->logger->debug('Revision before persist');
         $this->revisionRepository->save($revision);
 
-        $this->auditLogger->info('log.revision.draft.updated', LogRevisionContext::update($revision));
-
-        $this->logger->debug('Revision after persist flush');
+        $this->auditLogger->messageInfo(t('message.revision_draft_updated', [
+            'label' => $revision->getLabel(),
+        ], 'emsco-core'));
     }
 
     /** @param array<string, mixed> $autoSave */

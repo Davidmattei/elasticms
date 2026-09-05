@@ -45,6 +45,12 @@ class LocalizedLogger extends AbstractLogger implements LocalizedLoggerInterface
         $this->message('notice', $message, $context);
     }
 
+    #[\Override]
+    public function messageInfo(TranslatableMessage $message, array $context = []): void
+    {
+        $this->message('info', $message, $context);
+    }
+
     /**
      * @param array<string, mixed> $context
      */

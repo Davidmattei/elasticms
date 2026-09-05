@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use EMS\CommonBundle\Common\EMSLink;
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Elasticsearch\Document\Document;
 use EMS\CommonBundle\Elasticsearch\Document\DocumentInterface;
 use EMS\CommonBundle\Elasticsearch\Exception\NotFoundException;
@@ -17,7 +18,6 @@ use EMS\CommonBundle\Service\ElasticaService;
 use EMS\CommonBundle\Storage\StorageManager;
 use EMS\CoreBundle\Core\ContentType\ContentTypeRoles;
 use EMS\CoreBundle\Core\ContentType\ContentTypeSettings;
-use EMS\CoreBundle\Core\Log\LogRevisionContext;
 use EMS\CoreBundle\Core\Revision\EventType;
 use EMS\CoreBundle\Entity\ContentType;
 use EMS\CoreBundle\Entity\DataField;
@@ -45,7 +45,6 @@ use EMS\CoreBundle\Roles;
 use EMS\CoreBundle\Service\Revision\PostProcessingService;
 use EMS\Helpers\Standard\Json;
 use EMS\Helpers\Standard\Type;
-use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormError;
@@ -60,6 +59,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Twig\Environment as TwigEnvironment;
 use Twig\Error\Error;
+
+use function Symfony\Component\Translation\t;
 
 /**
  * @todo Move Revision related logic to RevisionService
@@ -91,8 +92,8 @@ class DataService
         protected EventDispatcherInterface $dispatcher,
         protected ContentTypeService $contentTypeService,
         string $privateKey,
-        protected LoggerInterface $logger,
-        private readonly LoggerInterface $auditLogger,
+        protected LocalizedLoggerInterface $logger,
+        private readonly LocalizedLoggerInterface $auditLogger,
         private readonly StorageManager $storageManager,
         protected TwigEnvironment $twig,
         protected UserService $userService,
@@ -828,7 +829,10 @@ class DataService
             $this->unlockRevision($revision, $username);
             $this->dispatcher->dispatch(new RevisionFinalizeDraftEvent($revision));
 
-            $this->auditLogger->notice('log.revision.finalized', LogRevisionContext::update($revision));
+            $this->auditLogger->messageNotice(t('message.revision_finalized', [
+                'label' => $revision->getLabel(),
+                'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
+            ], 'emsco-core'));
 
             try {
                 $this->postFinalizeTreatment($revision->giveContentType()->getName(), $revision->giveOuuid(), $form->get('data'), $previousObjectArray);
@@ -1151,7 +1155,9 @@ class DataService
             $em->persist($newDraft);
             $em->flush();
 
-            $this->auditLogger->info('log.revision.draft.created', LogRevisionContext::update($revision));
+            $this->auditLogger->messageInfo(t('message.revision_draft_created', [
+                'label' => $revision->getLabel(),
+            ], 'emsco-core'));
 
             $this->dispatcher->dispatch(new RevisionNewDraftEvent($newDraft));
 
@@ -1216,7 +1222,9 @@ class DataService
 
         $em->flush();
 
-        $this->auditLogger->info('log.revision.draft.deleted', LogRevisionContext::update($revision));
+        $this->auditLogger->messageInfo(t('message.revision_draft_deleted', [
+            'label' => $revision->getLabel(),
+        ], 'emsco-core'));
 
         return $hasPreviousRevision;
     }
@@ -1249,7 +1257,10 @@ class DataService
             foreach ($revision->getEnvironments() as $environment) {
                 try {
                     $this->indexService->delete($revision, $environment);
-                    $this->auditLogger->notice('log.unpublished.success', LogRevisionContext::unpublish($revision, $environment));
+                    $this->auditLogger->messageNotice(t('message.revision_unpublished', [
+                        'label' => $revision->getLabel(),
+                        'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
+                    ], 'emsco-core'));
                 } catch (NotFoundException $e) {
                     if (!$revision->getDeleted()) {
                         $this->logger->warning('service.data.already_unpublished', [
@@ -1268,7 +1279,9 @@ class DataService
             $revision->delete($username);
 
             if (null === $revision->getEndTime()) {
-                $this->auditLogger->notice('log.revision.deleted', LogRevisionContext::delete($revision));
+                $this->auditLogger->messageNotice(t('message.revision_deleted', [
+                    'label' => $revision->getLabel(),
+                ], 'emsco-core'));
                 $this->dispatcher->dispatch(new RevisionDeleteEvent($revision));
             }
 
@@ -1300,7 +1313,9 @@ class DataService
             $revision->restore();
             if (null === $revision->getEndTime()) {
                 $revision->setDraft(true);
-                $this->auditLogger->notice('log.revision.restored', LogRevisionContext::update($revision));
+                $this->auditLogger->messageNotice(t('message.revision_restored', [
+                    'label' => $revision->getLabel(),
+                ], 'emsco-core'));
             }
             $this->em->persist($revision);
             $this->unlockRevision($revision);

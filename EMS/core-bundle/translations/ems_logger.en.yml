@@ -1,22 +1,3 @@
-log:
-    revision:
-        draft:
-            created: 'A new draft has been initiated for the document "%label%"'
-            updated: 'Updated draft for the document "%label%"'
-            deleted: 'Draft discard for the document "%label%"'
-        finalized: 'The document "%label%" has been published in %environment%'
-        deleted: 'The document "%label%" has been deleted'
-        restored: 'The document "%label%" has been restored'
-    published:
-        success: 'The document "%label%" has been published in %environment%'
-    unpublished:
-        success: 'The document "%label%" has been unpublished from %environment%'
-    user:
-        profile:
-            updated: 'The profile has been updated.'
-            changed_password: 'The password has been changed.'
-        resetting:
-            success: 'The password has been reset successfully.'
 service:
     contenttype:
         mappings_error: 'Mappings update for %contenttype% in %environments% failed : %elasticsearch_dump%'

@@ -2,6 +2,17 @@ message:
     import_failed: 'Import failed'
     import_file_missing_columns: 'Missing columns in import file, required columns "{columns}"'
     import_file_missing_data: 'Missing data in import file'
+    revision_draft_created: 'A new draft has been initiated for the document "{label}"'
+    revision_draft_updated: 'Updated draft for the document "{label}"'
+    revision_draft_deleted: 'Draft discard for the document "{label}"'
+    revision_finalized: 'The document "{label}" has been published in {environment}'
+    revision_deleted: 'The document "{label}" has been deleted'
+    revision_restored: 'The document "{label}" has been restored'
+    revision_published: 'The document "{label}" has been published in {environment}'
+    revision_unpublished: 'The document "{label}" has been unpublished from {environment}'
+    user_profile_updated: 'The profile has been updated.'
+    user_profile_changed_password: 'The password has been changed.'
+    user_resetting_success: 'The password has been reset successfully.'
 action:
     activate: Activate
     add: Add
