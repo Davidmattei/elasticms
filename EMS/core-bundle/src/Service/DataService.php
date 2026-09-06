@@ -621,7 +621,7 @@ class DataService
                             $this->logger->messageInfo(t('message.data_error_check_signature', [
                                 'environment' => $environment->getLabel(),
                                 'label' => $revision->getLabel(),
-                                'error_message' =>\openssl_error_string(),
+                                'error_message' => \openssl_error_string(),
                             ], 'emsco-core'), LogRevisionContext::read($revision));
                         }
                     } else {
