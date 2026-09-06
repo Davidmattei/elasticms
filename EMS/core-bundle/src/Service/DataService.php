@@ -618,13 +618,11 @@ class DataService
                                 'label' => $revision->getLabel(),
                             ], 'emsco-core'), LogRevisionContext::read($revision));
                         } elseif (1 !== $ok) { // 1 means signature is ok
-                            $this->logger->messageInfo(t('message.data_check_signature_failed', [
+                            $this->logger->messageInfo(t('message.data_error_check_signature', [
                                 'environment' => $environment->getLabel(),
                                 'label' => $revision->getLabel(),
-                            ], 'emsco-core'), [
-                                ...LogRevisionContext::read($revision),
-                                EmsFields::LOG_ERROR_MESSAGE_FIELD => \openssl_error_string(),
-                            ]);
+                                'error_message' =>\openssl_error_string(),
+                            ], 'emsco-core'), LogRevisionContext::read($revision));
                         }
                     } else {
                         $data = Json::encode($indexedItem);
