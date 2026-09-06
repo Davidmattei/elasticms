@@ -1,5 +1,9 @@
 # Changelog 6.x
 
+## 6.9.34 (2026-09-06)
+### Bug Fixes
+* fix(web/security): authorizationChecker isGranted() start the session  by @theus77 in https://github.com/ems-project/elasticms/pull/1832
+
 ## 6.9.33 (2026-09-04)
 ### Features
 * feat(admin/job): add EMSCO_JOB_CLEAN_TIME environment variable by @Davidmattei in https://github.com/ems-project/elasticms/pull/1814
