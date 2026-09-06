@@ -481,9 +481,9 @@ class DataService
             if (\openssl_sign($json, $signature, $this->privateKey, OPENSSL_ALGO_SHA1)) {
                 $objectArray[Mapping::SIGNATURE_FIELD] = \base64_encode((string) $signature);
             } else {
-                $this->logger->warning('service.data.not_able_to_sign', [
-                    EmsFields::LOG_ERROR_MESSAGE_FIELD => \openssl_error_string(),
-                ]);
+                $this->logger->messageWarning(t('message.data_not_able_to_sign', [
+                    'error_message' => \openssl_error_string(),
+                ], 'emsco-core'));
             }
         }
 
@@ -589,14 +589,13 @@ class DataService
 
                 if (isset($indexedItem[Mapping::HASH_FIELD])) {
                     if ($indexedItem[Mapping::HASH_FIELD] != $revision->getSha1()) {
-                        $this->logger->warning('service.data.hash_mismatch', [
-                            EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                            EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                            EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName(),
-                            EmsFields::LOG_OUUID_FIELD => $revision->giveOuuid(),
+                        $this->logger->messageWarning(t('message.data_hash_mismatch', [
+                            'environment' => $environment->getLabel(),
+                            'label' => $revision->getLabel(),
+                        ], 'emsco-core'), [
+                            ...LogRevisionContext::read($revision),
                             'index_hash' => $indexedItem[Mapping::HASH_FIELD],
                             'db_hash' => $revision->getSha1(),
-                            'label' => $revision->getLabel(),
                         ]);
                     }
                     unset($indexedItem[Mapping::HASH_FIELD]);
@@ -614,66 +613,54 @@ class DataService
                         }
 
                         if (0 === $ok) {
-                            $this->logger->info('service.data.check_signature_failed', [
-                                EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                                EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                                EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getLabel(),
-                                EmsFields::LOG_OUUID_FIELD => $revision->giveOuuid(),
+                            $this->logger->messageInfo(t('message.data_check_signature_failed', [
+                                'environment' => $environment->getLabel(),
                                 'label' => $revision->getLabel(),
-                            ]);
+                            ], 'emsco-core'), LogRevisionContext::read($revision));
                         } elseif (1 !== $ok) { // 1 means signature is ok
-                            $this->logger->info('service.data.error_check_signature', [
-                                EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                                EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                                EmsFields::LOG_OUUID_FIELD => $revision->giveOuuid(),
-                                EmsFields::LOG_ERROR_MESSAGE_FIELD => \openssl_error_string(),
-                                EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName(),
+                            $this->logger->messageInfo(t('message.data_check_signature_failed', [
+                                'environment' => $environment->getLabel(),
                                 'label' => $revision->getLabel(),
+                            ], 'emsco-core'), [
+                                ...LogRevisionContext::read($revision),
+                                EmsFields::LOG_ERROR_MESSAGE_FIELD => \openssl_error_string(),
                             ]);
                         }
                     } else {
                         $data = Json::encode($indexedItem);
                         if ($this->privateKey instanceof \OpenSSLAsymmetricKey) {
-                            $this->logger->info('service.data.revision_not_signed', [
-                                EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                                EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                                EmsFields::LOG_OUUID_FIELD => $revision->giveOuuid(),
-                                EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName(),
+                            $this->logger->messageInfo(t('message.data_revision_not_signed', [
+                                'environment' => $environment->getLabel(),
                                 'label' => $revision->getLabel(),
-                            ]);
+                            ], 'emsco-core'), LogRevisionContext::read($revision));
                         }
                     }
 
                     $computedHash = $this->storageManager->computeStringHash($data);
                     if ($computedHash !== $revision->getSha1()) {
-                        $this->logger->info('service.data.computed_hash_mismatch', [
-                            EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                            EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                            EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName(),
-                            EmsFields::LOG_OUUID_FIELD => $revision->giveOuuid(),
+                        $this->logger->messageInfo(t('message.data_computed_hash_mismatch', [
+                            'environment' => $environment->getLabel(),
+                            'label' => $revision->getLabel(),
+                        ], 'emsco-core'), [
+                            ...LogRevisionContext::read($revision),
                             'computed_hash' => $computedHash,
                             'db_hash' => $revision->getSha1(),
-                            'label' => $revision->getLabel(),
                         ]);
                     }
                 } else {
-                    $this->logger->warning('service.data.hash_missing', [
-                        EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                        EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                        EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName(),
-                        EmsFields::LOG_OUUID_FIELD => $revision->giveOuuid(),
+                    $this->logger->messageWarning(t('message.data_hash_missing', [
+                        'environment' => $environment->getLabel(),
                         'label' => $revision->getLabel(),
-                    ]);
+                    ], 'emsco-core'), LogRevisionContext::read($revision));
                 }
             } catch (\Exception $e) {
-                $this->logger->error('service.data.integrity_failed', [
-                    EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                    EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                    EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName(),
-                    EmsFields::LOG_OUUID_FIELD => $revision->giveOuuid(),
-                    EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getMessage(),
-                    EmsFields::LOG_EXCEPTION_FIELD => $e,
+                $this->logger->messageError(t('message.data_integrity_failed', [
+                    'environment' => $environment->getLabel(),
                     'label' => $revision->getLabel(),
+                    'error_message' => $e->getMessage(),
+                ], 'emsco-core'), [
+                    ...LogRevisionContext::read($revision),
+                    EmsFields::LOG_EXCEPTION_FIELD => $e,
                 ]);
             }
         }
@@ -841,15 +828,16 @@ class DataService
             try {
                 $this->postFinalizeTreatment($revision->giveContentType()->getName(), $revision->giveOuuid(), $form->get('data'), $previousObjectArray);
             } catch (\Exception $e) {
-                $this->logger->warning('service.data.post_finalize_failed', [
-                    EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                    EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                    EmsFields::LOG_ENVIRONMENT_FIELD => $revision->giveContentType()->giveEnvironment()->getName(),
-                    EmsFields::LOG_OUUID_FIELD => $revision->giveOuuid(),
-                    EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getMessage(),
-                    EmsFields::LOG_EXCEPTION_FIELD => $e,
-                    'label' => $revision->getLabel(),
-                ]);
+                $this->logger->messageWarning(
+                    t('message.data_post_finalize_failed', [
+                        'label' => $revision->getLabel(),
+                        'error_message' => $e->getMessage(),
+                    ], 'emsco-core'),
+                    [
+                        ...LogRevisionContext::read($revision),
+                        EmsFields::LOG_EXCEPTION_FIELD => $e,
+                    ]
+                );
             }
         } else {
             $this->logFormErrors($form);
@@ -902,10 +890,11 @@ class DataService
             }
             $errorPath .= $fieldName;
 
-            $this->logger->warning('service.data.error_with_fields', [
-                EmsFields::LOG_ERROR_MESSAGE_FIELD => $errorMessage,
+            $this->logger->messageWarning(t('message.field_with_errors', [
+                'path' => $errorPath,
+                'error_message' => $errorMessage,
+            ], 'emsco-core'), [
                 EmsFields::LOG_FIELD_IN_ERROR_FIELD => $fieldName,
-                EmsFields::LOG_PATH_IN_ERROR_FIELD => $errorPath,
             ]);
         }
     }
@@ -987,14 +976,14 @@ class DataService
                 try {
                     $revision->setRawData(Json::decode($defaultValue));
                 } catch (\Throwable) {
-                    $this->logger->error('service.data.default_value_error', [
-                        EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
-                        EmsFields::LOG_OUUID_FIELD => $ouuid,
-                    ]);
+                    $this->logger->messageError(t('message.data_default_value_error', [
+                        'content_type' => $contentType->getName(),
+                    ], 'emsco-core'), [EmsFields::LOG_OUUID_FIELD => $ouuid]);
                 }
             } catch (Error $e) {
-                $this->logger->error('service.data.default_value_template_error', [
-                    EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
+                $this->logger->messageError(t('message.data_default_value_template_error', [
+                    'content_type' => $contentType->getName(),
+                ], 'emsco-core'), [
                     EmsFields::LOG_OUUID_FIELD => $ouuid,
                     EmsFields::LOG_EXCEPTION_FIELD => $e,
                     EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getMessage(),
@@ -1453,14 +1442,10 @@ class DataService
         if ([] !== $object) {
             $html = self::arrayToHtml($object);
 
-            $this->logger->warning('service.data.data_not_consumed', [
-                EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                EmsFields::LOG_OUUID_FIELD => $revision->getOuuid(),
-                EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_DELETE,
+            $this->logger->messageWarning(t('message.data_not_consumed', [
                 'count' => \count($object),
                 'data' => $html,
-            ]);
+            ], 'emsco-core'), LogRevisionContext::read($revision));
         }
     }
 
@@ -1701,14 +1686,10 @@ class DataService
                 $newRawData = \array_merge($revision->getRawData(), $rawData);
                 $newDraft->setRawData($newRawData);
             } else {
-                $this->logger->error('service.data.unknown_update_type', [
-                    EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                    EmsFields::LOG_OUUID_FIELD => $revision->getOuuid(),
-                    EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                    EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_DELETE,
+                $this->logger->messageError(t('message.data_unknown_update_type', [
                     'update_type' => $replaceOrMerge,
                     'label' => $revision->getLabel(),
-                ]);
+                ], 'emsco-core'), LogRevisionContext::update($revision));
 
                 return $revision;
             }
@@ -1726,14 +1707,11 @@ class DataService
 
             return $newDraft;
         }
-        $this->logger->error('service.data.not_a_draft', [
-            EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-            EmsFields::LOG_OUUID_FIELD => $revision->getOuuid(),
-            EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-            EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_DELETE,
-            'update_type' => $replaceOrMerge,
-            'label' => $revision->getLabel(),
-        ]);
+
+        $this->logger->messageError(
+            t('message.data_not_a_draft', ['label' => $revision->getLabel()], 'emsco-core'),
+            ['update_type' => $replaceOrMerge, ...LogRevisionContext::delete($revision)]
+        );
 
         return $revision;
     }
@@ -1787,7 +1765,7 @@ class DataService
                     $this->discardDraft($revision);
                 }
             } catch (LockedException $e) {
-                $this->logger->error('service.data.update_referrers_error', [
+                $this->logger->messageError(t('message.data_update_referrers_error', [], 'emsco-core'), [
                     EmsFields::LOG_CONTENTTYPE_FIELD => $key[0],
                     EmsFields::LOG_OUUID_FIELD => $key[1],
                     EmsFields::LOG_EXCEPTION_FIELD => $e,
@@ -1813,7 +1791,7 @@ class DataService
                     $this->discardDraft($revision);
                 }
             } catch (LockedException $e) {
-                $this->logger->error('service.data.update_referrers_error', [
+                $this->logger->messageError(t('message.data_update_referrers_error', [], 'emsco-core'), [
                     EmsFields::LOG_CONTENTTYPE_FIELD => $key[0],
                     EmsFields::LOG_OUUID_FIELD => $key[1],
                     EmsFields::LOG_EXCEPTION_FIELD => $e,
@@ -1981,7 +1959,7 @@ class DataService
         try {
             return $this->revRepository->unlockAllRevisions($by);
         } catch (\Throwable $throwable) {
-            $this->logger->error('service.data.unlock_revisions_error', [
+            $this->logger->messageError(t('message.data_unlock_revisions_error', [], 'emsco-core'), [
                 EmsFields::LOG_USERNAME_FIELD => $by,
                 EmsFields::LOG_EXCEPTION_FIELD => $throwable,
                 EmsFields::LOG_ERROR_MESSAGE_FIELD => $throwable->getMessage(),
@@ -1996,7 +1974,7 @@ class DataService
         try {
             return $this->revRepository->unlockRevisions($contentType, $by);
         } catch (\Throwable $throwable) {
-            $this->logger->error('service.data.unlock_revisions_error', [
+            $this->logger->messageError(t('message.data_unlock_revisions_error', [], 'emsco-core'), [
                 EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
                 EmsFields::LOG_USERNAME_FIELD => $by,
                 EmsFields::LOG_EXCEPTION_FIELD => $throwable,

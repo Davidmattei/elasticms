@@ -107,7 +107,6 @@ class EntitiesController
             throw new \RuntimeException('Unexpected non string content');
         }
         $entityObject = $entityService->createEntityFromJson($content);
-
         $this->logger->messageNotice(t('message.api_entity_created', [
             'entity' => $entity,
             'id' => $entityObject->getId(),
