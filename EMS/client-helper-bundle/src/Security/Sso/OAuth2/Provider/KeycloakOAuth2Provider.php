@@ -69,16 +69,20 @@ class KeycloakOAuth2Provider extends AbstractOAuth2Provider
 
     public function decodeAccessToken(AccessTokenInterface $accessToken): array
     {
-        $token = $this->keycloak->decryptResponse($accessToken->getToken());
+        if ($this->keycloak->usesEncryption()) {
+            $token = $this->keycloak->decryptResponse($accessToken->getToken());
+        } else {
+            $token = $this->keycloak->getResourceOwner($accessToken)->toArray();
+        }
 
         if (!\is_array($token)) {
             throw new AuthenticationException('Invalid token');
         }
 
         return [
+            ...$token,
             'username' => $token['preferred_username'] ?? null,
             'email' => $token['email'] ?? null,
-            ...$token,
         ];
     }
 }
