@@ -252,7 +252,7 @@ return static function (ContainerConfigurator $container) {
         ->args([
             service('ems.repository.channel'),
             service(EnvironmentHelperInterface::class),
-            service('logger'),
+            service('emsco.logger'),
             service('ems.service.index'),
             '%ems_core.security.firewall.core%',
             '%ems_core.instance_id%',

@@ -525,7 +525,7 @@ return static function (ContainerConfigurator $container) {
     $services->set(ReleaseController::class)
         ->public()
         ->args([
-            service('logger'),
+            service('emsco.logger'),
             service('ems.service.release'),
             service('emsco.data_table.factory'),
             '%ems_core.template_namespace%',

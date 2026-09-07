@@ -731,7 +731,14 @@ media_library:
     home: Home
     submit: Save
 message:
+    release_unknown_action: 'Unknown action'
+    channel_alias_not_found: 'The channel "{label}" cannot be registered as its alias "{alias}" is missing'
+    action_created: 'A new action "{label}" has been created'
+    action_updated: 'The action "{label}" has been updated'
     action_deleted: 'The action "{label}" has been deleted'
+    analyzer_created: 'The analyzer "{label}" has been created'
+    analyzer_deleted: 'The analyzer "{label}" has been deleted'
+    analyzer_updated: 'The analyzer "{label}" has been updated'
     channel_deleted: 'The channel "{name}" has been deleted'
     dashboard_deleted: 'The dashboard "{label}" has been deleted'
     environment_deleted: 'The environment "{label}" has been deleted'

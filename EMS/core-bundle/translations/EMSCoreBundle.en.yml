@@ -17,19 +17,6 @@ email:
                     text: 'Please find attached the export of requested CRM submissions.'
                     greeting: 'Regards.'
 log:
-    service:
-    action:
-        added: 'A new action %action_name% has been created'
-        deleted: 'The action %action_name% has been deleted'
-        twig:
-            error: 'Error during the Twig generation of %template_id% with the error message: %error_message%'
-        updated: 'The action %action_name% has been updated'
-    analyzer:
-        created: 'The analyzer %analyzer_name% has been created'
-        deleted: 'The analyzer %analyzer_name% has been deleted'
-        updated: 'The analyzer %analyzer_name% has been updated'
-    channel:
-        alias_not_found: 'The channel %channel% can''t be registered as it''s alias %alias% is missing'
     contenttype:
         action_not_found: 'Action not found on the content type %contenttype%'
         created: 'The content type %contenttype% has been created'
@@ -49,9 +36,6 @@ log:
             name_mandatory: 'The subfield name is mandatory'
             name_not_valid: 'The subfield is not valid : (format: %field_format%)'
         updated: 'The content type %contenttype% has been updated'
-    controller:
-        release:
-            unknown_action: 'Unknown action'
     crud:
         create_error: 'The revision for contenttype %contenttype% can not be created, reason: %error_message%'
         delete_error: 'The revision %revision_id% for contenttype %contenttype% can not be deleted, reason: %error_message%'

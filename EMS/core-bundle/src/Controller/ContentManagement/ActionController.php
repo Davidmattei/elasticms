@@ -93,9 +93,8 @@ final class ActionController extends AbstractController
             $action->setOrderKey($this->actionService->count('', $contentType) + 1);
             $action->setName(new Encoder()->slug(text: $action->getName(), separator: '_')->toString());
             $this->templateRepository->save($action);
-            $this->logger->notice('log.action.added', [
-                'action_name' => $action->getName(),
-            ]);
+
+            $this->logger->messageNotice(t('message.action_created', ['label' => $action->getLabel()], 'emsco-core'));
 
             return $this->redirectToRoute(Routes::ADMIN_CONTENT_TYPE_ACTION_INDEX, [
                 'contentType' => $contentType->getId(),
@@ -124,9 +123,8 @@ final class ActionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->templateRepository->save($action);
-            $this->logger->notice('log.action.updated', [
-                'action_name' => $action->getName(),
-            ]);
+
+            $this->logger->messageNotice(t('message.action_updated', ['label' => $action->getLabel()], 'emsco-core'));
 
             if ('json' === $request->getRequestFormat()) {
                 return $this->flashMessageLogger->buildJsonResponse(['success' => true]);
@@ -162,9 +160,6 @@ final class ActionController extends AbstractController
     public function delete(Template $action): RedirectResponse
     {
         $this->actionService->delete($action);
-        $this->logger->notice('log.action.deleted', [
-            'action_name' => $action->getName(),
-        ]);
 
         return $this->redirectToRoute(Routes::ADMIN_CONTENT_TYPE_ACTION_INDEX, [
             'contentType' => $action->giveContentType()->getId(),
