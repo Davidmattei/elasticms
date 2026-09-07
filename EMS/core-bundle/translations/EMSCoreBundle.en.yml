@@ -17,22 +17,7 @@ email:
                     text: 'Please find attached the export of requested CRM submissions.'
                     greeting: 'Regards.'
 log:
-    crud:
-        create_error: 'The revision for contenttype %contenttype% can not be created, reason: %error_message%'
-        delete_error: 'The revision %revision_id% for contenttype %contenttype% can not be deleted, reason: %error_message%'
-        deleted: 'The document "%label%" has been deleted'
-        discard_error: 'The revision %revision_id% for contenttype %contenttype% can not be discarded, reason: %error_message%'
-        finalize_error: 'The revision %revision_id% for content type %contenttype% can not be finalized, reason: %error_message%'
-        merge_error: 'The revision %revision_id% for contenttype %contenttype% can not be merged/updated, reason: %error_message%'
-        read_error: 'The revision for contenttype %contenttype% can not be found, reason: %error_message%'
-        replace_error: 'The revision %revision_id% for contenttype %contenttype% can not be replaced/updated, reason: %error_message%'
     data:
-        document:
-            cant_duplicate_when_waiting_ouuid: 'It''s impossible to duplicate the document "%label%" has the content type %contenttype% requests first an OUUID'
-            compare: 'Compare the revision %revision_id% of the document %contenttype%:%ouuid% with the revision %compare_revision_id% of the document %compare_contenttype%:%compare_ouuid%'
-            copy: 'The content of the document "%label%" has been copied into the clipboard'
-            duplicated: 'The document "%label%" has been used to initiate a new document'
-            paste: 'Clipboard''s content has been paste in the document "%label%"'
         job:
             done: 'The job %job_id% is done'
             initialize_failed: 'A job "%template_label%" has failed in the environment %environment%'

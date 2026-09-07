@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EMS\CoreBundle\Controller\ContentManagement;
 
 use Doctrine\ORM\NoResultException;
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CommonBundle\Helper\MimeTypeHelper;
 use EMS\CoreBundle\Controller\ElasticsearchController;
@@ -39,7 +40,6 @@ use EMS\CoreBundle\Service\PublishService;
 use EMS\CoreBundle\Service\SearchService;
 use EMS\CoreBundle\Twig\CoreExtension;
 use EMS\Helpers\Standard\Json;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormError;
@@ -59,7 +59,7 @@ use function Symfony\Component\Translation\t;
 class DataController extends AbstractController
 {
     public function __construct(
-        private readonly LoggerInterface $logger,
+        private readonly LocalizedLoggerInterface $logger,
         private readonly DataService $dataService,
         private readonly SearchService $searchService,
         private readonly ContentTypeService $contentTypeService,
@@ -247,16 +247,17 @@ class DataController extends AbstractController
         }
 
         try {
-            $dataRaw = $this->dataService->getRevisionByEnvironment($ouuid, $contentType, $environmentObject)->getCopyRawData();
+            $revision = $this->dataService->getRevisionByEnvironment($ouuid, $contentType, $environmentObject);
+            $dataRaw = $revision->getCopyRawData();
         } catch (NoResultException) {
             throw new NotFoundHttpException(\sprintf('Revision %s not found', $ouuid));
         }
 
         if ($contentType->getAskForOuuid()) {
-            $this->logger->warning('log.data.document.cant_duplicate_when_waiting_ouuid', [
-                EmsFields::LOG_OUUID_FIELD => $ouuid,
-                EmsFields::LOG_CONTENTTYPE_FIELD => $type,
-            ]);
+            $this->logger->messageWarning(t('message.document_cant_duplicate_ouuid_required', [
+                'content_type' => $type,
+                'label' => $revision->getLabel(),
+            ], 'emsco-core'));
 
             return $this->redirectToRoute('emsco_data_view', [
                 'environmentName' => $environment,
@@ -267,10 +268,9 @@ class DataController extends AbstractController
 
         $revision = $this->dataService->newDocument($contentType, null, $dataRaw);
 
-        $this->logger->notice('log.data.document.duplicated', [
-            EmsFields::LOG_OUUID_FIELD => $ouuid,
-            EmsFields::LOG_CONTENTTYPE_FIELD => $type,
-        ]);
+        $this->logger->messageNotice(t('message.document_duplicated', [
+            'label' => $revision->getLabel(),
+        ], 'emsco-core'));
 
         return $this->redirectToRoute(Routes::EDIT_REVISION, [
             'revisionId' => $revision->getId(),
@@ -289,17 +289,17 @@ class DataController extends AbstractController
         }
 
         try {
-            $dataRaw = $this->dataService->getRevisionByEnvironment($ouuid, $contentType, $environmentObject)->getCopyRawData();
+            $revision = $this->dataService->getRevisionByEnvironment($ouuid, $contentType, $environmentObject);
+            $dataRaw = $revision->getCopyRawData();
         } catch (NoResultException) {
             throw new NotFoundHttpException(\sprintf('Revision %s not found', $ouuid));
         }
 
         $request->getSession()->set('ems_clipboard', $dataRaw);
 
-        $this->logger->notice('log.data.document.copy', [
-            EmsFields::LOG_OUUID_FIELD => $ouuid,
-            EmsFields::LOG_CONTENTTYPE_FIELD => $type,
-        ]);
+        $this->logger->messageNotice(t('message.document_copied', [
+            'label' => $revision->getLabel(),
+        ], 'emsco-core'));
 
         return $this->redirectToRoute('emsco_data_view', [
             'environmentName' => $environment,

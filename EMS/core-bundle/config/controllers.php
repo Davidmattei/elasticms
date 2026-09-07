@@ -416,7 +416,7 @@ return static function (ContainerConfigurator $container) {
     $services->set(DataController::class)
         ->public()
         ->args([
-            service('logger'),
+            service('emsco.logger'),
             service('ems.service.data'),
             service('ems.service.search'),
             service('ems.service.contenttype'),

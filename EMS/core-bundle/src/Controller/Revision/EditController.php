@@ -165,7 +165,10 @@ class EditController extends AbstractController
 
                 if (isset($requestRevision['copy'])) {
                     $request->getSession()->set('ems_clipboard', $objectArray);
-                    $this->logger->notice('log.data.document.copy', LogRevisionContext::update($revision));
+
+                    $this->logger->messageNotice(t('message.document_copied', [
+                        'label' => $revision->getLabel(),
+                    ], 'emsco-core'));
                 }
 
                 $user = $this->getUser();

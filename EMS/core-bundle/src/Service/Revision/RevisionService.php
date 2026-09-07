@@ -100,10 +100,14 @@ class RevisionService implements RevisionServiceInterface
                 $this->logger->warning('log.data.revision.compare_more_recent', $logContext);
             }
         } else {
-            $this->logger->notice('log.data.document.compare', \array_merge($logContext, [
-                'compare_contenttype' => $compareRevision->giveContentType()->getName(),
+            $this->logger->messageNotice(t('message.document_compared', [
+                'revision_id' => $revision->getId(),
+                'content_type' => $revision->giveContentType()->getSingularName(),
+                'ouuid' => $revision->getOuuid(),
+                'compare_revision_id' => $compareRevision->getId(),
+                'compare_content_type' => $compareRevision->giveContentType()->getSingularName(),
                 'compare_ouuid' => $compareRevision->getOuuid(),
-            ]));
+            ], 'emsco-core'));
         }
 
         return $compareRevision->getRawData();

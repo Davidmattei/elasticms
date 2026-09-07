@@ -730,6 +730,17 @@ media_library:
     home: Home
     submit: Save
 message:
+    document_cant_duplicate_ouuid_required: 'It is impossible to duplicate the document "{label}" as the content type "{content_type}" requires an OUUID first'
+    document_compared: 'Compared the revision {revision_id} of the document {content_type}:{ouuid} with the revision {compare_revision_id} of the document {compare_content_type}:{compare_ouuid}'
+    document_copied: 'The content of the document "{label}" has been copied to the clipboard'
+    document_duplicated: 'The document "{label}" has been used to initiate a new document'
+    revision_create_error: 'The revision for the content type "{content_type}" cannot be created, reason: {error_message}'
+    revision_delete_error: 'The revision {ouuid} for the content type "{content_type}" cannot be deleted, reason: {error_message}'
+    revision_discard_error: 'The revision {revision_id} for the content type "{content_type}" cannot be discarded, reason: {error_message}'
+    revision_finalize_error: 'The revision {revision_id} for the content type "{content_type}" cannot be finalized, reason: {error_message}'
+    revision_merge_error: 'The revision {ouuid} for the content type "{content_type}" cannot be merged/updated, reason: {error_message}'
+    revision_read_error: 'The revision for the content type "{content_type}" cannot be found, reason: {error_message}'
+    revision_replace_error: 'The revision {ouuid} for the content type "{content_type}" cannot be replaced/updated, reason: {error_message}'
     content_type_action_not_found: 'Action not found on the content type "{label}"'
     content_type_created: 'The content type "{label}" has been created'
     content_type_deleted: 'The content type "{label}" has been deleted'
