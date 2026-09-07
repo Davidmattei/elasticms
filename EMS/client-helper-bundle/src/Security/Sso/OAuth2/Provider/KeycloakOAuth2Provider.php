@@ -6,6 +6,7 @@ namespace EMS\ClientHelperBundle\Security\Sso\OAuth2\Provider;
 
 use EMS\Helpers\Standard\Base64;
 use League\OAuth2\Client\Provider\AbstractProvider;
+use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 use Stevenmaguire\OAuth2\Client\Provider\Keycloak;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,6 +68,9 @@ class KeycloakOAuth2Provider extends AbstractOAuth2Provider
         return $this->keycloak;
     }
 
+    /**
+     * @param AccessToken $accessToken
+     */
     public function decodeAccessToken(AccessTokenInterface $accessToken): array
     {
         if ($this->keycloak->usesEncryption()) {
