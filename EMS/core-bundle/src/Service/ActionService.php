@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EMS\CoreBundle\Service;
 
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Entity\EntityInterface;
 use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CoreBundle\Entity\ContentType;
@@ -12,15 +13,16 @@ use EMS\CoreBundle\Entity\Job;
 use EMS\CoreBundle\Entity\Template;
 use EMS\CoreBundle\Form\Field\RenderOptionType;
 use EMS\CoreBundle\Repository\TemplateRepository;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Twig\Environment as Twig;
+
+use function Symfony\Component\Translation\t;
 
 final readonly class ActionService implements EntityServiceInterface
 {
     public function __construct(
         private TemplateRepository $templateRepository,
-        private LoggerInterface $logger,
+        private LocalizedLoggerInterface $logger,
         private SearchService $searchService,
         private Twig $twig,
         private JobService $jobService,
@@ -98,13 +100,10 @@ final readonly class ActionService implements EntityServiceInterface
 
     public function delete(Template $template): void
     {
-        $name = $template->getName();
         $label = $template->getLabel();
         $this->templateRepository->delete($template);
-        $this->logger->warning('log.service.action.delete', [
-            'name' => $name,
-            'label' => $label,
-        ]);
+
+        $this->logger->messageWarning(t('message.action_deleted', ['label' => $label], 'emsco-core'));
     }
 
     public function deleteByIds(string ...$ids): void

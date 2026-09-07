@@ -18,34 +18,6 @@ email:
                     greeting: 'Regards.'
 log:
     service:
-        form:
-            delete: 'Form %name% has been deleted'
-        action:
-            delete: 'The action %label% has been deleted'
-        environment:
-            delete: 'The environment %name% has been deleted'
-        channel:
-            delete: 'The channel %name% has been deleted'
-        release:
-            delete: 'The Release %name% has been deleted'
-            not:
-                environments:
-                    defined: 'Environments source or/and target not defined for Release %name%'
-                ready: 'Status of Release %name% is not ready'
-        release_revision:
-            preceding:
-                revision:
-                    in:
-                        release: 'Has a previous revision related to Release %name%'
-        query_search:
-            delete: 'The QuerySearch %name% has been deleted'
-        xliff:
-            not_current_revision: 'The revision %revision_id% of the %ouuid% was not the last revision anymore. The translations was not imported.'
-            to-many-current-translations: 'The are %counter% translation documents when only one is expected for the translation id %translationId% and the target locale %targetLocale% in the environment %environment%'
-        dashboard:
-            delete: 'Dashboard %name% has been deleted'
-        schedule:
-            delete: 'Schedule %name% has been deleted'
     action:
         added: 'A new action %action_name% has been created'
         deleted: 'The action %action_name% has been deleted'
@@ -149,7 +121,6 @@ log:
         cant_align_default_environment: 'The document "%label%" cant''t be published in %environment% has it''s  the %contenttype%''s default environment'
         cant_attach_xti_alias_to_environment: 'Can''t attach %alias% as it''s an alias with multiple indexes'
         created: 'The environment %environment% has been created'
-        deleted: 'The environment %environment% has been deleted'
         dont_have_publish_role: 'You don''t have enough privileges to publish "%contenttype%" documents'
         is_default: 'The environment %environment% is used as default environment for at least one content type'
         not_empty: 'The environment %environment% is not empty'

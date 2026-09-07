@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EMS\CoreBundle\Service;
 
 use EMS\CommonBundle\Common\EMSLink;
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Entity\EntityInterface;
 use EMS\CoreBundle\Core\Log\LogRevisionContext;
 use EMS\CoreBundle\Core\Revision\Release\ReleaseRevisionType;
@@ -12,12 +13,19 @@ use EMS\CoreBundle\Entity\Release;
 use EMS\CoreBundle\Entity\ReleaseRevision;
 use EMS\CoreBundle\Entity\Revision;
 use EMS\CoreBundle\Repository\ReleaseRepository;
-use Psr\Log\LoggerInterface;
+
+use function Symfony\Component\Translation\t;
 
 final readonly class ReleaseService implements EntityServiceInterface
 {
-    public function __construct(private ReleaseRepository $releaseRepository, private ContentTypeService $contentTypeService, private DataService $dataService, private ReleaseRevisionService $releaseRevisionService, private PublishService $publishService, private LoggerInterface $logger)
-    {
+    public function __construct(
+        private ReleaseRepository $releaseRepository,
+        private ContentTypeService $contentTypeService,
+        private DataService $dataService,
+        private ReleaseRevisionService $releaseRevisionService,
+        private PublishService $publishService,
+        private LocalizedLoggerInterface $logger
+    ) {
     }
 
     /**
@@ -142,9 +150,7 @@ final readonly class ReleaseService implements EntityServiceInterface
     {
         $name = $release->getName();
         $this->releaseRepository->delete($release);
-        $this->logger->warning('log.service.release.delete', [
-            'name' => $name,
-        ]);
+        $this->logger->messageWarning(t('message.release_deleted', ['name' => $name], 'emsco-core'));
     }
 
     /**
@@ -218,9 +224,7 @@ final readonly class ReleaseService implements EntityServiceInterface
     public function executeRelease(Release $release, ?string $userCommand = null): void
     {
         if (Release::READY_STATUS !== $release->getStatus()) {
-            $this->logger->error('log.service.release.not.ready', [
-                'name' => $release->getName(),
-            ]);
+            $this->logger->messageError(t('message.release_not_ready', ['name' => $release->getName()], 'emsco-core'));
 
             return;
         }

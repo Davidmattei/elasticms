@@ -731,6 +731,19 @@ media_library:
     home: Home
     submit: Save
 message:
+    action_deleted: 'The action "{label}" has been deleted'
+    channel_deleted: 'The channel "{name}" has been deleted'
+    dashboard_deleted: 'The dashboard "{label}" has been deleted'
+    environment_deleted: 'The environment "{label}" has been deleted'
+    form_deleted: 'The form "{label}" has been deleted'
+    query_search_deleted: 'The query search "{label}" has been deleted'
+    release_deleted: 'The release "{name}" has been deleted'
+    release_environments_undefined: 'Source and/or target environment not defined for the release "{name}"'
+    release_not_ready: 'The status of the release "{name}" is not ready'
+    release_revision_preceding: 'A previous revision is already related to the release "{name}"'
+    schedule_deleted: 'The schedule "{name}" has been deleted'
+    xliff_not_current_revision: 'The revision {revision_id} of {ouuid} is no longer the last revision. The translations were not imported.'
+    xliff_too_many_translations: '{counter} translation documents while only one is expected for the translation id {translation_id} and the target locale {target_locale} in the environment {environment}'
     api_entity_created: 'Entity {entity} has been created with id {id}'
     api_entity_deleted: 'Entity {entity} "{name}" has been deleted with id {id}'
     api_entity_updated: 'Entity {entity} "{name}" has been updated with id {id}'
