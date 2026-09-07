@@ -223,7 +223,7 @@ return static function (ContainerConfigurator $container) {
 
     $services->set('ems.form.field-type.manager', FieldTypeManager::class)
         ->args([
-            service('logger'),
+            service('emsco.logger'),
             service('form.registry'),
         ]);
 

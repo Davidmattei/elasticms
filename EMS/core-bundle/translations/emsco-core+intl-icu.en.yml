@@ -648,7 +648,6 @@ log:
     menu: Logs
     notice:
         alias_attached: 'The alias "{alias}" has been attached'
-        content_type_deleted: 'Content type "{contentType}" has been deleted'
         content_type_referenced: 'Referenced content type "{contentType}" from "{environment}" environment'
         content_type_view_deleted: 'View "{view}" has been deleted'
         deleted_orphan_index: 'The index "{index}" has been deleted'
@@ -731,6 +730,21 @@ media_library:
     home: Home
     submit: Save
 message:
+    content_type_action_not_found: 'Action not found on the content type "{label}"'
+    content_type_created: 'The content type "{label}" has been created'
+    content_type_deleted: 'The content type "{label}" has been deleted'
+    content_type_dirty: 'The content type "{label}" is dirty (its mapping might be out of date), try to update its mapping'
+    content_type_mapping_not_found: 'Mapping not found for the content type "{label}"'
+    content_type_not_found: 'Content type "{label}" not found'
+    content_type_updated: 'The content type "{label}" has been updated'
+    field_added: 'The field "{name}" has been added'
+    field_deleted: 'The field "{name}" has been deleted'
+    field_name_mandatory: 'The field name is mandatory'
+    field_name_not_valid: 'The field name is not valid (format: {field_format})'
+    field_reordered: 'The subfields of the field "{name}" have been reordered'
+    subfield_added: 'The subfield "{name}" has been added'
+    subfield_name_mandatory: 'The subfield name is mandatory'
+    subfield_name_not_valid: 'The subfield name is not valid (format: {field_format})'
     release_unknown_action: 'Unknown action'
     channel_alias_not_found: 'The channel "{label}" cannot be registered as its alias "{alias}" is missing'
     action_created: 'A new action "{label}" has been created'
