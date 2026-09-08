@@ -16,13 +16,6 @@ email:
                     hello: 'Hello,'
                     text: 'Please find attached the export of requested CRM submissions.'
                     greeting: 'Regards.'
-log:
-    warning:
-        asset_extract:
-            file_to_large: 'As this file is larger (%filesize%) than %max_size% its content has not been automatically extracted. You can either force the extraction or specify it manually in the "Info" menu.'
-    schedule:
-        created: 'Schedule %name% has been created'
-        updated: 'Schedule %name% has been updated'
 form:
     field-type-type:
         root: 'Form''s root'

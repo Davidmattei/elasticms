@@ -839,7 +839,7 @@ return static function (ContainerConfigurator $container) {
     $services->set('ems.service.asset_extractor', AssetExtractorService::class)
         ->args([
             service('ems.service.rest_client'),
-            service('logger'),
+            service('emsco.logger'),
             service('doctrine'),
             service('ems.service.file'),
             '%ems_core.tika_server%',
