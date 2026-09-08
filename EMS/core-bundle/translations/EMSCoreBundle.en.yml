@@ -18,11 +18,6 @@ email:
                     greeting: 'Regards.'
 log:
     data:
-        job:
-            done: 'The job %job_id% is done'
-            initialize_failed: 'A job "%template_label%" has failed in the environment %environment%'
-            initialized: 'A job "%template_label%" has been initialized in the environment %environment%'
-            started: 'A job "%template_label%" has been started in the environment %environment%'
         revision:
             add_from_json_error: 'It was not possible to initiate a new %contenttype% document due to an internal error'
             ajax_update_on_finalized: 'It''s impossible to save the document "%label%" has this revision is already finalized'

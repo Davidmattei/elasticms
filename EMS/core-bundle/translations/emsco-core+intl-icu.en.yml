@@ -730,6 +730,9 @@ media_library:
     home: Home
     submit: Save
 message:
+    job_done: 'The job "{job_id}" is done'
+    job_failed: 'The job "{label}" has failed in the environment {environment}'
+    job_initialized: 'The job "{label}" has been initialized in the environment {environment}'
     document_cant_duplicate_ouuid_required: 'It is impossible to duplicate the document "{label}" as the content type "{content_type}" requires an OUUID first'
     document_compared: 'Compared the revision {revision_id} of the document {content_type}:{ouuid} with the revision {compare_revision_id} of the document {compare_content_type}:{compare_ouuid}'
     document_copied: 'The content of the document "{label}" has been copied to the clipboard'

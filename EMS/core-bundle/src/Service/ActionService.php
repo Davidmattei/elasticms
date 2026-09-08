@@ -59,27 +59,19 @@ final readonly class ActionService implements EntityServiceInterface
 
             $job = $this->jobService->createCommand($user, $command, $jobAction->getTag());
 
-            $this->logger->notice('log.data.job.initialized', [
-                EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
-                EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_UPDATE,
-                EmsFields::LOG_OUUID_FIELD => $uuid,
-                'template_id' => $jobAction->getId(),
-                'job_id' => $job->getId(),
-                'template_name' => $jobAction->getName(),
-                'template_label' => $jobAction->getLabel(),
-                'environment' => $environment->getLabel(),
-            ]);
+            $this->logger->messageNotice(t('message.job_initialized', [
+                'label' => $jobAction->getLabel(),
+                'environment' => $jobAction->giveContentType()->giveEnvironment()->getLabel()
+            ], 'emsco-core'));
 
             return $job;
         } catch (\Throwable $throwable) {
-            $this->logger->error('log.data.job.initialize_failed', [
-                EmsFields::LOG_CONTENTTYPE_FIELD => $jobAction->giveContentType()->getName(),
-                EmsFields::LOG_OUUID_FIELD => $uuid,
+            $this->logger->messageError(t('message.job_failed', [
+                'label' => $jobAction->getLabel(),
+                'environment' => $jobAction->giveContentType()->giveEnvironment()->getLabel()
+            ], 'emsco-core'), [
                 EmsFields::LOG_ERROR_MESSAGE_FIELD => $throwable->getMessage(),
                 EmsFields::LOG_EXCEPTION_FIELD => $throwable,
-                'template_name' => $jobAction->getName(),
-                'template_label' => $jobAction->getLabel(),
-                'environment' => $environment?->getLabel(),
             ]);
             throw $throwable;
         }
