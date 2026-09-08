@@ -830,7 +830,7 @@ return static function (ContainerConfigurator $container) {
     $services->set(ElasticsearchController::class)
         ->public()
         ->args([
-            service('logger'),
+            service('emsco.logger'),
             service('ems.service.index'),
             service('ems_common.service.elastica'),
             service('ems.service.data'),

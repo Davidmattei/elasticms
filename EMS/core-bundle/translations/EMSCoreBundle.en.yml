@@ -17,20 +17,6 @@ email:
                     text: 'Please find attached the export of requested CRM submissions.'
                     greeting: 'Regards.'
 log:
-    elasticsearch:
-        alias_added: 'A new alias "%alias_name%" has been added to the index "%index_name%"'
-        cluster_red: 'There is something wrong with the cluster, actions are required now!'
-        cluster_yellow: 'There is something wrong with the cluster, status color: %color_status%'
-        default_search: 'This search has been defined as default search'
-        default_search_for_content_type: 'This search has been defined as default search form for the content type %contenttype%'
-        not_able_to_deserialize_filters: 'Error during the deserialization of the filters'
-        paging_limit_exceeded: 'The paging is limited to the first %paging% items'
-        search_deleted: 'A search has been deleted'
-        search_not_accurate: 'The search result is limited to the first %total% documents'
-        template_error: 'There is something wrong with the template %template_label%'
-        template_filename_error: 'There is something wrong with the template %template_label%''s filename'
-        too_few_document_result: 'Found %total% results for the document %contenttype%:%ouuid% in the environment %environment%'
-        too_many_document_result: 'Found %total% results for the document %contenttype%:%ouuid% in the environment %environment%'
     environment:
         alia_missing: 'The alias for the environment %environment% is missing, consider to rebuild a brand new alias'
         alias_not_found: 'Alias %alias% not found'
