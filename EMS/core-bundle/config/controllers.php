@@ -938,7 +938,7 @@ return static function (ContainerConfigurator $container) {
     $services->set(UserController::class)
         ->public()
         ->args([
-            service('logger'),
+            service('emsco.logger'),
             service(ContentTypeRepository::class),
             service('ems.service.user'),
             service('emsco.manager.user'),

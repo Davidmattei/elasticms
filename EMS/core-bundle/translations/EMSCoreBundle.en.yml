@@ -17,15 +17,6 @@ email:
                     text: 'Please find attached the export of requested CRM submissions.'
                     greeting: 'Regards.'
 log:
-    user:
-        custom_form_not_found: 'Custom user form "%name%" not found'
-        api_key: 'New API key for the user %user_display_name%: %api_key%'
-        deleted: 'The user %user_display_name% has been deleted'
-        disabled: 'The user %user_display_name% has been disabled'
-        enabled: 'The user %user_display_name% has been enabled'
-        locked: 'The user %user_display_name% has been locked'
-        unlocked: 'The user %user_display_name% has been unlocked'
-        updated: 'The user %user_display_name% has been updated'
     view:
         calendar:
             document_not_found: 'The document "%label%" is missing'

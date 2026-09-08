@@ -619,7 +619,7 @@ return static function (ContainerConfigurator $container) {
             service('ems.form.manager'),
             service('form.registry'),
             service('ems.service.data'),
-            service('logger'),
+            service('emsco.logger'),
             '%ems_core.custom_user_options_form%',
         ])
         ->tag('form.type');
