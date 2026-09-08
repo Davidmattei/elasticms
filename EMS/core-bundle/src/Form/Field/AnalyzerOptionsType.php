@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+
 use function Symfony\Component\Translation\t;
 
 /**
@@ -54,8 +55,7 @@ class AnalyzerOptionsType extends AbstractType
     public function __construct(
         private readonly Registry $doctrine,
         private readonly TranslatorInterface $translator,
-    )
-    {
+    ) {
         $this->arrayValuesTransformer = new ArrayValuesTransformer();
     }
 
@@ -97,7 +97,7 @@ class AnalyzerOptionsType extends AbstractType
                 'Path hierarchy' => 'path_hierarchy',
             ],
             'label' => t('field.tokenizer', [], 'emsco-core'),
-            'choice_translation_domain' => false
+            'choice_translation_domain' => false,
         ])->add('max_token_length', IntegerType::class, [
             'attr' => ['class' => 'analyzer_option fields-to-display-for fields-to-display-for-standard'],
             'required' => false,
@@ -113,11 +113,11 @@ class AnalyzerOptionsType extends AbstractType
         ])->add('pattern', TextType::class, [
             'attr' => ['class' => 'analyzer_option fields-to-display-for fields-to-display-for-pattern'],
             'required' => false,
-            'label' => t('field.pattern', [], 'emsco-core')
+            'label' => t('field.pattern', [], 'emsco-core'),
         ])->add('separator', TextType::class, [
             'attr' => ['class' => 'analyzer_option fields-to-display-for fields-to-display-for-fingerprint'],
             'required' => false,
-            'label' => t('field.separator', [], 'emsco-core')
+            'label' => t('field.separator', [], 'emsco-core'),
         ])->add('flags', ChoiceType::class, [
             'attr' => ['class' => 'analyzer_option fields-to-display-for fields-to-display-for-pattern'],
             'required' => false,
