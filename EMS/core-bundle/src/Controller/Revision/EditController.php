@@ -68,7 +68,7 @@ class EditController extends AbstractController
         $this->dataService->lockRevision($revision);
         if ($request->isMethod('GET') && null != $revision->getAutoSave()) {
             $data = $revision->getAutoSave();
-            $this->logger->notice('log.data.revision.load_from_auto_save', LogRevisionContext::read($revision));
+            $this->logger->messageNotice(t('message.revision_loaded_from_auto_save', [], 'emsco-core'));
         } else {
             $data = $revision->getRawData();
         }
@@ -105,7 +105,7 @@ class EditController extends AbstractController
         $contentType = $revision->giveContentType();
 
         if ($revision->hasEndTime() && !$this->isGranted(Roles::ROLE_SUPER)) {
-            throw new ElasticmsException($this->translator->trans('log.data.revision.only_super_can_finalize_an_archive', LogRevisionContext::read($revision), EMSCoreBundle::TRANS_DOMAIN));
+            throw new ElasticmsException(t('message.revision_only_super_can_finalize_archive', [], 'emsco-core')->trans($this->translator));
         }
 
         if (!$revision->getDraft() && $revision->isPublished($contentType->giveEnvironment()->getName())) {
@@ -114,7 +114,7 @@ class EditController extends AbstractController
 
         if ($request->isMethod('GET') && null !== $revision->getAutoSave()) {
             $revision->autoSaveToRawData();
-            $this->logger->notice('log.data.revision.load_from_auto_save', LogRevisionContext::read($revision));
+            $this->logger->messageNotice(t('message.revision_loaded_from_auto_save', [], 'emsco-core'));
         }
 
         $form = $this->createForm(RevisionType::class, $revision, [
@@ -138,7 +138,9 @@ class EditController extends AbstractController
         if ($form->isSubmitted()) {// Save, Finalize or Discard
             $allFieldsAreThere = $requestRevision['allFieldsAreThere'] ?? false;
             if (empty($requestRevision) || !$allFieldsAreThere) {
-                $this->logger->error('log.data.revision.not_completed_request', LogRevisionContext::read($revision));
+                $this->logger->messageError(t('message.revision_incomplete_request', [
+                    'label' => $revision->getLabel(),
+                ], 'emsco-core'));
 
                 return $this->redirectToRoute(Routes::VIEW_REVISIONS, [
                     'ouuid' => $revision->getOuuid(),
@@ -228,7 +230,9 @@ class EditController extends AbstractController
             $objectArray = $revision->getRawData();
             $isValid = $this->dataService->isValid($form, null, $objectArray);
             if (!$isValid) {
-                $this->logger->warning('log.data.revision.can_finalized', LogRevisionContext::update($revision));
+                $this->logger->messageWarning(t('message.revision_cannot_finalize', [
+                    'label' => $revision->getLabel(),
+                ], 'emsco-core'), LogRevisionContext::update($revision));
             }
         }
 

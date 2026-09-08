@@ -640,7 +640,7 @@ return static function (ContainerConfigurator $container) {
             service('ems_common.service.elastica'),
             service('ems.service.search'),
             service('emsco.data_table.factory'),
-            service('logger'),
+            service('emsco.logger'),
             '%ems_core.template_namespace%',
         ])
         ->call('setContainer')
