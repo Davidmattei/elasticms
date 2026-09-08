@@ -360,6 +360,7 @@ field:
     is_menu_sidebar: 'Visible in the sidebar menu'
     is_preview: Preview
     is_public: Public
+    json_file: 'JSON file'
     key: Key
     label: Label
     language_preferred: 'Language preferred'
@@ -970,6 +971,8 @@ notification:
     warnings: Warnings
 option:
     allow_add: 'Allow add'
+    delete_existing_templates: 'Delete existing templates'
+    delete_existing_views: 'Delete existing views'
     email_notification: 'Email notifications'
     layout_boxed: 'Layout boxed'
     layout_sidebar_collapse: 'Sidebar collapse'
@@ -1211,6 +1214,9 @@ task:
             history: History
             info: Information
         title: 'Edit task : {title}'
+title:
+    content_type_from_json_file: "from a Content Type's JSON file"
+    content_type_json_update: 'Update the content type "{content_type}"'
 type:
     confirm: |-
         {type, select,

@@ -1,14 +1,4 @@
 form:
-    contenttype:
-        json_update:
-            deleteExitingTemplates: 'Delete existing templates'
-            deleteExitingViews: 'Delete existing views'
-            filename: Filename
-            json: 'Content Type''s JSON file'
-            mimetype: 'Media Type'
-            subtitle: 'from a Content Type''s JSON file'
-            title: 'Update the content type "%content_type%"'
-            update: 'Update content type from JSON'
     data:
         bool_table_column:
             false_value: disable
