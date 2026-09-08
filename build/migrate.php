@@ -22,9 +22,9 @@ const TARGET_DOMAIN = 'emsco-core+intl-icu';
 const SOURCE_DIR = ROOT.'/EMS/core-bundle/translations';
 const TARGET_DIR = ROOT.'/EMS/core-bundle/translations';
 const SEARCH_PATHS = [
-    ROOT.'/EMS/admin-ui-bundle/templates',
-    ROOT.'/EMS/core-bundle/src',
-    ROOT.'/EMS/core-bundle/templates',
+        ROOT.'/EMS/admin-ui-bundle/templates',
+        ROOT.'/EMS/core-bundle/src',
+        ROOT.'/EMS/core-bundle/templates',
 ];
 
 /**
@@ -67,9 +67,9 @@ function dumpYaml(string $file, array $messages): void
     \ksort($messages);
 
     \file_put_contents($file, Yaml::dump(
-        input: ArrayConverter::expandToTree($messages),
-        inline: 5,
-        flags: Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK
+            input: ArrayConverter::expandToTree($messages),
+            inline: 5,
+            flags: Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK
     ));
 }
 
@@ -153,9 +153,9 @@ function toIcu(string $message): array
     }
 
     $icu = \preg_replace_callback(
-        '/%([a-zA-Z_][a-zA-Z0-9_]*)%/',
-        static fn (array $m) => '{'.$m[1].'}',
-        $message
+            '/%([a-zA-Z_][a-zA-Z0-9_]*)%/',
+            static fn (array $m) => '{'.$m[1].'}',
+            $message
     ) ?? $message;
 
     if (\preg_match('/%[^%\s]*%/', $icu)) {
@@ -189,17 +189,26 @@ $command = static function (InputInterface $input, OutputInterface $output): int
     $io->section('Code');
 
     $finder = new Finder()
-        ->files()
-        ->ignoreUnreadableDirs()
-        ->in(\array_filter(SEARCH_PATHS, \is_dir(...)))
-        ->name(['*.php', '*.twig'])
-        ->contains($oldKey);
+            ->files()
+            ->ignoreUnreadableDirs()
+            ->in(\array_filter(SEARCH_PATHS, \is_dir(...)))
+            ->name(['*.php', '*.twig'])
+            ->contains($oldKey);
+
+    $pattern = \sprintf('/([\'"])%s\1/', \preg_quote($oldKey, '/'));
 
     $files = 0;
     foreach ($finder as $file) {
-        $updated = \str_replace($oldKey, $newKey, $file->getContents(), $replacements);
+        $updated = \preg_replace_callback(
+                $pattern,
+                static fn (array $m) => $m[1].$newKey.$m[1],
+                $file->getContents(),
+                -1,
+                $replacements
+        );
 
-        if (0 === $replacements) {
+        if (null === $updated || 0 === $replacements) {
+            $io->writeln(\sprintf('<comment>%s (no quoted match)</comment>', $file->getRelativePathname()));
             continue;
         }
 
@@ -216,8 +225,8 @@ $command = static function (InputInterface $input, OutputInterface $output): int
         $io->warning(\sprintf('%s already exists: %s', $newKey, $target[$newKey]));
     } else {
         $icu = \is_string($newMessage) && '' !== $newMessage
-            ? ['message' => $newMessage, 'warnings' => []]
-            : toIcu($source[$oldKey]);
+                ? ['message' => $newMessage, 'warnings' => []]
+                : toIcu($source[$oldKey]);
 
         $target[$newKey] = $icu['message'];
 
@@ -238,9 +247,9 @@ $command = static function (InputInterface $input, OutputInterface $output): int
 };
 
 new SingleCommandApplication()
-    ->setName('Migrate translation key')
-    ->addArgument('old-key', InputArgument::REQUIRED, 'key in '.SOURCE_DOMAIN)
-    ->addArgument('new-key', InputArgument::REQUIRED, 'key in '.TARGET_DOMAIN)
-    ->addArgument('message', InputArgument::OPTIONAL, 'english ICU message, defaults to converting the old one')
-    ->setCode($command)
-    ->run();
+        ->setName('Migrate translation key')
+        ->addArgument('old-key', InputArgument::REQUIRED, 'key in '.SOURCE_DOMAIN)
+        ->addArgument('new-key', InputArgument::REQUIRED, 'key in '.TARGET_DOMAIN)
+        ->addArgument('message', InputArgument::OPTIONAL, 'english ICU message, defaults to converting the old one')
+        ->setCode($command)
+        ->run();
