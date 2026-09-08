@@ -17,21 +17,6 @@ email:
                     text: 'Please find attached the export of requested CRM submissions.'
                     greeting: 'Regards.'
 log:
-    environment:
-        alia_missing: 'The alias for the environment %environment% is missing, consider to rebuild a brand new alias'
-        alias_not_found: 'Alias %alias% not found'
-        alias_removed: 'The alias %alias% has been removed'
-        aligned: 'Environment %environment% and %with_environment% are aligned for those content types'
-        cant_align_default_environment: 'The document "%label%" cant''t be published in %environment% has it''s  the %contenttype%''s default environment'
-        cant_attach_xti_alias_to_environment: 'Can''t attach %alias% as it''s an alias with multiple indexes'
-        created: 'The environment %environment% has been created'
-        dont_have_publish_role: 'You don''t have enough privileges to publish "%contenttype%" documents'
-        is_default: 'The environment %environment% is used as default environment for at least one content type'
-        not_empty: 'The environment %environment% is not empty'
-        rebuild_unknown_option: 'Impossible to rebuild the environment %environment% due to unknown option "%option%"'
-        reordered: 'The environments have been reordered'
-        updated: 'The environment %environment% has been updated'
-        wrong_ouuid: 'Malformed OUUID %ouuid%'
     error: 'This page/action has encountered an error: %error_message%'
     file:
         upload_error: 'Error during file upload: %error_message%'

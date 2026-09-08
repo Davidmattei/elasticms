@@ -13,7 +13,6 @@ use Doctrine\Common\Collections\ReadableCollection;
 use Doctrine\ORM\EntityManager;
 use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Entity\EntityInterface;
-use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CommonBundle\Service\ElasticaService;
 use EMS\CoreBundle\Core\ContentType\ContentTypeRoles;
 use EMS\CoreBundle\Core\Environment\EnvironmentsRevision;
@@ -101,9 +100,9 @@ class EnvironmentService implements EntityServiceInterface
 
         $this->environmentRepository->save($environment);
 
-        $this->logger->notice('log.environment.created', [
-            EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName(),
-        ]);
+        $this->logger->messageNotice(t('message.environment_created', [
+            'environment' => $environment->getLabel(),
+        ], 'emsco-core'));
 
         return $environment;
     }
@@ -363,7 +362,9 @@ class EnvironmentService implements EntityServiceInterface
     public function delete(Environment $environment): bool
     {
         if (0 !== $environment->getRevisions()->count()) {
-            $this->logger->error('log.environment.not_empty', [EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName()]);
+            $this->logger->messageError(t('message.environment_not_empty', [
+                'environment' => $environment->getLabel(),
+            ], 'emsco-core'));
 
             return false;
         }
@@ -378,7 +379,9 @@ class EnvironmentService implements EntityServiceInterface
         }
 
         if ($linked) {
-            $this->logger->error('log.environment.is_default', [EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName()]);
+            $this->logger->messageError(t('message.environment_is_default', [
+                'environment' => $environment->getLabel(),
+            ], 'emsco-core'));
 
             return false;
         }
