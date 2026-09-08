@@ -391,7 +391,7 @@ class ContentTypeController extends AbstractController
                 $this->contentTypeService->update($contentType, false);
 
                 if ($contentType->getDirty()) {
-                    $this->logger->messageError(t('message.content_type_dirty', [
+                    $this->logger->messageWarning(t('message.content_type_dirty', [
                         'label' => $contentType->getSingularName(),
                     ], 'emsco-core'));
                 }
@@ -416,7 +416,7 @@ class ContentTypeController extends AbstractController
         }
 
         if ($contentType->getDirty()) {
-            $this->logger->messageError(t('message.content_type_dirty', [
+            $this->logger->messageWarning(t('message.content_type_dirty', [
                 'label' => $contentType->getSingularName(),
             ], 'emsco-core'));
         }
@@ -462,7 +462,7 @@ class ContentTypeController extends AbstractController
                 $this->contentTypeService->persist($contentType);
 
                 if ($contentType->getDirty()) {
-                    $this->logger->messageError(t('message.content_type_dirty', [
+                    $this->logger->messageWarning(t('message.content_type_dirty', [
                         'label' => $contentType->getSingularName(),
                     ], 'emsco-core'));
                 }
@@ -492,7 +492,7 @@ class ContentTypeController extends AbstractController
         }
 
         if ($contentType->getDirty()) {
-            $this->logger->messageError(t('message.content_type_dirty', [
+            $this->logger->messageWarning(t('message.content_type_dirty', [
                 'label' => $contentType->getSingularName(),
             ], 'emsco-core'));
         }
@@ -529,7 +529,7 @@ class ContentTypeController extends AbstractController
             $this->contentTypeService->persistField($field);
 
             if ($contentType->getDirty()) {
-                $this->logger->messageError(t('message.content_type_dirty', [
+                $this->logger->messageWarning(t('message.content_type_dirty', [
                     'label' => $contentType->getSingularName(),
                 ], 'emsco-core'));
             }

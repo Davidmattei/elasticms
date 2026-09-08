@@ -397,7 +397,7 @@ class EnvironmentService implements EntityServiceInterface
         $this->environmentRepository->delete($environment);
         $this->environmentRepository->shiftOrderKeyFrom($position + 1, -1);
 
-        $this->logger->messageWarning(t('message.environment_deleted', ['label' => $environment->getLabel()], 'emsco-core'));
+        $this->logger->messageNotice(t('message.environment_deleted', ['label' => $environment->getLabel()], 'emsco-core'));
 
         return true;
     }
