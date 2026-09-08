@@ -10,6 +10,7 @@ action:
     collapse: Collapse
     collapse_all: 'Collapse all'
     confirmation: 'Do you confirm?'
+    copy: Copy
     create: Create
     deactivate: Deactivate
     define: Define
@@ -21,13 +22,16 @@ action:
     duplicate: Duplicate
     edit: Edit
     export: Export
+    paste: Paste
     rebuild: Rebuild
     refresh: Refresh
     relaunch: Relaunch
     remove: Remove
     reorder: Reorder
     save: Save
+    save_as_draft: 'Save as draft'
     save_close: 'Save and Close'
+    save_publish_in: 'Save and publish in {environments}'
     select_all: 'Select all'
     status: Status
     toggle_sidebar: 'Toggle sidebar'
@@ -302,6 +306,7 @@ field:
     content_css: 'Content css'
     content_js: 'Content js'
     context: Context
+    copy_to: 'Copy to'
     count: Count
     cron: Cron
     date_build: 'Date build'
@@ -349,6 +354,7 @@ field:
     hash: 'Hash signature'
     header: Header
     header_allow_origin: 'The Access-Control-Allow-Origin header'
+    height: Height
     hidden: Hidden
     icon: Icon
     index: Index
@@ -360,9 +366,11 @@ field:
     is_menu_sidebar: 'Visible in the sidebar menu'
     is_preview: Preview
     is_public: Public
+    is_styles_set_preview: 'Styles set preview'
     json_file: 'JSON file'
     key: Key
     label: Label
+    language: Language
     language_preferred: 'Language preferred'
     language_ui: 'Language UI'
     last_seen: 'Last seen'
@@ -404,6 +412,7 @@ field:
     spreadsheet: Spreadsheet
     status: Status
     stopwords: Stopwords
+    styles_set: Styles set
     table_default_css: 'Default Table class attribute'
     tag: Tag
     template_body: 'Template body'
@@ -495,9 +504,6 @@ form:
                 label: OUUID
                 placeholder: 'Auto-generated if left empty'
             save: 'Create {content_type} draft'
-        bool_table_column:
-            false_value: Uncheck
-            true_value: Check
     edit:
         title: 'Edit a form'
     menu: Forms
@@ -507,6 +513,8 @@ form:
 form_submissions:
     overview: Overview
     title: 'Form Submissions'
+help:
+    override_styles_set_config: 'override styles sets config'
 inline_editor:
     action:
         discard: Discard
@@ -806,6 +814,7 @@ message:
     environment_updated: 'The environment {environment} has been updated'
     environment_wrong_ouuid: 'Malformed OUUID {ouuid}'
     field_added: 'The field "{name}" has been added'
+    field_collection_import_array: 'Some data were not imported for the collection field {field_name} as is was not an array'
     field_deleted: 'The field "{name}" has been deleted'
     field_json_parse_post_processing_error: 'Error to JSON parse the result of the post processing script of field {field_name} (|json_encode|raw): {error_message}'
     field_name_mandatory: 'The field name is mandatory'
@@ -973,7 +982,9 @@ option:
     allow_add: 'Allow add'
     delete_existing_templates: 'Delete existing templates'
     delete_existing_views: 'Delete existing views'
+    disabled: Disabled
     email_notification: 'Email notifications'
+    enabled: Enabled
     layout_boxed: 'Layout boxed'
     layout_sidebar_collapse: 'Sidebar collapse'
     layout_sidebar_mini: 'Sidebar mini'

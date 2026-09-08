@@ -120,7 +120,7 @@ return static function (ContainerConfigurator $container) {
             service('form.registry'),
             service('ems.service.elasticsearch'),
             service('ems.service.data'),
-            service('logger'),
+            service('emsco.logger'),
         ])
         ->tag('ems.form.datafieldtype', ['alias' => 'collection'])
         ->tag('form.type');

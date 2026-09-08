@@ -1,36 +1,4 @@
 form:
-    data:
-        bool_table_column:
-            false_value: disable
-            true_value: enable
-    data_field:
-        collection:
-            import_not_an_array: 'Some data were not imported for the collection field %field_name% as is was not an array'
-        file_attachment:
-            file_not_found: 'File not found with the hash "%file_hash%"'
-    email: Email
-    form:
-        query_search:
-            environments: Environments
-            label: Label
-            name: Name
-        revision-type:
-            copy-label: Copy
-            paste-label: Paste
-            save-draft-label: 'Save as draft'
-            save-label: Save
-            publish-label: 'Save and publish in %environment%'
-    form_field:
-        wysiwyg:
-            content_css:
-                label: 'Content CSS (override styles sets''s config)'
-            format_tags:
-                label: 'Format tags (override styles sets config)'
-    subform:
-        searchquery:
-            query: 'Default query'
-            searchConfig: 'Search config'
-    username: Username
     view:
         hierarchical:
             error_with_document: 'It was impossible to update the document "%label%" : %error_message%'
@@ -44,9 +12,6 @@ command:
         end: 'The content type %contenttype%''s documents have been reindexed in %environment% (index: %index%)'
         environment_not_found: 'Environment named %environment% not found'
         start: 'Start reindexing %contenttype% in %environment%'
-contenttype:
-    action:
-        update_from_json: 'Update from JSON'
 controller:
     revision:
         edit-controller:
