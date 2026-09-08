@@ -870,7 +870,7 @@ return static function (ContainerConfigurator $container) {
     $services->set(NotificationController::class)
         ->public()
         ->args([
-            service('logger'),
+            service('emsco.logger'),
             service('ems.service.publish'),
             service('ems.service.environment'),
             service('doctrine'),

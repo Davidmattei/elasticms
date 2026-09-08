@@ -6,6 +6,7 @@ namespace EMS\CoreBundle\Command;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CoreBundle\Commands;
 use EMS\CoreBundle\Elasticsearch\Bulker;
@@ -18,7 +19,6 @@ use EMS\CoreBundle\Repository\RevisionRepository;
 use EMS\CoreBundle\Service\DataService;
 use EMS\CoreBundle\Service\Mapping;
 use Psr\Container\ContainerInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -26,6 +26,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+
+use function Symfony\Component\Translation\t;
 
 #[AsCommand(name: Commands::ENVIRONMENT_REINDEX, description: "Reindex an environment in it's existing index.", aliases: ['ems:environment:reindex'], hidden: false)]
 class ReindexCommand extends AbstractCoreCommand
@@ -35,8 +37,15 @@ class ReindexCommand extends AbstractCoreCommand
     private int $reloaded = 0;
     private int $error = 0;
 
-    public function __construct(protected Registry $doctrine, protected LoggerInterface $logger, protected Mapping $mapping, protected ContainerInterface $container, protected DataService $dataService, private readonly Bulker $bulker, private readonly string $defaultBulkSize)
-    {
+    public function __construct(
+        protected Registry $doctrine,
+        protected LocalizedLoggerInterface $logger,
+        protected Mapping $mapping,
+        protected ContainerInterface $container,
+        protected DataService $dataService,
+        private readonly Bulker $bulker,
+        private readonly string $defaultBulkSize
+    ) {
         parent::__construct();
     }
 
@@ -164,12 +173,11 @@ class ReindexCommand extends AbstractCoreCommand
 
                     if ($revision->getDeleted()) {
                         ++$this->deleted;
-                        $this->logger->warning('log.reindex.revision.deleted_but_referenced', [
-                            EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
-                            EmsFields::LOG_OUUID_FIELD => $revision->getOuuid(),
-                            EmsFields::LOG_ENVIRONMENT_FIELD => $environment->getName(),
-                            EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                        ]);
+
+                        $this->logger->messageWarning(t('message.revision_deleted_but_referenced', [
+                            'environment' => $environment->getLabel(),
+                            'label' => $revision->getLabel(),
+                        ], 'emsco-core'));
                     } else {
                         if ($reloadData) {
                             $this->reloaded += $this->dataService->reloadData($revision, false);

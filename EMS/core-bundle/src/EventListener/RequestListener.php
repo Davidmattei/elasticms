@@ -85,7 +85,19 @@ class RequestListener
 
         try {
             if ($exception instanceof LockedException || $exception instanceof PrivilegeException) {
-                $this->logger->error($exception instanceof LockedException ? 'log.locked_exception_error' : 'log.privilege_exception_error', [...['username' => $exception->getRevision()->getLockBy()], ...LogRevisionContext::read($exception->getRevision())]);
+                if ($exception instanceof LockedException) {
+                    $this->logger->messageError(t('message.revision_locked', [
+                        'label' => $exception->getRevision()->getLabel(),
+                        'username' => $exception->getRevision()->getLockBy(),
+                    ], 'emsco-core'), LogRevisionContext::update($exception->getRevision()));
+                }
+                if ($exception instanceof PrivilegeException) {
+                    $this->logger->messageError(
+                        t('message.privilege_exception', [], 'emsco-core'),
+                        LogRevisionContext::read($exception->getRevision())
+                    );
+                }
+
                 if (null == $exception->getRevision()->getOuuid()) {
                     $response = new RedirectResponse($this->router->generate('emsco_draft_in_progress', [
                         'contentTypeId' => $exception->getRevision()->giveContentType()->getId(),
@@ -108,7 +120,7 @@ class RequestListener
                 ]));
                 $event->setResponse($response);
             }
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $this->logger->messageError(t('message.action_error', [
                 'error_message' => $exception->getMessage(),
             ], 'emsco-core'), [
