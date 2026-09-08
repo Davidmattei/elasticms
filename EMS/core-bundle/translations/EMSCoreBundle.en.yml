@@ -1,61 +1,3 @@
-data:
-    custom-view:
-        pagetitle: 'View %name% of the %contentType% "%label%" as indexed in %environment%'
-    actions:
-        add_to_release_publish: 'Add to release for publication'
-        add_to_release_unpublish: 'Add to release for unpublish'
-        add_to_release_confirm: 'Do you confirm ?'
-field_type:
-    textarea:
-        counter: '%count% characters'
-    json_menu_editor:
-        add: Add
-        add_item: 'Add a new %singular%'
-        add_node: 'Add a new %singular%'
-        collapse_all_button: 'Expand/Collapse all'
-        collapse_button: Expand/Collapse
-        delete_item: 'Delete this entry'
-        edit: Edit
-        item_label_placeholder: 'Define a label for this entry'
-        move_item: Move
-        copy: Copy
-        copy_all: 'Copy all'
-        paste: Paste
-form-submission:
-    form-submissions:
-        confirm: 'Confirm Deletion'
-        delete: Delete
-        delete_confirm: 'Delete the "%label%" submission?'
-        delete_selected: 'Delete selected'
-        delete_selected_confirm: 'Delete all selected submissions?'
-        download: Download
-        download_selected: 'Download selected'
-        edit: Edit
-        export_selected: 'Export selected'
-        process: 'Delete Submission'
-    index:
-        delete_selected: 'Delete selected'
-        column:
-            created: 'Created At'
-            expire_date: 'Expire Date'
-            form: Form
-            id: ID
-            instance: Instance
-            label: Label
-            locale: Locale
-            name: Name
-            public: Public
-            type: Type
-        reorder: Reorder
-form_submissions:
-    download: Download
-    process:
-        button: 'Delete Submission'
-        confirm_body: "After confirmation you can NOT download the form data anymore!\nAre you sure, you want to delete the form submission?\n"
-        confirm_title: 'Confirm deletion'
-        error: 'Form deletion failed!'
-        success: 'Form submission with id "%id%" has been deleted!'
-    title: 'Form Submissions'
 release:
     actions:
         add_publish: 'Add documents for publication'
@@ -333,24 +275,6 @@ view:
                 index-link: Releases
             query_search:
                 index-link: QuerySearch
-    form:
-        fields:
-            asset:
-                clear-button: Clear
-                close-modal: Close
-                drag-n-drop-file: 'Drag and drop your file here'
-                drag-n-drop-files: 'Drag and drop your files here'
-                file-hash: 'File''s hash'
-                file-info: 'File''s information'
-                info-modal-button: Info
-                init-upload: 'Upload is starting'
-                move-button: Move
-                preview: 'File preview of field %label%'
-                remove-button: Remove
-                upload-file: 'Upload file'
-                browse-server: 'Pick a file from the server'
-                upload-files: 'Upload files'
-                view-button: View
     form-submission:
         index:
             title: 'Form Submissions Overview'

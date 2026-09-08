@@ -4,8 +4,11 @@ action:
     add_alias: 'Add alias'
     add_referenced: 'Add referenced'
     add_referenced_content_type: 'Add a reference content type'
+    add_release_publish: 'Add to release for publication'
+    add_release_unpublish: 'Add to release for unpublish'
     attach: Attach
     cancel: Cancel
+    clear: Clear
     close: Close
     collapse: Collapse
     collapse_all: 'Collapse all'
@@ -18,10 +21,14 @@ action:
     delete_all: 'Delete all'
     delete_selected: 'Delete selected'
     details: Details
+    download: Download
     download_selected: 'Download selected'
     duplicate: Duplicate
     edit: Edit
     export: Export
+    export_selected: 'Export selected'
+    extract_content: 'Extract content'
+    info: Info
     paste: Paste
     rebuild: Rebuild
     refresh: Refresh
@@ -349,6 +356,7 @@ field:
         type: Type
     filter: Filter
     flags: Flags
+    form: Form
     format_tags: 'Format tags'
     group: Group
     hash: 'Hash signature'
@@ -357,8 +365,10 @@ field:
     height: Height
     hidden: Hidden
     icon: Icon
+    id: ID
     index: Index
     indexes: Indexes
+    instance: Instance
     is_active: Active
     is_dirty: Dirty
     is_edit_wysiwyg: 'Edit with WYSIWYG'
@@ -828,6 +838,7 @@ message:
     file_upload_error: 'Error during file upload: {error_message}'
     filter_deleted: 'The filter {filter_name} has been deleted'
     form_deleted: 'The form "{label}" has been deleted'
+    form_submission_deleted: 'Form submission with id "{id}" has been deleted!'
     import_failed: 'Import failed'
     import_file_missing_columns: 'Missing columns in import file, required columns "{columns}"'
     import_file_missing_data: 'Missing data in import file'
@@ -1234,6 +1245,7 @@ task:
             info: Information
         title: 'Edit task : {title}'
 title:
+    asset_options: 'Asset options'
     content_type_from_json_file: "from a Content Type's JSON file"
     content_type_json_update: 'Update the content type "{content_type}"'
 type:
@@ -1522,7 +1534,21 @@ view:
     form:
         fields:
             asset:
-                preview: Preview
+                browse-server: 'Pick a file from the server'
+                clear-button: Clear
+                close-modal: Close
+                drag-n-drop-file: 'Drag and drop your file here'
+                drag-n-drop-files: 'Drag and drop your files here'
+                file-hash: "File's hash"
+                file-info: "File's information"
+                info-modal-button: Info
+                init-upload: 'Upload is starting'
+                move-button: Move
+                preview: 'File preview of field %label%'
+                remove-button: Remove
+                upload-file: 'Upload file'
+                upload-files: 'Upload files'
+                view-button: View
     icon:
         class:
             form: 'fa fa-keyboard-o'

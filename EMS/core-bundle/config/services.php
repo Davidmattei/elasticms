@@ -934,8 +934,7 @@ return static function (ContainerConfigurator $container) {
             service('ems.repository.form_submission'),
             service('ems.repository.form_submission_file'),
             service('twig'),
-            service('request_stack'),
-            service('translator'),
+            service('emsco.logger'),
             '%ems_core.template_namespace%',
         ]);
 
