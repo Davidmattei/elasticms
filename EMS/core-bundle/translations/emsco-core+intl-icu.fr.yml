@@ -4,12 +4,16 @@ action:
     add_alias: 'Ajouter un alias'
     add_referenced: 'Ajouter une référence'
     add_referenced_content_type: 'Ajouter un type de contenu référencé'
+    add_release_publish: 'Ajouter à la release pour publication'
+    add_release_unpublish: 'Ajouter à la release pour dépublication'
     attach: Attacher
     cancel: Annuler
+    clear: Effacer
     close: Fermer
     collapse: Réduire
     collapse_all: 'Tout réduire'
     confirmation: 'Confirmez-vous ?'
+    copy: Copier
     create: Créer
     deactivate: Désactiver
     define: Définir
@@ -17,17 +21,24 @@ action:
     delete_all: 'Tout supprimer'
     delete_selected: 'Supprimer la sélection'
     details: Détails
+    download: Télécharger
     download_selected: 'Télécharger la sélection'
     duplicate: Dupliquer
     edit: Modifier
     export: Exporter
+    export_selected: 'Exporter la sélection'
+    extract_content: 'Extraire le contenu'
+    info: Info
+    paste: Coller
     rebuild: Reconstruire
     refresh: Actualiser
     relaunch: Relancer
     remove: Supprimer
     reorder: Réordonner
     save: Enregistrer
+    save_as_draft: 'Enregistrer comme brouillon'
     save_close: 'Enregistrer et fermer'
+    save_publish_in: 'Enregistrer et publier dans {environments}'
     select_all: 'Tout sélectionner'
     status: Statut
     toggle_sidebar: 'Basculer la barre latérale'
@@ -193,6 +204,11 @@ data:
 documentation:
     api:
         title: Documentation
+email:
+    crm_export:
+        body_greeting: Cordialement.
+        body_hello: 'Bonjour,'
+        body_text: "Vous trouverez ci-joint l'export des soumissions CRM demandées."
 ems_core:
     dashboard:
         export:
@@ -288,6 +304,7 @@ field:
     attributes: 'Attributs supplémentaires de la requête'
     available: Disponible
     channel: Canal
+    char_filter: 'Filtre de caractères'
     circles: Cercles
     circles_to: 'Cercles destinataires'
     color: Couleur
@@ -296,6 +313,7 @@ field:
     content_css: 'CSS du contenu'
     content_js: 'JS du contenu'
     context: Contexte
+    copy_to: 'Copier vers'
     count: Nombre
     cron: Cron
     date_build: 'Date de build'
@@ -336,15 +354,21 @@ field:
         paper_size: 'Format du papier'
         size: Taille
         type: Type
+    filter: Filtre
+    flags: Indicateurs
+    form: Formulaire
     format_tags: 'Tags de format'
     group: Groupe
     hash: 'Signature du hash'
     header: En-tête
     header_allow_origin: 'L’en-tête Access-Control-Allow-Origin'
+    height: Hauteur
     hidden: Masqué
     icon: Icône
+    id: ID
     index: Index
     indexes: Indexes
+    instance: Instance
     is_active: Actif
     is_dirty: Modifié
     is_edit_wysiwyg: 'Modifier avec WYSIWYG'
@@ -352,12 +376,18 @@ field:
     is_menu_sidebar: 'Visible dans le menu latéral'
     is_preview: Prévisualisation
     is_public: Public
+    is_styles_set_preview: 'Aperçu du jeu de styles'
+    json_file: 'Fichier JSON'
     key: Clé
     label: Libellé
+    language: Langue
     language_preferred: 'Langue préférée'
     language_ui: "Langue de l'interface"
     last_seen: 'Vu pour la dernière fois'
     locale: Locale
+    lowercase: Minuscules
+    max_output_size: 'Taille de sortie max.'
+    max_token_length: 'Longueur max. du token'
     mcp_arguments: 'Template des arguments MCP (JSON)'
     mcp_input_schema: "Template du schéma d'entrée MCP (JSON)"
     mcp_output_schema: 'Modèle du schéma de sortie MCP (JSON)'
@@ -370,8 +400,10 @@ field:
     orientation: Orientation
     password: 'Mot de passe'
     password_repeat: 'Répéter le mot de passe'
+    pattern: Motif
     pdf_size: 'Format PDF'
     plural: Pluriel
+    postition_increment_gap: "Écart d'incrément de position"
     public_access: 'Accès public'
     query: Requête
     release_environment_source: 'Environnement source pour la publication'
@@ -384,10 +416,13 @@ field:
     role_to: 'Rôle destinataire'
     roles: Rôles
     search_config: 'Configuration de recherche'
+    separator: Séparateur
     severity: Sévérité
     singular: Singulier
     spreadsheet: 'Feuille de calcul'
     status: Statut
+    stopwords: 'Mots vides'
+    styles_set: 'Jeu de styles'
     table_default_css: 'Attribut class par défaut du tableau'
     tag: Tag
     template_body: 'Corps du template'
@@ -395,6 +430,7 @@ field:
     template_header: 'En-tête du template'
     template_response: 'Réponse du template'
     text: Texte
+    tokenizer: Tokenizer
     total: Total
     total_deleted: 'Total supprimé'
     total_elastic: 'Total dans ES'
@@ -478,13 +514,8 @@ form:
                 label: OUUID
                 placeholder: 'Généré automatiquement si laissé vide'
             save: 'Créer un brouillon {content_type}'
-        bool_table_column:
-            false_value: Décocher
-            true_value: Cocher
     edit:
         title: 'Modifier un formulaire'
-    field-type-type:
-        root: Structure
     menu: Formulaires
     reorder:
         title: 'Réordonner les champs du formulaire : {label}'
@@ -492,6 +523,8 @@ form:
 form_submissions:
     overview: Aperçu
     title: 'Soumissions de formulaires'
+help:
+    override_styles_set_config: 'remplacer la configuration des jeux de styles'
 inline_editor:
     action:
         discard: Abandonner
@@ -543,6 +576,7 @@ key:
     attachment: 'Pièce jointe'
     bits: Bits
     build_date: 'Date de build'
+    build_in: Intégré
     channel: Canal
     channels: Canaux
     ckeditor4: 'CK Editor 4'
@@ -555,6 +589,7 @@ key:
     control_sidebar: 'Barre latérale de contrôle'
     created: Créé
     current_password: 'Mot de passe actuel'
+    customized: Personnalisé
     dashboards: Dashboards
     delayed_unassigned_shards: 'Shards non assignés retardés'
     details: Détails
@@ -566,6 +601,7 @@ key:
     export_documents: 'Exporter les documents'
     extra: Extra
     filters: Filtres
+    form_root: 'Racine du formulaire'
     form_submissions: 'Soumissions de formulaire'
     forms: Formulaires
     groups: Groupes
@@ -788,6 +824,7 @@ message:
     environment_updated: "L'environnement {environment} a été mis à jour"
     environment_wrong_ouuid: 'OUUID mal formé {ouuid}'
     field_added: 'Le champ "{name}" a été ajouté'
+    field_collection_import_array: "Certaines données n'ont pas été importées pour le champ de collection {field_name} car il ne s'agissait pas d'un tableau"
     field_deleted: 'Le champ "{name}" a été supprimé'
     field_json_parse_post_processing_error: "Erreur lors de l'analyse JSON du résultat du script de post-traitement du champ {field_name} (|json_encode|raw) : {error_message}"
     field_name_mandatory: 'Le nom du champ est obligatoire'
@@ -801,6 +838,7 @@ message:
     file_upload_error: 'Erreur lors du téléchargement du fichier : {error_message}'
     filter_deleted: 'Le filtre {filter_name} a été supprimé'
     form_deleted: 'Le formulaire "{label}" a été supprimé'
+    form_submission_deleted: 'La soumission de formulaire avec l''id "{id}" a été supprimée !'
     import_failed: "Échec de l'import"
     import_file_missing_columns: 'Colonnes manquantes dans le fichier d''import, colonnes requises "{columns}"'
     import_file_missing_data: "Données manquantes dans le fichier d'import"
@@ -813,6 +851,9 @@ message:
     notification_not_found: 'Notification #{notification_id} introuvable'
     privilege_exception: "Vous n'avez pas suffisamment de droits pour modifier ce document"
     query_search_deleted: 'La recherche par requête "{label}" a été supprimée'
+    reindex_command_end: 'Les documents du content type {content_type} ont été réindexés dans {environment} (index : {index})'
+    reindex_command_environment_not_found: 'Environnement nommé {environment} introuvable'
+    reindex_command_start: 'Démarrage de la réindexation de {content_type} dans {environment}'
     release_deleted: 'La release "{name}" a été supprimée'
     release_not_ready: 'Le statut de la release "{name}" n''est pas "ready"'
     release_revision_preceding: 'Une révision précédente est déjà liée à la release "{name}"'
@@ -840,6 +881,7 @@ message:
     revision_draft_created: 'Un nouveau brouillon a été initié pour le document "{label}"'
     revision_draft_deleted: 'Brouillon abandonné pour le document "{label}"'
     revision_draft_updated: 'Brouillon mis à jour pour le document "{label}"'
+    revision_edit_draft_warning: 'Vous modifiez une révision déjà publiée, il est plus sûr de <a href="{path}" class="btn btn-primary"><span class="fa fa-pencil"></span> modifier un brouillon</a>'
     revision_finalize_error: 'La révision {revision_id} pour le type de contenu "{content_type}" ne peut pas être finalisée, raison : {error_message}'
     revision_finalized: 'Le document "{label}" a été publié dans {environment}'
     revision_incomplete_request: 'Il est impossible d''enregistrer le document "{label}". Veuillez vérifier votre configuration PHP/Web (par ex. max_input_vars dans php.ini)'
@@ -894,7 +936,11 @@ message:
     view_criteria_update_not_authorized: "Vous n'avez pas suffisamment de droits pour utiliser cette vue afin de mettre à jour les critères"
     view_criteria_update_privilege_issue: 'Vous n''êtes pas autorisé à mettre à jour le document "{label}"'
     view_deleted: 'La vue "{label}" a été supprimée'
+    view_document_update_error: 'Il était impossible de mettre à jour le document "{label}" : {error_message}'
+    view_hierarchical_reorganized: 'Les documents de {content_type} ont été réorganisés avec la vue "{view_label}"'
     view_not_found: 'Vue {id} introuvable'
+    view_sorter_ordered: 'Les documents de {content_type} ont été triés avec la vue "{view_label}"'
+    view_sorter_too_many_documents: 'Ce content type contient trop de documents ({total}) pour être réordonné en une seule fois'
     view_updated: 'La vue "{label}" a été mise à jour'
     xliff_not_current_revision: "La révision {revision_id} de {ouuid} n'est plus la dernière révision. Les traductions n'ont pas été importées."
     xliff_too_many_translations: "{counter} documents de traduction alors qu'un seul est attendu pour l'identifiant de traduction {translation_id} et la locale cible {target_locale} dans l'environnement {environment}"
@@ -953,7 +999,11 @@ notification:
     warnings: Avertissements
 option:
     allow_add: 'Autoriser l’ajout'
+    delete_existing_templates: 'Supprimer les templates existants'
+    delete_existing_views: 'Supprimer les vues existantes'
+    disabled: Désactivé
     email_notification: 'Notifications par email'
+    enabled: Activé
     layout_boxed: 'Mise en page en boîte'
     layout_sidebar_collapse: 'Réduction de la barre latérale'
     layout_sidebar_mini: 'Barre latérale mini'
@@ -1194,6 +1244,10 @@ task:
             history: Historique
             info: Information
         title: 'Modifier la tâche : {title}'
+title:
+    asset_options: 'Options du fichier'
+    content_type_from_json_file: "à partir d'un fichier JSON d'un content type"
+    content_type_json_update: 'Mettre à jour le content type "{content_type}"'
 type:
     confirm: |-
         {type, select,
@@ -1480,7 +1534,21 @@ view:
     form:
         fields:
             asset:
+                browse-server: 'Choisir un fichier sur le serveur'
+                clear-button: Effacer
+                close-modal: Fermer
+                drag-n-drop-file: 'Glissez-déposez votre fichier ici'
+                drag-n-drop-files: 'Glissez-déposez vos fichiers ici'
+                file-hash: 'Hash du fichier'
+                file-info: 'Informations du fichier'
+                info-modal-button: Info
+                init-upload: 'Le téléversement démarre'
+                move-button: Déplacer
                 preview: Aperçu
+                remove-button: Supprimer
+                upload-file: 'Téléverser un fichier'
+                upload-files: 'Téléverser des fichiers'
+                view-button: Voir
     icon:
         class:
             form: 'fa fa-keyboard-o'

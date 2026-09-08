@@ -4,12 +4,16 @@ action:
     add_alias: 'Alias toevoegen'
     add_referenced: 'Gerefereerde toevoegen'
     add_referenced_content_type: 'Een gerefereerd contenttype toevoegen'
+    add_release_publish: 'Toevoegen aan release voor publicatie'
+    add_release_unpublish: 'Toevoegen aan release voor depublicatie'
     attach: Koppelen
     cancel: Annuleren
+    clear: Wissen
     close: Sluiten
     collapse: Inklappen
     collapse_all: 'Alles inklappen'
     confirmation: 'Bevestigt u dit?'
+    copy: Kopiëren
     create: Aanmaken
     deactivate: Deactiveren
     define: Definiëren
@@ -17,17 +21,24 @@ action:
     delete_all: 'Alles verwijderen'
     delete_selected: 'Selectie verwijderen'
     details: Details
+    download: Downloaden
     download_selected: 'Selectie downloaden'
     duplicate: Dupliceren
     edit: Bewerken
     export: Exporteren
+    export_selected: 'Selectie exporteren'
+    extract_content: 'Inhoud extraheren'
+    info: Info
+    paste: Plakken
     rebuild: Heropbouwen
     refresh: Vernieuwen
     relaunch: Herstarten
     remove: Verwijderen
     reorder: Hersorteren
     save: Opslaan
+    save_as_draft: 'Opslaan als concept'
     save_close: 'Opslaan en sluiten'
+    save_publish_in: 'Opslaan en publiceren in {environments}'
     select_all: 'Alles selecteren'
     status: Status
     toggle_sidebar: 'Zijbalk omschakelen'
@@ -193,6 +204,11 @@ data:
 documentation:
     api:
         title: Documentatie
+email:
+    crm_export:
+        body_greeting: 'Met vriendelijke groeten.'
+        body_hello: 'Hallo,'
+        body_text: 'In bijlage vindt u de export van de gevraagde CRM-inzendingen.'
 ems_core:
     dashboard:
         export:
@@ -288,6 +304,7 @@ field:
     attributes: 'Extra request-attributen'
     available: Beschikbaar
     channel: Kanaal
+    char_filter: 'Char filter'
     circles: Kringen
     circles_to: 'Kringen naar'
     color: Kleur
@@ -296,6 +313,7 @@ field:
     content_css: Content-CSS
     content_js: Content-JS
     context: Context
+    copy_to: 'Kopiëren naar'
     count: Aantal
     cron: Cron
     date_build: Builddatum
@@ -336,15 +354,21 @@ field:
         paper_size: Papierformaat
         size: Grootte
         type: Type
+    filter: Filter
+    flags: Vlaggen
+    form: Formulier
     format_tags: Formaat-tags
     group: Groep
     hash: Hash-handtekening
     header: Header
     header_allow_origin: 'De Access-Control-Allow-Origin-header'
+    height: Hoogte
     hidden: Verborgen
     icon: Icoon
+    id: ID
     index: Index
     indexes: Indexen
+    instance: Instantie
     is_active: Actief
     is_dirty: Gewijzigd
     is_edit_wysiwyg: 'Bewerken met WYSIWYG'
@@ -352,12 +376,18 @@ field:
     is_menu_sidebar: 'Zichtbaar in het zijmenu'
     is_preview: Voorbeeld
     is_public: Publiek
+    is_styles_set_preview: 'Voorbeeld stijlenset'
+    json_file: JSON-bestand
     key: Sleutel
     label: Label
+    language: Taal
     language_preferred: Voorkeurstaal
     language_ui: Interfacetaal
     last_seen: 'Laatst gezien'
     locale: Locale
+    lowercase: 'Kleine letters'
+    max_output_size: 'Max. outputgrootte'
+    max_token_length: 'Max. tokenlengte'
     mcp_arguments: 'MCP argumenten-template (JSON)'
     mcp_input_schema: 'MCP invoerschema-template (JSON)'
     mcp_output_schema: 'MCP antwoordstemplate (JSON)'
@@ -370,8 +400,10 @@ field:
     orientation: Oriëntatie
     password: Wachtwoord
     password_repeat: 'Herhaal wachtwoord'
+    pattern: Patroon
     pdf_size: PDF-formaat
     plural: Meervoud
+    postition_increment_gap: 'Positie-increment gap'
     public_access: 'Publieke toegang'
     query: Query
     release_environment_source: 'Bronomgeving voor publicatie'
@@ -384,10 +416,13 @@ field:
     role_to: 'Rol aan'
     roles: Rollen
     search_config: Zoekconfiguratie
+    separator: Scheidingsteken
     severity: Ernst
     singular: Enkelvoud
     spreadsheet: Spreadsheet
     status: Status
+    stopwords: Stopwoorden
+    styles_set: Stijlenset
     table_default_css: 'Standaard class-attribuut van tabel'
     tag: Tag
     template_body: 'Template body'
@@ -395,6 +430,7 @@ field:
     template_header: 'Template header'
     template_response: 'Template response'
     text: Tekst
+    tokenizer: Tokenizer
     total: Totaal
     total_deleted: 'Totaal verwijderd'
     total_elastic: 'Totaal in ES'
@@ -478,13 +514,8 @@ form:
                 label: OUUID
                 placeholder: 'Automatisch gegenereerd indien leeg gelaten'
             save: 'Concept voor {content_type} aanmaken'
-        bool_table_column:
-            false_value: Uitvinken
-            true_value: Aanvinken
     edit:
         title: 'Een formulier bewerken'
-    field-type-type:
-        root: Structuur
     menu: Formulieren
     reorder:
         title: 'Velden van formulier hersorteren: {label}'
@@ -492,6 +523,8 @@ form:
 form_submissions:
     overview: Overzicht
     title: Formulierinzendingen
+help:
+    override_styles_set_config: 'configuratie van stijlensets overschrijven'
 inline_editor:
     action:
         discard: Annuleren
@@ -543,6 +576,7 @@ key:
     attachment: Bijlage
     bits: Bits
     build_date: Builddatum
+    build_in: Ingebouwd
     channel: Kanaal
     channels: Kanalen
     ckeditor4: 'CK Editor 4'
@@ -555,6 +589,7 @@ key:
     control_sidebar: Controlezijbalk
     created: Aangemaakt
     current_password: 'Huidig wachtwoord'
+    customized: Aangepast
     dashboards: Dashboards
     delayed_unassigned_shards: 'Vertraagde niet-toegewezen shards'
     details: Details
@@ -566,6 +601,7 @@ key:
     export_documents: 'Documenten exporteren'
     extra: Extra
     filters: Filters
+    form_root: 'Wortel van het formulier'
     form_submissions: Formulierinzendingen
     forms: Formulieren
     groups: Groepen
@@ -788,6 +824,7 @@ message:
     environment_updated: 'De omgeving {environment} is bijgewerkt'
     environment_wrong_ouuid: 'Onjuist gevormde OUUID {ouuid}'
     field_added: 'Het veld "{name}" is toegevoegd'
+    field_collection_import_array: 'Sommige gegevens werden niet geïmporteerd voor het collectieveld {field_name} omdat het geen array was'
     field_deleted: 'Het veld "{name}" is verwijderd'
     field_json_parse_post_processing_error: 'Fout bij het JSON-parsen van het resultaat van het naverwerkingsscript van veld {field_name} (|json_encode|raw): {error_message}'
     field_name_mandatory: 'De veldnaam is verplicht'
@@ -801,6 +838,7 @@ message:
     file_upload_error: 'Fout tijdens het uploaden van het bestand: {error_message}'
     filter_deleted: 'De filter {filter_name} is verwijderd'
     form_deleted: 'Het formulier "{label}" is verwijderd'
+    form_submission_deleted: 'Formulierinzending met id "{id}" is verwijderd!'
     import_failed: 'Import mislukt'
     import_file_missing_columns: 'Ontbrekende kolommen in het importbestand, vereiste kolommen "{columns}"'
     import_file_missing_data: 'Ontbrekende gegevens in het importbestand'
@@ -813,6 +851,9 @@ message:
     notification_not_found: 'Melding #{notification_id} niet gevonden'
     privilege_exception: 'U heeft onvoldoende rechten om dit document te bewerken'
     query_search_deleted: 'De query search "{label}" is verwijderd'
+    reindex_command_end: 'De documenten van het content type {content_type} zijn opnieuw geïndexeerd in {environment} (index: {index})'
+    reindex_command_environment_not_found: 'Omgeving met naam {environment} niet gevonden'
+    reindex_command_start: 'Start herindexering van {content_type} in {environment}'
     release_deleted: 'De release "{name}" is verwijderd'
     release_not_ready: 'De status van de release "{name}" is niet "ready"'
     release_revision_preceding: 'Er is al een vorige revisie gekoppeld aan de release "{name}"'
@@ -840,6 +881,7 @@ message:
     revision_draft_created: 'Er is een nieuw concept gestart voor het document "{label}"'
     revision_draft_deleted: 'Concept verworpen voor het document "{label}"'
     revision_draft_updated: 'Concept bijgewerkt voor het document "{label}"'
+    revision_edit_draft_warning: 'U bewerkt een reeds gepubliceerde revisie, het is veiliger om <a href="{path}" class="btn btn-primary"><span class="fa fa-pencil"></span> een concept te bewerken</a>'
     revision_finalize_error: 'De revisie {revision_id} voor het content type "{content_type}" kan niet worden gefinaliseerd, reden: {error_message}'
     revision_finalized: 'Het document "{label}" is gepubliceerd in {environment}'
     revision_incomplete_request: 'Het is niet mogelijk om het document "{label}" op te slaan. Controleer uw PHP/webconfiguratie (bv. max_input_vars in php.ini)'
@@ -894,7 +936,11 @@ message:
     view_criteria_update_not_authorized: 'U heeft onvoldoende rechten om deze weergave te gebruiken om criteria bij te werken'
     view_criteria_update_privilege_issue: 'U bent niet gemachtigd om het document "{label}" bij te werken'
     view_deleted: 'De weergave "{label}" is verwijderd'
+    view_document_update_error: 'Het was onmogelijk om het document "{label}" bij te werken: {error_message}'
+    view_hierarchical_reorganized: 'De documenten van {content_type} zijn gereorganiseerd met de weergave "{view_label}"'
     view_not_found: 'Weergave {id} niet gevonden'
+    view_sorter_ordered: 'De documenten van {content_type} zijn gesorteerd met de weergave "{view_label}"'
+    view_sorter_too_many_documents: 'Dit content type heeft te veel documenten ({total}) om in één keer opnieuw te ordenen'
     view_updated: 'De weergave "{label}" is bijgewerkt'
     xliff_not_current_revision: 'Revisie {revision_id} van {ouuid} is niet langer de laatste revisie. De vertalingen werden niet geïmporteerd.'
     xliff_too_many_translations: '{counter} vertaaldocumenten terwijl er slechts één wordt verwacht voor vertaal-ID {translation_id} en doeltaal {target_locale} in omgeving {environment}'
@@ -953,7 +999,11 @@ notification:
     warnings: Waarschuwingen
 option:
     allow_add: 'Toevoegen toestaan'
+    delete_existing_templates: 'Bestaande templates verwijderen'
+    delete_existing_views: 'Bestaande weergaven verwijderen'
+    disabled: Uitgeschakeld
     email_notification: E-mailmeldingen
+    enabled: Ingeschakeld
     layout_boxed: 'Layout boxed'
     layout_sidebar_collapse: 'Zijbalk inklapbaar'
     layout_sidebar_mini: 'Zijbalk mini'
@@ -1194,6 +1244,10 @@ task:
             history: Geschiedenis
             info: Informatie
         title: 'Taak bewerken: {title}'
+title:
+    asset_options: Asset-opties
+    content_type_from_json_file: 'vanuit een JSON-bestand van een content type'
+    content_type_json_update: 'Content type "{content_type}" bijwerken'
 type:
     confirm: |-
         {type, select,
@@ -1480,7 +1534,21 @@ view:
     form:
         fields:
             asset:
+                browse-server: 'Kies een bestand van de server'
+                clear-button: Wissen
+                close-modal: Sluiten
+                drag-n-drop-file: 'Sleep uw bestand hierheen'
+                drag-n-drop-files: 'Sleep uw bestanden hierheen'
+                file-hash: 'Hash van het bestand'
+                file-info: Bestandsinformatie
+                info-modal-button: Info
+                init-upload: 'Upload wordt gestart'
+                move-button: Verplaatsen
                 preview: Voorbeeld
+                remove-button: Verwijderen
+                upload-file: 'Bestand uploaden'
+                upload-files: 'Bestanden uploaden'
+                view-button: Bekijken
     icon:
         class:
             form: 'fa fa-keyboard-o'
