@@ -19,10 +19,6 @@ email:
 log:
     data:
         revision:
-            add_from_json_error: 'It was not possible to initiate a new %contenttype% document due to an internal error'
-            ajax_update_on_finalized: 'It''s impossible to save the document "%label%" has this revision is already finalized'
-            auto_publish_rollback: 'The document "%label%" has been silently published back in %environment%'
-            auto_save_off_with_auto_publish: 'The auto-save has been disabled as the auto-publish is enabled for the content type %contenttype%. Press Ctrl+S (Cmd+S) in order to save and publish in %environment%'
             can_finalized: 'The document "%label%" can''t be finalized as it is'
             can_finalized_as_invalid: '{1} The document "%label%" can''t be finalized has there is one error |]1,Inf[ The document "%label%" can''t be finalized as there is %count% errors'
             can_finalized_as_pending_auto_save: 'The document "%label%" can''t be finalized as an auto save is pending'

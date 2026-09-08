@@ -233,7 +233,10 @@ class EditController extends AbstractController
         }
 
         if ($contentType->isAutoPublish()) {
-            $this->logger->warning('log.data.revision.auto_save_off_with_auto_publish', LogRevisionContext::update($revision));
+            $this->logger->messageWarning(t('message.revision_auto_save_off_with_auto_publish', [
+                'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
+                'content_type' => $revision->giveContentType()->getSingularName(),
+            ], 'emsco-core'), LogRevisionContext::update($revision));
         }
 
         $objectArray = $revision->getRawData();

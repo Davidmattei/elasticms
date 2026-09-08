@@ -412,12 +412,10 @@ class DataController extends AbstractController
             if ($revision->giveContentType()->isAutoPublish()) {
                 $this->publishService->silentPublish($revision);
 
-                $this->logger->warning('log.data.revision.auto_publish_rollback', [
-                    EmsFields::LOG_OUUID_FIELD => $ouuid,
-                    EmsFields::LOG_CONTENTTYPE_FIELD => $type,
-                    EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-                    EmsFields::LOG_ENVIRONMENT_FIELD => $revision->giveContentType()->giveEnvironment()->getName(),
-                ]);
+                $this->logger->messageWarning(t('message.revision_auto_publish_rollback', [
+                    'label' => $revision->getLabel(),
+                    'environment' => $revision->giveContentType()->giveEnvironment()->getLabel(),
+                ], 'emsco-core'));
             }
 
             return $this->redirectToRoute(Routes::VIEW_REVISIONS, [
@@ -507,12 +505,9 @@ class DataController extends AbstractController
         }
 
         if (!$revision->getDraft() || null !== $revision->getEndTime()) {
-            $this->logger->warning('log.data.revision.ajax_update_on_finalized', [
-                EmsFields::LOG_CONTENTTYPE_FIELD => $revision->giveContentType()->getName(),
-                EmsFields::LOG_OUUID_FIELD => $revision->getOuuid(),
-                EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_READ,
-                EmsFields::LOG_REVISION_ID_FIELD => $revision->getId(),
-            ]);
+            $this->logger->messageWarning(t('message.revision_ajax_update_on_finalized', [
+                'label' => $revision->getLabel(),
+            ], 'emsco-core'));
 
             $response = $this->flashMessageLogger->buildJsonResponse([
                 'success' => false,
@@ -662,10 +657,9 @@ class DataController extends AbstractController
         try {
             $jsonContent = Json::decode($request->request->getString('JSON_BODY', '{}'));
         } catch (\Throwable) {
-            $this->logger->error('log.data.revision.add_from_json_error', [
-                EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
-                EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_CREATE,
-            ]);
+            $this->logger->messageError(t('message.revision_add_from_json_error', [
+                'content_type' => $contentType->getSingularName(),
+            ], 'emsco-core'));
 
             return $this->contentTypeService->redirectOverview($contentType);
         }
