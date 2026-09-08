@@ -193,6 +193,11 @@ data:
 documentation:
     api:
         title: Documentation
+email:
+    crm_export:
+        body_greeting: Regards.
+        body_hello: 'Hello,'
+        body_text: 'Please find attached the export of requested CRM submissions.'
 ems_core:
     dashboard:
         export:
@@ -288,6 +293,7 @@ field:
     attributes: 'Request extra attributes'
     available: Available
     channel: Channel
+    char_filter: 'Char filter'
     circles: Circles
     circles_to: 'Circles to'
     color: Color
@@ -336,6 +342,8 @@ field:
         paper_size: 'Paper size'
         size: Size
         type: Type
+    filter: Filter
+    flags: Flags
     format_tags: 'Format tags'
     group: Group
     hash: 'Hash signature'
@@ -358,6 +366,9 @@ field:
     language_ui: 'Language UI'
     last_seen: 'Last seen'
     locale: Locale
+    lowercase: Lowercase
+    max_output_size: 'Max output size'
+    max_token_length: 'Max token lenght'
     mcp_arguments: 'MCP arguments template (JSON)'
     mcp_input_schema: 'MCP input schema template (JSON)'
     mcp_output_schema: 'MCP output schema template (JSON)'
@@ -370,8 +381,10 @@ field:
     orientation: Orientation
     password: Password
     password_repeat: 'Repeat password'
+    pattern: Pattern
     pdf_size: 'PDF Size'
     plural: Plural
+    postition_increment_gap: 'Position increment gap'
     public_access: 'Public Access'
     query: Query
     release_environment_source: 'Source Environment for publication'
@@ -384,10 +397,12 @@ field:
     role_to: 'Role to'
     roles: Roles
     search_config: 'Search config'
+    separator: Separator
     severity: Severity
     singular: Singular
     spreadsheet: Spreadsheet
     status: Status
+    stopwords: Stopwords
     table_default_css: 'Default Table class attribute'
     tag: Tag
     template_body: 'Template body'
@@ -395,6 +410,7 @@ field:
     template_header: 'Template header'
     template_response: 'Template response'
     text: Text
+    tokenizer: Tokenizer
     total: Total
     total_deleted: 'Total deleted'
     total_elastic: 'Total in ES'
@@ -483,8 +499,6 @@ form:
             true_value: Check
     edit:
         title: 'Edit a form'
-    field-type-type:
-        root: Structure
     menu: Forms
     reorder:
         title: 'Reorder fields of form: {label}'
@@ -543,6 +557,7 @@ key:
     attachment: Attachment
     bits: Bits
     build_date: 'Build date'
+    build_in: 'Build in'
     channel: Channel
     channels: Channels
     ckeditor4: 'CK Editor 4'
@@ -555,6 +570,7 @@ key:
     control_sidebar: 'Control sidebar'
     created: Created
     current_password: 'Current password'
+    customized: Customized
     dashboards: Dashboards
     delayed_unassigned_shards: 'Delayed unassigned shards'
     details: Details
@@ -566,6 +582,7 @@ key:
     export_documents: 'Export documents'
     extra: Extra
     filters: Filters
+    form_root: "Form's root"
     form_submissions: 'Form Submissions'
     forms: Forms
     groups: Groups

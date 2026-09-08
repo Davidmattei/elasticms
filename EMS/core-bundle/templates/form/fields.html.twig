@@ -1240,7 +1240,7 @@
 	{% elseif (form.vars.data.contentType.singularName is defined) %}
 		<strong>{{ form.vars.data.contentType.singularName }}</strong>
 	{% else %}
-		<strong>{{ 'form.field-type-type.root'|trans }}</strong>
+		<strong>{{ 'key.form_root'|trans({}, 'emsco-core') }}</strong>
 	{% endif %}
 	<div class="btn-group pull-right">
 		{% if form.add is defined %}

@@ -584,7 +584,10 @@ return static function (ContainerConfigurator $container) {
         ->tag('form.type');
 
     $services->set('ems.form.field.analyzeroptionstype', AnalyzerOptionsType::class)
-        ->args([service('doctrine')])
+        ->args([
+            service('doctrine'),
+            service('translator')
+        ])
         ->tag('form.type');
 
     $services->set('ems.form.field.analyzerpickertype', AnalyzerPickerType::class)
