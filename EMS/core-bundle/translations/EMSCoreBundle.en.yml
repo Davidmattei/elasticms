@@ -17,25 +17,6 @@ email:
                     text: 'Please find attached the export of requested CRM submissions.'
                     greeting: 'Regards.'
 log:
-    error: 'This page/action has encountered an error: %error_message%'
-    file:
-        upload_error: 'Error during file upload: %error_message%'
-    filter:
-        deleted: 'The filter %filter_name% has been deleted'
-    index:
-        column:
-            created: Created
-            channel: Channel
-            level_name: Severity
-            message: Message
-            username: Username
-            impersonator: Impersonator
-    job:
-        prepared: 'A job %job_id% has been prepared (%command%)'
-    managed_alias:
-        created: 'Managed alias %managed_alias_name% has been created'
-        deleted: 'Managed alias %managed_alias_name% has been deleted'
-        updated: 'Managed alias %managed_alias_name% has been updated'
     nature:
         issue_with_document: 'It was impossible to reorder the document "%label%": %error_message%'
         not_authorized: 'Your user does not have privileges to to reorder the content type %contenttype%'

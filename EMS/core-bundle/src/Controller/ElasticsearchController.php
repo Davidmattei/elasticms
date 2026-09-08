@@ -583,10 +583,11 @@ class ElasticsearchController extends AbstractController
                 } else {
                     $lastPage = \ceil($response->getTotal() / $this->pagingSize);
                 }
-            } catch (\Throwable $e) {
-                $this->logger->warning('log.error', [
-                    EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getMessage(),
-                    EmsFields::LOG_EXCEPTION_FIELD => $e,
+            } catch (\Throwable $throwable) {
+                $this->logger->messageError(t('message.action_error', [
+                    'error_message' => $throwable->getMessage(),
+                ], 'emsco-core'), [
+                    EmsFields::LOG_EXCEPTION_FIELD => $throwable,
                 ]);
                 $response = null;
                 $lastPage = 0;

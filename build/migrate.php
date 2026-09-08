@@ -219,12 +219,16 @@ $command = static function (InputInterface $input, OutputInterface $output): int
 
     $io->section('Translations');
 
+    $hasExplicitMessage = \is_string($newMessage) && '' !== $newMessage;
+
     if (0 === $files) {
         $io->warning(\sprintf('%s is not used in the code, removing it without migrating', $oldKey));
-    } elseif (isset($target[$newKey]) && $target[$newKey] !== $source[$oldKey]) {
-        $io->warning(\sprintf('%s already exists: %s', $newKey, $target[$newKey]));
+    } elseif (isset($target[$newKey]) && !$hasExplicitMessage) {
+        $io->warning(\sprintf('%s already exists, reusing it as-is: %s', $newKey, $target[$newKey]));
+    } elseif (isset($target[$newKey]) && $target[$newKey] === $newMessage) {
+        $io->writeln(\sprintf('<info>%s</info> already up to date', $newKey));
     } else {
-        $icu = \is_string($newMessage) && '' !== $newMessage
+        $icu = $hasExplicitMessage
                 ? ['message' => $newMessage, 'warnings' => []]
                 : toIcu($source[$oldKey]);
 

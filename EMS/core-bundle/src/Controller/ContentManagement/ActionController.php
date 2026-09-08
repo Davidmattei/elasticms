@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace EMS\CoreBundle\Controller\ContentManagement;
 
 use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
-use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CommonBundle\Helper\Text\Encoder;
 use EMS\CoreBundle\Controller\CoreControllerTrait;
 use EMS\CoreBundle\Core\DataTable\DataTableFactory;
@@ -138,7 +137,9 @@ final class ActionController extends AbstractController
         if ('json' === $request->getRequestFormat()) {
             foreach ($form->getErrors() as $error) {
                 if ($error instanceof FormError) {
-                    $this->logger->error('log.error', [EmsFields::LOG_ERROR_MESSAGE_FIELD => $error->getMessage()]);
+                    $this->logger->messageError(t('message.action_error', [
+                        'error_message' => $error->getMessage(),
+                    ], 'emsco-core'));
                 }
             }
 

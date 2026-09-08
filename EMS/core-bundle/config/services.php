@@ -188,7 +188,7 @@ return static function (ContainerConfigurator $container) {
             service('ems.service.channel.register'),
             service('twig'),
             service('doctrine'),
-            service('logger'),
+            service('emsco.logger'),
             service('router'),
         ])
         ->tag('kernel.event_listener', ['event' => 'kernel.exception', 'method' => 'onKernelException'])
