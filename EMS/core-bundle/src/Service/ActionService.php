@@ -61,14 +61,14 @@ final readonly class ActionService implements EntityServiceInterface
 
             $this->logger->messageNotice(t('message.job_initialized', [
                 'label' => $jobAction->getLabel(),
-                'environment' => $jobAction->giveContentType()->giveEnvironment()->getLabel()
+                'environment' => $jobAction->giveContentType()->giveEnvironment()->getLabel(),
             ], 'emsco-core'));
 
             return $job;
         } catch (\Throwable $throwable) {
             $this->logger->messageError(t('message.job_failed', [
                 'label' => $jobAction->getLabel(),
-                'environment' => $jobAction->giveContentType()->giveEnvironment()->getLabel()
+                'environment' => $jobAction->giveContentType()->giveEnvironment()->getLabel(),
             ], 'emsco-core'), [
                 EmsFields::LOG_ERROR_MESSAGE_FIELD => $throwable->getMessage(),
                 EmsFields::LOG_EXCEPTION_FIELD => $throwable,

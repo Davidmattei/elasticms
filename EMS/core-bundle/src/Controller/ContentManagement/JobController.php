@@ -165,7 +165,7 @@ class JobController extends AbstractController
         $this->jobService->run($job);
 
         $this->logger->messageNotice(t('message.job_done', [
-            'job_id' => $job->getId()
+            'job_id' => $job->getId(),
         ], 'emsco-core'));
 
         return EmsCoreResponse::createJsonResponse($request, true, [
