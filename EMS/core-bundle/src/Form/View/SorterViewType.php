@@ -27,6 +27,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
+use function Symfony\Component\Translation\t;
+
 class SorterViewType extends ViewType
 {
     final public const int SEARCH_SIZE = 100;
@@ -150,9 +152,9 @@ class SorterViewType extends ViewType
         $emsResponse = EmsResponse::fromResultSet($resultSet);
 
         if ($emsResponse->getTotal() > self::SEARCH_SIZE) {
-            $this->logger->warning('form.view.sorter.too_many_documents', [
+            $this->logger->messageWarning(t('message.view_sorter_too_many_documents', [
                 'total' => $emsResponse->getTotal(),
-            ]);
+            ], 'emsco-core'));
         }
 
         $data = [];
@@ -181,19 +183,19 @@ class SorterViewType extends ViewType
                     $revision->setRawData($data);
                     $this->dataService->finalizeDraft($revision);
                 } catch (\Throwable $e) {
-                    $this->logger->warning('form.view.sorter.error_with_document', [
-                        EmsFields::LOG_CONTENTTYPE_FIELD => $view->getContentType()->getName(),
-                        EmsFields::LOG_OUUID_FIELD => $itemKey,
-                        EmsFields::LOG_ERROR_MESSAGE_FIELD => $e->getMessage(),
+                    $this->logger->messageWarning(t('message.view_document_update_error', [
+                        'label' => $itemKey,
+                        'error_message' => $e->getMessage(),
+                    ], 'emsco-core'), [
                         EmsFields::LOG_EXCEPTION_FIELD => $e,
                     ]);
                 }
             }
-            $this->logger->notice('form.view.sorter.ordered', [
-                EmsFields::LOG_CONTENTTYPE_FIELD => $view->getContentType()->getName(),
-                'view_name' => $view->getName(),
+
+            $this->logger->messageNotice(t('message.view_sorter_ordered', [
+                'content_type' => $view->getContentType()->getPluralName(),
                 'view_label' => $view->getLabel(),
-            ]);
+            ], 'emsco-core'));
 
             return new RedirectResponse($this->router->generate('emsco_draft_in_progress', [
                 'contentTypeId' => $view->getContentType()->getId(),

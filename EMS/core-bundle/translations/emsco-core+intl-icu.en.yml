@@ -412,7 +412,7 @@ field:
     spreadsheet: Spreadsheet
     status: Status
     stopwords: Stopwords
-    styles_set: Styles set
+    styles_set: 'Styles set'
     table_default_css: 'Default Table class attribute'
     tag: Tag
     template_body: 'Template body'
@@ -840,6 +840,9 @@ message:
     notification_not_found: 'Notification #{notification_id} not found'
     privilege_exception: 'You do not have enough privileges to edit this document'
     query_search_deleted: 'The query search "{label}" has been deleted'
+    reindex_command_end: "The content type {content_type}''s documents have been reindexed in {environment} (index: {index})"
+    reindex_command_environment_not_found: 'Environment named {environment} not found'
+    reindex_command_start: 'Start reindexing {content_type} in {environment}'
     release_deleted: 'The release "{name}" has been deleted'
     release_not_ready: 'The status of the release "{name}" is not ready'
     release_revision_preceding: 'A previous revision is already related to the release "{name}"'
@@ -867,6 +870,7 @@ message:
     revision_draft_created: 'A new draft has been initiated for the document "{label}"'
     revision_draft_deleted: 'Draft discard for the document "{label}"'
     revision_draft_updated: 'Updated draft for the document "{label}"'
+    revision_edit_draft_warning: 'You are editing an already published revision, it is safer to <a href="{path}" class="btn btn-primary"><span class="fa fa-pencil"></span> edit a draft</a>'
     revision_finalize_error: 'The revision {revision_id} for the content type "{content_type}" cannot be finalized, reason: {error_message}'
     revision_finalized: 'The document "{label}" has been published in {environment}'
     revision_incomplete_request: 'It is impossible to save the document "{label}". Please check your PHP/Web configuration (i.e.: max_input_vars in php.ini)'
@@ -921,7 +925,11 @@ message:
     view_criteria_update_not_authorized: 'You do not have enough privileges to use this view to update criteria'
     view_criteria_update_privilege_issue: 'You are not authorized to update the document "{label}"'
     view_deleted: 'The view "{label}" has been deleted'
+    view_document_update_error: 'It was impossible to update the document "{label}": {error_message}'
+    view_hierarchical_reorganized: 'The {content_type}''''s documents have been reorganized with the view "{view_label}"'
     view_not_found: 'View {id} not found'
+    view_sorter_ordered: 'The {content_type} documents have been ordered with the view "{view_label}"'
+    view_sorter_too_many_documents: 'This content type has too many documents ({total}) to be reordered all at once'
     view_updated: 'The view "{label}" has been updated'
     xliff_not_current_revision: 'The revision {revision_id} of {ouuid} is no longer the last revision. The translations were not imported.'
     xliff_too_many_translations: '{counter} translation documents while only one is expected for the translation id {translation_id} and the target locale {target_locale} in the environment {environment}'

@@ -1,25 +1,3 @@
-form:
-    view:
-        hierarchical:
-            error_with_document: 'It was impossible to update the document "%label%" : %error_message%'
-            reorganized: 'The %contenttype%''s documents have been reorganized with the view "%view_label%"'
-        sorter:
-            error_with_document: 'It was impossible to update the document "%label%" : %error_message%'
-            ordered: 'The %contenttype%''s documents have been ordered with the view "%view_label%"'
-            too_many_documents: 'This content type have to much document (%total%) to be reorder them all in once'
-command:
-    reindex:
-        end: 'The content type %contenttype%''s documents have been reindexed in %environment% (index: %index%)'
-        environment_not_found: 'Environment named %environment% not found'
-        start: 'Start reindexing %contenttype% in %environment%'
-controller:
-    revision:
-        edit-controller:
-            warning:
-                edit-draft: 'You are editing an already published revision, It''s safer to <a href="%path%" class="btn btn-primary"><span class="fa fa-pencil"></span> edit a draft</a>'
-    environment:
-        index:
-            reorder_submit_button: Reorder
 data:
     custom-view:
         pagetitle: 'View %name% of the %contentType% "%label%" as indexed in %environment%'

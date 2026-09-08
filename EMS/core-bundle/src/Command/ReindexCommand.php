@@ -7,7 +7,6 @@ namespace EMS\CoreBundle\Command;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManager;
 use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
-use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CoreBundle\Commands;
 use EMS\CoreBundle\Elasticsearch\Bulker;
 use EMS\CoreBundle\Entity\ContentType;
@@ -132,11 +131,10 @@ class ReindexCommand extends AbstractCoreCommand
 
     public function reindex(string $name, ContentType $contentType, ?string $index, OutputInterface $output, bool $signData = true, int $bulkSize = 1000, bool $reloadData = false): void
     {
-        $this->logger->notice('command.reindex.start', [
-            EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_UPDATE,
-            EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
-            EmsFields::LOG_ENVIRONMENT_FIELD => $name,
-        ]);
+        $this->logger->messageNotice(t('message.reindex_command_start', [
+            'environment' => $name,
+            'content_type' => $contentType->getSingularName(),
+        ], 'emsco-core'));
 
         /** @var EntityManager $em */
         $em = $this->doctrine->getManager();
@@ -207,20 +205,15 @@ class ReindexCommand extends AbstractCoreCommand
                 $output->writeln(\sprintf('%d documents are reloaded', $this->reloaded));
             }
 
-            $this->logger->notice('command.reindex.end', [
-                EmsFields::LOG_OPERATION_FIELD => EmsFields::LOG_OPERATION_UPDATE,
-                EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
-                EmsFields::LOG_ENVIRONMENT_FIELD => $name,
+            $this->logger->messageNotice(t('message.reindex_command_end', [
+                'content_type' => $contentType->getSingularName(),
+                'environment' => $environment->getLabel(),
                 'index' => $index,
-                'deleted' => $this->deleted,
-                'with_error' => $this->error,
-                'total' => $this->count,
-            ]);
+            ], 'emsco-core'));
         } else {
-            $this->logger->warning('command.reindex.environment_not_found', [
-                EmsFields::LOG_CONTENTTYPE_FIELD => $contentType->getName(),
-                EmsFields::LOG_ENVIRONMENT_FIELD => $name,
-            ]);
+            $this->logger->messageNotice(t('message.reindex_command_environment_not_found', [
+                'environment' => $name,
+            ], 'emsco-core'));
 
             $output->writeln('WARNING: Environment named '.$name.' not found');
         }

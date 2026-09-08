@@ -35,7 +35,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function Symfony\Component\Translation\t;
@@ -253,12 +252,12 @@ class EditController extends AbstractController
         }
 
         if (!$revision->getDraft()) {
-            $this->logger->warning('controller.revision.edit-controller.warning.edit-draft', [
+            $this->logger->messageWarning(t('message.revision_edit_draft_warning', [
                 'path' => $this->generateUrl('emsco_data_new_draft', [
                     'type' => $revision->giveContentType(),
                     'ouuid' => $revision->giveOuuid(),
-                ], UrlGeneratorInterface::ABSOLUTE_PATH),
-            ]);
+                ]),
+            ], 'emsco-core'));
         }
 
         return $this->render(\sprintf('@%s/data/edit-revision.html.twig', $this->templateNamespace), [
