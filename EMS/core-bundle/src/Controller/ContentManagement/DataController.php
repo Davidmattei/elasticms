@@ -14,7 +14,6 @@ use EMS\CoreBundle\Core\ContentType\ViewTypes;
 use EMS\CoreBundle\Core\Log\LogRevisionContext;
 use EMS\CoreBundle\Core\Revision\EventType;
 use EMS\CoreBundle\Core\UI\FlashMessageLogger;
-use EMS\CoreBundle\EMSCoreBundle;
 use EMS\CoreBundle\Entity\ContentType;
 use EMS\CoreBundle\Entity\Environment;
 use EMS\CoreBundle\Entity\Form\Search;
@@ -474,7 +473,7 @@ class DataController extends AbstractController
     {
         $view = $viewId;
         if ($public && !$view->isPublic()) {
-            throw new NotFoundHttpException($this->translator->trans('log.view.not_found', ['%view_id%' => $viewId->getId()], EMSCoreBundle::TRANS_DOMAIN));
+            throw $this->createNotFoundException(t('message.view_not_found', ['id' => $viewId], 'emsco-core')->trans($this->translator));
         }
         $viewType = $this->viewTypes->get($view->getType());
 

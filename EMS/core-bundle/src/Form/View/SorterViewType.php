@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EMS\CoreBundle\Form\View;
 
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Elasticsearch\Response\Response as EmsResponse;
 use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CommonBundle\Service\ElasticaService;
@@ -15,7 +16,6 @@ use EMS\CoreBundle\Form\Nature\ReorderType;
 use EMS\CoreBundle\Service\DataService;
 use EMS\CoreBundle\Service\Mapping;
 use EMS\Helpers\Standard\Json;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactory;
@@ -36,7 +36,7 @@ class SorterViewType extends ViewType
         Environment $twig,
         protected Mapping $mapping,
         private readonly ElasticaService $elasticaService,
-        LoggerInterface $logger,
+        LocalizedLoggerInterface $logger,
         protected DataService $dataService,
         protected RouterInterface $router,
         private readonly string $templateNamespace,

@@ -17,31 +17,6 @@ email:
                     text: 'Please find attached the export of requested CRM submissions.'
                     greeting: 'Regards.'
 log:
-    view:
-        calendar:
-            document_not_found: 'The document "%label%" is missing'
-            from_date_is_missing: 'From date is missing!'
-        created: 'A new view %view_label% has been created'
-        criteria:
-            added: 'A criteria has been added for field %field_name% with value %field_data%'
-            already_exists: 'A criteria already exist for field %field_name% with value %field_data%'
-            already_missing: 'A criteria is already missing for field %field_name% with value %field_data%'
-            document_key_not_found: 'Document reference "%document_reference%" not found for the document "%label%"'
-            draft_in_progress: '{0} A draft is in progress for the document "%label%", it''s not possible to update it|{1} There is one drafts in progress. You won’t be able to update it from here.|]1,Inf[ There are %count% drafts in progress. You won’t be able to update them from here.'
-            field_not_found: 'Field path %field_path% not found'
-            locked_revision: 'Impossible to update the the document "%label%" as the revision is locked by %locked_by%'
-            new_criteria: 'A new criteria has been created for %target_field_name%:%target_field_data%'
-            not_found: 'Criteria not found for the field %field_name%'
-            removed: 'A criteria has been removed for field %field_name% with value %field_data%'
-            too_many_criteria: 'Too many criteria found (%total%). There is something wrong with this combination of criteria!: %message%'
-            update_not_authorized: 'You don''t have enough privileges to use this view to updates criterion'
-            update_privilege_issue: 'You are not authorized to update the document "%label%"'
-        deleted: 'A new view %view_label% has been deleted'
-        keywords:
-            warning:
-                bucket_not_found: 'Bucket %bucketPath% not found'
-        not_found: 'View %view_id% not found'
-        updated: 'A new view %view_label% has been updated'
     warning:
         asset_extract:
             file_to_large: 'As this file is larger (%filesize%) than %max_size% its content has not been automatically extracted. You can either force the extraction or specify it manually in the "Info" menu.'

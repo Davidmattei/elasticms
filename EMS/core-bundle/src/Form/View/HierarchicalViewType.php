@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EMS\CoreBundle\Form\View;
 
+use EMS\CommonBundle\Contracts\Log\LocalizedLoggerInterface;
 use EMS\CommonBundle\Helper\EmsFields;
 use EMS\CoreBundle\Entity\DataField;
 use EMS\CoreBundle\Entity\FieldType;
@@ -16,7 +17,6 @@ use EMS\CoreBundle\Service\DataService;
 use EMS\CoreBundle\Service\Mapping;
 use EMS\CoreBundle\Service\SearchService;
 use EMS\Helpers\Standard\Json;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -37,7 +37,7 @@ class HierarchicalViewType extends ViewType
         Environment $twig,
         private readonly SearchService $searchService,
         private readonly Mapping $mapping,
-        LoggerInterface $logger,
+        LocalizedLoggerInterface $logger,
         protected DataService $dataService,
         protected RouterInterface $router,
         protected ContentTypeService $contentTypeService,
