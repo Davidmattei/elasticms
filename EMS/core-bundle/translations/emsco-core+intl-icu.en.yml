@@ -478,7 +478,7 @@ field_type:
         paste: Paste
     reorder: Reorder
     textarea:
-        counter: '%count% characters'
+        counter: '{count} characters'
 fields:
     asset:
         browse-server: 'Browse server'
@@ -1623,7 +1623,7 @@ view:
                 info-modal-button: Info
                 init-upload: 'Upload is starting'
                 move-button: Move
-                preview: 'File preview of field %label%'
+                preview: 'File preview of field {label}'
                 remove-button: Remove
                 upload-file: 'Upload file'
                 upload-files: 'Upload files'
@@ -1656,8 +1656,8 @@ view:
     user:
         index:
             title: 'User list'
-            user-in-group: 'Users in group %label%'
-            user-not-in-group: 'Users not in group %label%'
+            user-in-group: 'Users in group {label}'
+            user-not-in-group: 'Users not in group {label}'
         permissions:
             page_title: 'Permissions Overview'
             table_headers:
@@ -1686,7 +1686,7 @@ view:
                 specific_role: 'specific roles'
             titles:
                 permissions_overview: 'Permissions Overview'
-                specific_permissions: 'Permission for %content_type_singular_name%'
+                specific_permissions: 'Permission for {content_type_singular_name}'
                 specific_roles: 'Specific roles of fields'
 views:
     data:

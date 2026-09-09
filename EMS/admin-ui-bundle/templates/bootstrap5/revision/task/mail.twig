@@ -2,15 +2,15 @@
 
 {% block task_event_mail_subject %}
     {{ "task.mail.#{type}.subject"|trans({
-        '%title%': task.title,
-        '%document%': revision|emsco_display,
+        'title': task.title,
+        'document': revision|emsco_display,
     })|raw }}
 {% endblock task_event_mail_subject %}
 
 {% block task_event_mail_body %}
-    <p>{{ 'task.mail.from'|trans({'%sender%': senderUsername|emsco_display_name}) }}</p>
-    <p>{{ 'task.mail.greetings'|trans({'%receiver%': receiver.displayname}) }}</p>
-    <p>{{ 'task.mail.task_has_been'|trans({'%action%': action, '%role%': senderRole ? 'task.mail.by_role'|trans({'%role%': senderRole}) : ''}) }}</p>
+    <p>{{ 'task.mail.from'|trans({'sender': senderUsername|emsco_display_name}) }}</p>
+    <p>{{ 'task.mail.greetings'|trans({'receiver': receiver.displayname}) }}</p>
+    <p>{{ 'task.mail.task_has_been'|trans({'action': action, 'role': senderRole ? 'task.mail.by_role'|trans({'role': senderRole}) : ''}) }}</p>
     <p>
         {% if task.hasDeadline %}<strong>{{ 'task.mail.deadline'|trans }}:</strong>{{ task.deadline.format(date_format) }}<br/>{% endif %}
         <strong>{{ 'task.mail.title'|trans }}:</strong> {{ task.title }}<br/>
@@ -28,7 +28,7 @@
 {% endblock task_notification_mail_subject %}
 
 {% block task_notification_mail_body %}
-    <p>{{ 'task.mail.greetings'|trans({'%receiver%': receiver.displayname}) }}</p>
+    <p>{{ 'task.mail.greetings'|trans({'receiver': receiver.displayname}) }}</p>
 
     <p>{{ 'task.mail.overdue_or_active_list'|trans }}</p>
 

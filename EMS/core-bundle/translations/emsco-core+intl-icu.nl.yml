@@ -463,7 +463,7 @@ field_type:
         paste: Plakken
     reorder: Hersorteren
     textarea:
-        counter: '%count% tekens'
+        counter: '{count} tekens'
 fields:
     asset:
         browse-server: 'Server doorzoeken'
