@@ -1,11 +1,3 @@
-release:
-    status:
-        wip: Draft
-        ready: Ready
-        applied: Applied
-        canceled: Canceled
-        scheduled: Scheduled
-        rollbacked: 'Rolled back'
 search:
     aggregate_option_label: 'Aggregate Option'
     search_field_option_label: 'Search Field Option'

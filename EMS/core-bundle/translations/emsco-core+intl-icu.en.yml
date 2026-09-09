@@ -690,6 +690,7 @@ key:
     to_be_treated: 'To be treated'
     trash: Trash
     unassigned_shards: 'Unassigned shards'
+    unknown: 'Unknown'
     unreferenced_aliases: 'Unreferenced aliases'
     uploaded_files: 'Uploaded Files'
     uploaded_files_logs: 'Uploaded Files Logs'
@@ -1138,6 +1139,12 @@ release:
                 confirm: 'Do you confirm ?'
         view:
             title: "Release's documents"
+    status:
+        applied: Applied
+        canceled: Canceled
+        ready: Ready
+        scheduled: Scheduled
+        wip: Draft
     unpublish_in: 'Unpublish in {env}'
 revision:
     draft:
