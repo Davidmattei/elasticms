@@ -987,6 +987,7 @@ message:
     view_sorter_ordered: 'The {content_type} documents have been ordered with the view "{view_label}"'
     view_sorter_too_many_documents: 'This content type has too many documents ({total}) to be reordered all at once'
     view_updated: 'The view "{label}" has been updated'
+    wysiwyg_invalid_config_format: 'Format not valid: {msg}'
     xliff_not_current_revision: 'The revision {revision_id} of {ouuid} is no longer the last revision. The translations were not imported.'
     xliff_too_many_translations: '{counter} translation documents while only one is expected for the translation id {translation_id} and the target locale {target_locale} in the environment {environment}'
 modal:
@@ -1712,13 +1713,17 @@ view:
         data-field-type:
             collection_added_items: '{0} Nothing has been added.|{1} One item has been added.|]1,Inf[ {count} items have been added.'
             collection_removed_items: '{0} Nothing has been removed.|{1} One item has been removed.|]1,Inf[ {count} item have been removed.'
+            form:
+                not-defined: 'Form not defined'
+                not-found: 'Form not found'
             menu-option-button: View
     profile:
         show:
             action:
                 cancel: Cancel
                 edit: Edit
-                profile: { title: 'Your profile' }
+                profile:
+                    title: 'Your profile'
             alt:
                 user_profile_picture: "User profile's picture"
             display_name: 'Display name'
@@ -1753,7 +1758,9 @@ view:
                 view: View
             titles:
                 content_type_permissions: 'Permissions of content types'
-                descriptions: { roles_functionalities_description: 'These roles are specifically for functionality and have nothing to do with content management. They are functional roles that grant access to specific CMS features.', roles_hierarchy_description: 'Access to a role implies access to all roles below it in the hierarchy. Hierarchical roles can be assigned to grant and limit access to the content type.' }
+                descriptions:
+                    roles_functionalities_description: 'These roles are specifically for functionality and have nothing to do with content management. They are functional roles that grant access to specific CMS features.'
+                    roles_hierarchy_description: 'Access to a role implies access to all roles below it in the hierarchy. Hierarchical roles can be assigned to grant and limit access to the content type.'
                 roles_hierarchy: 'Roles hierarchy'
                 roles_specific_functionalities: 'Roles for specific functionalities'
         specific_permissions:

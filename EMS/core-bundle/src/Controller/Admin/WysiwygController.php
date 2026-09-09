@@ -91,7 +91,7 @@ class WysiwygController extends AbstractController
 
                 return $this->redirectToRoute(Routes::WYSIWYG_INDEX);
             } catch (\Throwable $e) {
-                $form->get('config')->addError(new FormError($this->translator->trans('wysiwyg.invalid_config_format', ['%msg%' => $e->getMessage()], EMSCoreBundle::TRANS_DOMAIN)));
+                $form->get('config')->addError(new FormError(t('message.wysiwyg_invalid_config_format', ['msg' => $e->getMessage()], 'emsco-core')->trans($this->translator)));
             }
         }
 
@@ -126,7 +126,7 @@ class WysiwygController extends AbstractController
 
                 return $this->redirectToRoute(Routes::WYSIWYG_INDEX);
             } catch (\Throwable $e) {
-                $form->get('config')->addError(new FormError($this->translator->trans('wysiwyg.invalid_config_format', ['%msg%' => $e->getMessage()], 'EMSCoreBundle')));
+                $form->get('config')->addError(new FormError(t('message.wysiwyg_invalid_config_format', ['msg' => $e->getMessage()], 'emsco-core')->trans($this->translator)));
             }
         }
 
@@ -157,7 +157,7 @@ class WysiwygController extends AbstractController
 
                 return $this->redirectToRoute(Routes::WYSIWYG_INDEX);
             } catch (\Throwable $e) {
-                $form->get('config')->addError(new FormError($this->translator->trans('wysiwyg.invalid_config_format', ['%msg%' => $e->getMessage()], 'EMSCoreBundle')));
+                $form->get('config')->addError(new FormError(t('message.wysiwyg_invalid_config_format', ['msg' => $e->getMessage()], 'emsco-core')->trans($this->translator)));
             }
         }
 
@@ -192,7 +192,7 @@ class WysiwygController extends AbstractController
 
                 return $this->redirectToRoute(Routes::WYSIWYG_INDEX);
             } catch (\Throwable $e) {
-                $form->get('config')->addError(new FormError($this->translator->trans('wysiwyg.invalid_config_format', ['%msg%' => $e->getMessage()], 'EMSCoreBundle')));
+                $form->get('config')->addError(new FormError(t('message.wysiwyg_invalid_config_format', ['msg' => $e->getMessage()], 'emsco-core')->trans($this->translator)));
             }
         }
 

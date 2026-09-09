@@ -1303,7 +1303,7 @@
 {% block EMS_CoreBundle_Form_DataField_FormFieldType %}
     {% if dataField.fieldType.displayOptions.form is defined %}
         {% set form = emsco_get_form(dataField.fieldType.displayOptions.form, dataField.rawData) %}
-        {% set errorMessage = 'view.macros.data-field-type.form.not-found' %}
+        {% set errorMessage = 'view.macros.data-field-type.form.not-found'|trans %}
     {% endif %}
     {% if form is defined and form %}
         {{ _self.renderDataFieldBlock(emsco_get_data_field(form), source, compare, compareRawData, '', path, locale) }}
@@ -1313,7 +1313,7 @@
                 {{ dataField.fieldType.displayOptions.label|default(dataField.fieldType.name) }}{% if emsco_is_super() %} ({{ dataField.fieldType.name }}){% endif %}
             </div>
             <div class="panel-body">
-                {{ errorMessage|default('view.macros.data-field-type.form.not-defined')|trans }}
+                {{ errorMessage|default('view.macros.data-field-type.form.not-defined'|trans)|trans }}
             </div>
         </div>
     {% endif %}
