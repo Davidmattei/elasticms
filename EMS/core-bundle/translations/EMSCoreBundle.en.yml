@@ -1,7 +1,3 @@
-search:
-    aggregate_option_label: 'Aggregate Option'
-    search_field_option_label: 'Search Field Option'
-    sort_option_label: 'Sort Option'
 service:
     alias:
         too_many_indexes: 'There is too many indexes'

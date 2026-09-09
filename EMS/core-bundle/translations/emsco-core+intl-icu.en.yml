@@ -587,6 +587,7 @@ key:
     active_shards_percent_as_number: 'Active shards'
     add_user: 'Add user'
     admin: Admin
+    aggregate_option: 'Aggregate Option'
     aggregate_options: 'Aggregate options'
     all_content_types: 'All Content Types'
     analyzers: Analyzers
@@ -674,12 +675,14 @@ key:
     schedule_cron: '<Minute> <Hour> <Day_of_the_Month> <Month_of_the_Year> <Day_of_the_Week>. E.g. every 15 minutes: */15 * * * *'
     schedule_tag: 'Used to indentify workers (e.g. CLI) which would remotely execute the job'
     search: Search
+    search_field_option: 'Search Field Option'
     search_field_options: 'Search field options'
     search_options: 'Search options'
     searches: Searches
     severity: Severity
     show_search_form: 'Show search form'
     sort_by: 'Sort by'
+    sort_option: 'Sort Option'
     sort_options: 'Sort Options'
     status: Status
     structure: Structure
@@ -690,7 +693,7 @@ key:
     to_be_treated: 'To be treated'
     trash: Trash
     unassigned_shards: 'Unassigned shards'
-    unknown: 'Unknown'
+    unknown: Unknown
     unreferenced_aliases: 'Unreferenced aliases'
     uploaded_files: 'Uploaded Files'
     uploaded_files_logs: 'Uploaded Files Logs'
