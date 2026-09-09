@@ -274,10 +274,6 @@ view:
     form-submission:
         index:
             title: 'Form Submissions Overview'
-    icon:
-        class:
-            release: 'fa fa-cube'
-            uploaded-file: 'fa fa-upload'
     macros:
         data-field-type:
             form:
@@ -359,12 +355,9 @@ view:
 views:
     elements:
         object-views-button:
-            action-dropdown-icon-class: 'fa fa-eye'
             action-dropdown-sr-only: 'Toggle dropdown of %environment%''s actions'
             copy-data: 'Copy data'
-            copy-data-icon-class: 'fa fa-copy'
             raw-view: 'Raw view'
-            raw-view-icon-class: 'fa fa-th'
             action-dropdown-label: 'Actions in %environment%'
             published-label: 'Published in %environment%'
         revision-toolbar-html:
