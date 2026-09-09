@@ -76,6 +76,4 @@ class Roles
             default => new TranslatableMessage($role),
         };
     }
-    
-    
 }
