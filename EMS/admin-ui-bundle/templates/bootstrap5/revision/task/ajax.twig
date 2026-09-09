@@ -80,7 +80,7 @@
                             </span>
                             <span>{{ 'task.assigned_to'|trans }}<strong>{{ taskCurrent.assignee|emsco_display_name }}</strong></span>
                         </div>
-                        <div><span class="task-current-status label {{ taskCurrent.statusLabel }}">{{ "task.status.#{taskCurrent.status}"|trans }}</span></div>
+                        <div><span class="task-current-status label {{ taskCurrent.statusLabel }}">{{ taskCurrent.status|trans }}</span></div>
                     </div>
                 </div>
             </a>
@@ -138,7 +138,7 @@
                             <span>{{ 'task.assigned_to'|trans }}<strong>{{ task.assignee|emsco_display_name }}</strong></span>
                         </div>
                         {% if isCurrent|default(false) %}
-                            <div><span class="task-current-status label {{ task.statusLabel }}">{{ "task.status.#{task.status}"|trans }}</span></div>
+                            <div><span class="task-current-status label {{ task.statusLabel }}">{{ task.status|trans }}</span></div>
                         {% endif %}
                     </div>
                 </div>
@@ -270,7 +270,7 @@
 
 {% block modalUpdateFooter %}
     <div class="pull-left">
-        {%- if task.status != 'completed' -%}
+        {%- if task.status.value != 'completed' -%}
             <button id="ajax-modal-submit" class="btn btn-sm btn-primary task-icon-update">{{ 'task.update.submit'|trans }}</button>
         {%- endif -%}
         {% if task.isRequester(app.user) or is_granted('ROLE_TASK_MANAGER') %}

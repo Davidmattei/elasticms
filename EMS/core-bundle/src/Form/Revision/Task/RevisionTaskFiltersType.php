@@ -18,6 +18,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
+
+use function Symfony\Component\Translation\t;
 
 /**
  * @extends AbstractType<mixed>
@@ -26,7 +29,8 @@ class RevisionTaskFiltersType extends AbstractType
 {
     public function __construct(
         private readonly ContentTypeService $contentTypeService,
-        private readonly AuthorizationCheckerInterface $authorizationChecker
+        private readonly AuthorizationCheckerInterface $authorizationChecker,
+        private readonly TranslatorInterface $translator
     ) {
     }
 
@@ -38,21 +42,22 @@ class RevisionTaskFiltersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('status', ChoiceType::class, [
+            'label' => t('task.filter.status', [], 'emsco-core'),
             'required' => false,
             'multiple' => true,
             'attr' => ['class' => 'select2'],
-            'choice_translation_domain' => EMSCoreBundle::TRANS_DOMAIN,
             'choices' => [
-                'task.status.progress' => TaskStatus::PROGRESS->value,
-                'task.status.rejected' => TaskStatus::REJECTED->value,
-                'task.status.completed' => TaskStatus::COMPLETED->value,
-                'task.status.planned' => TaskStatus::PLANNED->value,
-                'task.status.approved' => TaskStatus::APPROVED->value,
+                TaskStatus::PROGRESS->trans($this->translator) => TaskStatus::PROGRESS->value,
+                TaskStatus::REJECTED->trans($this->translator) => TaskStatus::REJECTED->value,
+                TaskStatus::COMPLETED->trans($this->translator) => TaskStatus::COMPLETED->value,
+                TaskStatus::PLANNED->trans($this->translator) => TaskStatus::PLANNED->value,
+                TaskStatus::APPROVED->trans($this->translator) => TaskStatus::APPROVED->value,
             ],
         ]);
 
         if (TasksDataTableContext::TAB_USER !== $options['tab']) {
             $builder->add('assignee', SelectUserPropertyType::class, [
+                'label' => t('task.filter.assignee', [], 'emsco-core'),
                 'required' => false,
                 'allow_add' => false,
                 'multiple' => true,
@@ -62,6 +67,7 @@ class RevisionTaskFiltersType extends AbstractType
         }
         if (TasksDataTableContext::TAB_REQUESTER !== $options['tab']) {
             $builder->add('requester', SelectUserPropertyType::class, [
+                'label' => t('task.filter.requester', [], 'emsco-core'),
                 'required' => false,
                 'allow_add' => false,
                 'multiple' => true,
@@ -73,6 +79,7 @@ class RevisionTaskFiltersType extends AbstractType
         $versionTags = $this->contentTypeService->getVersionTags();
         if ([] !== $versionTags) {
             $builder->add('versionNextTag', ChoiceType::class, [
+                'label' => t('task.filter.version_next_tag', [], 'emsco-core'),
                 'required' => false,
                 'multiple' => true,
                 'attr' => ['class' => 'select2'],
@@ -83,13 +90,13 @@ class RevisionTaskFiltersType extends AbstractType
         if ($this->authorizationChecker->isGranted('ROLE_PUBLISHER')) {
             $builder->add('isOverdue', CheckboxType::class, [
                 'required' => false,
-                'label' => 'task.filter.is_overdue',
+                'label' => t('task.filter.is_overdue', [], 'emsco-core'),
                 'translation_domain' => EMSCoreBundle::TRANS_DOMAIN,
             ]);
         }
 
         $builder->add('submit', SubmitType::class, [
-            'label' => 'task.filter.submit',
+            'label' => t('task.filter.submit', [], 'emsco-core'),
             'translation_domain' => EMSCoreBundle::TRANS_DOMAIN,
         ]);
     }

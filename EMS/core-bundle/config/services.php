@@ -137,6 +137,7 @@ use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 return static function (ContainerConfigurator $container) {
     $services = $container->services();
@@ -415,6 +416,7 @@ return static function (ContainerConfigurator $container) {
         ->args([
             service(ContentTypeService::class),
             service(AuthorizationCheckerInterface::class),
+            service(TranslatorInterface::class),
         ])
         ->tag('form.type');
 

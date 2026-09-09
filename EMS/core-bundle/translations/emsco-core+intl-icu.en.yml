@@ -1305,6 +1305,7 @@ task:
     create:
         button: 'Add a task'
         submit: 'Create task'
+        success: 'Task "{title}" successfully created.'
         title: 'Add a new task'
     dashboard:
         action:
@@ -1321,12 +1322,19 @@ task:
             title: Task
             version_next_tag: 'New version'
         search_warning: 'More than {count} tasks, search on document title is impossible.'
+        tab:
+            manager: 'All tasks'
+            requester: 'Requested tasks'
+            user: 'Assigned to me'
     delay_days: '{number} days'
     delete:
         submit: 'Delete task'
+        success: 'Task "{title}" successfully deleted.'
+        title: 'Deleted task : {title}'
     field:
         assignee: Assignee
         deadline: Deadline
+        delay: 'Delay (in days)'
         description: Description
         requester: Requester
         title: Title
@@ -1336,6 +1344,7 @@ task:
         requester: Requesters
         reset: Clear
         status: Statuses
+        submit: Search
         version_next_tag: 'New versions'
     filters: 'Filtering the tasks'
     finished:
@@ -1364,10 +1373,17 @@ task:
         title: 'Task: {title}'
     planned:
         title: 'Planned tasks'
+    status:
+        approved: Finished
+        completed: Completed
+        planned: Planned
+        progress: Active
+        rejected: Rejected
     tab_tasks: Tasks
     title: Tasks
     update:
         submit: 'Save task'
+        success: 'Task "{title}" successfully updated.'
         tab:
             history: History
             info: Information

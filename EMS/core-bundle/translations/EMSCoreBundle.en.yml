@@ -41,21 +41,6 @@ service:
         deleted: 'Style set "%wysiwyg_styles_set_name% has been deleted'
         updated: 'Style set "%wysiwyg_styles_set_name% has been updated'
 task:
-    create:
-        success: 'Task "%title%" successfully created.'
-    dashboard:
-        tab:
-            manager: 'All tasks'
-            requester: 'Requested tasks'
-            user: 'Assigned to me'
-    delete:
-        success: 'Task "%title%" successfully deleted.'
-        title: 'Deleted task : %title%'
-    error:
-        ajax: 'Error: something went wrong!'
-    field:
-        delay: 'Delay (in days)'
-    history: History
     mail:
         approved:
             subject: 'Approved task "%title%" for "%document%"'
@@ -79,8 +64,6 @@ task:
             subject: 'Update task "%title%" for "%document%"'
             action: updated
     status:
-        approved: Finished
-        completed: Completed
         history:
             approved: '%user% approved the task'
             completed: '%user% completed the task'
@@ -89,45 +72,9 @@ task:
             progress: 'The task became active for %assignee%'
             rejected: '%user% rejected the task'
             updated: '%user% updated the task'
-        planned: Planned
-        progress: Active
-        rejected: Rejected
-    update:
-        success: 'Task "%title%" successfully updated.'
     validation:
         approve: Approve
         comment: 'Comment for validation'
         done: Finish
         reject: Reject
         send: Send
-    filter:
-        submit: Search
-view:
-    wysiwyg:
-        actions:
-            delete_selected: 'Delete selected'
-        index:
-            reorder: Reorder
-            column:
-                profileName: Profiles
-                stylesSetName: 'Styles set'
-        wysiwyg_styles_set_label: 'WYSIWYG styles set'
-    index:
-        reorder: 'Reorder views'
-        column:
-            name: Name
-            label: Label
-            type: Type
-            definition: Definition
-    actions:
-        define:
-            title: Define
-            default_overview: 'As default overview'
-        undefine: Undefine
-        edit: Edit
-        duplicate: Duplicate
-        duplicate_confirm: 'Do you confirm?'
-        delete: Delete
-        delete_confirm: 'Do you confirm?'
-        delete_selected: 'Delete selected views'
-        view: Details
