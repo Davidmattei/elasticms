@@ -1,11 +1,16 @@
 action:
     activate: Activate
     add: Add
+    add_aggregate_option: 'Aggregate Options'
     add_alias: 'Add alias'
+    add_entity: 'New {entity_name}'
+    add_managed_alias: 'Add managed alias'
     add_referenced: 'Add referenced'
     add_referenced_content_type: 'Add a reference content type'
     add_release_publish: 'Add to release for publication'
     add_release_unpublish: 'Add to release for unpublish'
+    add_search_field_option: 'Add an Search Field Option'
+    add_sort_option: 'Add a Sort Option'
     attach: Attach
     cancel: Cancel
     clear: Clear
@@ -21,25 +26,35 @@ action:
     delete_all: 'Delete all'
     delete_selected: 'Delete selected'
     details: Details
+    discard: Discard
     download: Download
     download_selected: 'Download selected'
     duplicate: Duplicate
     edit: Edit
+    edit_entity: 'Edit {entity_name}'
+    edit_managed_alias: 'Edit managed alias'
     export: Export
     export_selected: 'Export selected'
     extract_content: 'Extract content'
+    hide: Hide
     info: Info
     paste: Paste
+    publish: Publish
     rebuild: Rebuild
     refresh: Refresh
     relaunch: Relaunch
     remove: Remove
     reorder: Reorder
+    reorder_content_type: 'Reorder the content type "{content_type}"'
+    reorder_content_type_fields: 'Reorder "{content_type}" fields'
+    reorganise: Reorganise
+    reset_filters: 'Reset filters'
     save: Save
     save_as_draft: 'Save as draft'
     save_close: 'Save and Close'
     save_publish_in: 'Save and publish in {environments}'
     select_all: 'Select all'
+    show: Show
     status: Status
     toggle_sidebar: 'Toggle sidebar'
     toggle_visibility: 'Toggle visibility'
@@ -189,10 +204,6 @@ dashboard:
 data:
     add:
         new_title: 'New {content_type}'
-        notice:
-            draft_not_indexed: 'This operation will not index a new object ‘<em>{content_type}</em>’ immediately. It will start a new draft without any previous revision. <strong>This draft will not be visible</strong> in any environment <strong>until it has been finalized for the first time</strong>. This means you will not be able to see it in any list view (such as the index, map, calendar...), but all drafts in progress can be found in the ‘Draft in progress’ section.'
-            ouuid: 'About the <strong>object unique identifier</strong>: you are free to specify one (provided it has not been taken yet, of course). If you leave it <strong>empty</strong>, an object unique identifier <strong>will be generated</strong> during the save. It is not possible to update the object unique identifier later.'
-        subtitle: 'This operation will not index the {object_name}, but initiate a draft only with a specific OUUID'
         title: 'Add a new {content_type}'
     custom-view:
         pagetitle: 'View {name} of the {contentType} "{label}" as indexed in {environment}'
@@ -312,6 +323,7 @@ field:
     config: Config
     content_css: 'Content css'
     content_js: 'Content js'
+    content_types: 'Content types'
     context: Context
     copy_to: 'Copy to'
     count: Count
@@ -337,6 +349,7 @@ field:
     enabled: Enabled
     endpoint_url: Endpoint
     entry_path: 'Default entry path'
+    environment: Environment
     environment_default: 'Default environment'
     environment_external: 'External environment'
     environments: Environments
@@ -370,6 +383,7 @@ field:
     indexes: Indexes
     instance: Instance
     is_active: Active
+    is_default: Default
     is_dirty: Dirty
     is_edit_wysiwyg: 'Edit with WYSIWYG'
     is_menu_notification: 'Visible in the notification menu'
@@ -409,6 +423,7 @@ field:
     release_environment_source: 'Source Environment for publication'
     release_environment_target: 'Environment for (un)publication'
     render_option: 'Render option'
+    revision: Revision
     revision_version_tag: 'Yes as {version_tag}'
     revision_version_tag_empty: 'No (Silent publish)'
     role: Role
@@ -524,13 +539,13 @@ form_submissions:
     overview: Overview
     title: 'Form Submissions'
 help:
+    add_first_aggregate_option: "Click on 'Add an aggregate option' to create a first Aggregate Option: Click on 'Add an aggregate option' to create a first Aggregate Option"
+    add_first_search_field_option: "'Add an search field option' to create a first Search Field Option: Click on 'Add an search field option' to create a first Search Field Option"
+    add_first_sort_option: "Click on 'Add a Sort Option' to create a first Sort Option: Click on 'Add a Sort Option' to create a first Sort Option"
     override_styles_set_config: 'override styles sets config'
 inline_editor:
     action:
-        discard: Discard
         exit: Exit
-        publish: Publish
-        save: Save
     elements: Elements
     status:
         draft_by: 'In draft by "{user}"'
@@ -565,11 +580,14 @@ json_menu_nested:
     error:
         item_edit_outdated: 'Out of sync, close and retry!'
 key:
+    action: Action
     actions: Actions
     active_primary_shards: 'Active primary shards'
     active_shards: 'Active shards'
     active_shards_percent_as_number: 'Active shards'
+    add_user: 'Add user'
     admin: Admin
+    aggregate_options: 'Aggregate options'
     all_content_types: 'All Content Types'
     analyzers: Analyzers
     anonymous_user: 'Anonymous user'
@@ -601,12 +619,14 @@ key:
     export_documents: 'Export documents'
     extra: Extra
     filters: Filters
+    folders: Folders
     form_root: "Form's root"
     form_submissions: 'Form Submissions'
     forms: Forms
     groups: Groups
     i18n: I18N
     impersonator: Impersonator
+    inbox: Inbox
     initializing_shards: 'Initializing shards'
     inline: Inline
     inline_editor: 'Inline editor'
@@ -631,10 +651,13 @@ key:
     not-applicable: N/A
     not_defined: 'Not defined'
     notice: Notice
+    notification: Notification
+    notifications: Notifications
     number_of_data_nodes: 'Number of data nodes'
     number_of_nodes: 'Number of nodes'
     number_of_pending_tasks: 'Number of pending tasks'
     orphan_indexes: 'Orphan indexes'
+    outbox: Outbox
     overview: Overview
     portrait: Portrait
     prefix_instance_id: 'Prefix alias with instance ID'
@@ -646,19 +669,25 @@ key:
     query_search: 'Query search'
     query_searches: QuerySearch
     recent_activities: 'Recent Activities'
+    revisions: Revisions
     schedule: Schedule
     schedule_cron: '<Minute> <Hour> <Day_of_the_Month> <Month_of_the_Year> <Day_of_the_Week>. E.g. every 15 minutes: */15 * * * *'
     schedule_tag: 'Used to indentify workers (e.g. CLI) which would remotely execute the job'
     search: Search
+    search_field_options: 'Search field options'
+    search_options: 'Search options'
+    searches: Searches
     severity: Severity
     show_search_form: 'Show search form'
     sort_by: 'Sort by'
+    sort_options: 'Sort Options'
     status: Status
     structure: Structure
     system_logs: 'System logs'
     tagline: Tagline
     task_max_waiting_in_queue_millis: 'Task max waiting in queue'
     tiptap: Tiptap
+    to_be_treated: 'To be treated'
     trash: Trash
     unassigned_shards: 'Unassigned shards'
     unreferenced_aliases: 'Unreferenced aliases'
@@ -669,6 +698,7 @@ key:
     version: Version
     views: Views
     warning: Warning
+    warnings: Warnings
     webhook_subscriptions: Subscriptions
     webhooks: Webhooks
     wysiwyg: WYSIWYG
@@ -784,6 +814,12 @@ message:
     content_type_created: 'The content type "{label}" has been created'
     content_type_deleted: 'The content type "{label}" has been deleted'
     content_type_dirty: 'The content type "{label}" is dirty (its mapping might be out of date), try to update its mapping'
+    content_type_info_ouuid: |
+        This operation will not index a new object ‘<em>{content_type}</em>’ immediately. It will start a new draft without any previous revision. <strong>This draft will not be visible</strong> in any environment <strong>until it has been finalized for the first time</strong>. 
+        This means you will not be able to see it in any list view (such as the index, map, calendar...), but all drafts in progress can be found in the ‘Draft in progress’ section.
+
+        About the <strong>object unique identifier</strong>: you are free to specify one (provided it has not been taken yet, of course). 
+        If you leave it <strong>empty</strong>, an object unique identifier <strong>will be generated</strong> during the save. It is impossible to update the object unique identifier later.
     content_type_mapping_not_found: 'Mapping not found for the content type "{label}"'
     contenttype_mappings_error: 'Mappings update for {content_type} in {environments} failed: {elasticsearch_dump}'
     contenttype_mappings_updated: 'Mappings successfully updated for content type {content_type} in {environments}'
@@ -823,6 +859,8 @@ message:
     environment_rebuild_unknown_option: 'Impossible to rebuild the environment {environment} due to unknown option "{option}"'
     environment_updated: 'The environment {environment} has been updated'
     environment_wrong_ouuid: 'Malformed OUUID {ouuid}'
+    error_status: 'With the message "{status}"'
+    error_status_code: 'The server returned a {status_code}'
     field_added: 'The field "{name}" has been added'
     field_collection_import_array: 'Some data were not imported for the collection field {field_name} as is was not an array'
     field_deleted: 'The field "{name}" has been deleted'
@@ -837,6 +875,7 @@ message:
     field_with_errors: 'The field {path} is in error with the message {error_message}'
     file_upload_error: 'Error during file upload: {error_message}'
     filter_deleted: 'The filter {filter_name} has been deleted'
+    finalized_when_user: '{date} Finalized by {user}'
     form_deleted: 'The form "{label}" has been deleted'
     form_submission_deleted: 'Form submission with id "{id}" has been deleted!'
     import_failed: 'Import failed'
@@ -848,6 +887,8 @@ message:
     managed_alias_created: 'Managed alias "{managed_alias_label}" has been created'
     managed_alias_deleted: 'Managed alias "{managed_alias_label}" has been deleted'
     managed_alias_updated: 'Managed alias "{managed_alias_label}" has been updated'
+    notification_no_results: 'No result to display'
+    notification_no_results_for_filter_combo: 'No result for this filters combination'
     notification_not_found: 'Notification #{notification_id} not found'
     privilege_exception: 'You do not have enough privileges to edit this document'
     query_search_deleted: 'The query search "{label}" has been deleted'
@@ -896,10 +937,12 @@ message:
     revision_reindexed: 'The document "{label}" has been reindexed in {environment}'
     revision_reindexed_failed: 'The document "{label}" has encountered an exception during its reindexing "{error_message}"'
     revision_reindexed_failed_in: 'The document "{label}" has encountered an exception during its reindexing in {environment}'
+    revision_replace_by_date: 'replace by revision {date}'
     revision_replace_error: 'The revision {ouuid} for the content type "{content_type}" cannot be replaced/updated, reason: {error_message}'
     revision_restored: 'The document "{label}" has been restored'
     revision_unpublished: 'The document "{label}" has been unpublished from {environment}'
     revision_updated_in_release: 'Document "{label}" has been updated with a new revision in release "{release}"'
+    revison_not_found_in_env: 'no revision in {environment}'
     schedule_created: 'Schedule "{name}" has been created'
     schedule_deleted: 'The schedule "{name}" has been deleted'
     schedule_updated: 'Schedule "{name}" has been updated'
@@ -983,7 +1026,7 @@ notification:
     rejected: Rejected
     rejected_by: 'Rejected by'
     rejected_message: 'Rejected message'
-    reset_filters: 'reset filters'
+    reset_filters: 'Reset filters'
     revision: Revision
     sent:
         title: Sent
@@ -1083,27 +1126,57 @@ revision:
         put_back_selected: 'Put back selected'
         title: '{pluralName} in trash'
 role:
-    admin: Administrator
-    allow_align: 'Align Environment'
-    api: API
-    auditor: Auditor
-    author: Author
-    copy_paste: Copy/Paste
-    copywriter: Copywriter
-    default_search: 'Default search'
-    form_crm: 'Form CRM'
-    not_defined: 'Not defined'
-    publisher: Publisher
-    reviewer: Reviewer
-    super: 'Super user'
-    super_admin: 'Super Admin'
-    super_user: 'Super User'
-    task_manager: 'Task admin'
-    traductor: Traductor
-    user: User
-    user_management: 'User Management'
-    user_read: 'User read'
-    webmaster: Webmaster
+    admin:
+        label: Administrator
+    allow_align:
+        description: 'Align environment grants access to a tool that allows bulk publishing of various documents.'
+        label: 'Align Environment'
+    api:
+        description: 'Give access through the API.'
+        label: API
+    auditor:
+        label: Auditor
+    author:
+        label: Author
+    copy_paste:
+        description: 'Copy/Paste role for copying and pasting content on documents.'
+        label: Copy/Paste
+    copywriter:
+        label: Copywriter
+    default_search:
+        description: 'Default Search role for default search functionality (deprecated).'
+        label: 'Default search'
+    form_crm:
+        description: 'Form CRM grants access to the mini CRM management tool included in the CMS.'
+        label: 'Form CRM'
+    not_defined:
+        label: 'Not defined'
+    publisher:
+        label: Publisher
+    reviewer:
+        label: Reviewer
+    super:
+        label: 'Super user'
+    super_admin:
+        label: 'Super Admin'
+    super_user:
+        description: 'Super User role for super user functionalities.'
+        label: 'Super User'
+    task_manager:
+        description: 'Task Manager role for managing tasks.'
+        label: 'Task admin'
+    traductor:
+        label: Traductor
+    user:
+        label: User
+    user_management:
+        description: 'User Management role for managing users.'
+        label: 'User Management'
+    user_read:
+        description: 'User Read role for accessing to CMS user accounts information through the API.'
+        label: 'User read'
+    webmaster:
+        label: Webmaster
 search:
     filter:
         add: Add
@@ -1246,8 +1319,13 @@ task:
         title: 'Edit task : {title}'
 title:
     asset_options: 'Asset options'
+    content_type_create_ouuid: 'This operation will not index the {content_type}, but initiate a draft only with a specific OUUID'
     content_type_from_json_file: "from a Content Type's JSON file"
     content_type_json_update: 'Update the content type "{content_type}"'
+    error: 'An Error Occurred'
+    error_page: 'Oops! An Error Occurred'
+    notifications_none_pending: 'No pending notifications'
+    select_environments_to_compare: 'Select Environments to compare'
 type:
     confirm: |-
         {type, select,
@@ -1523,6 +1601,7 @@ view:
     contenttype:
         reorder_item:
             edit_field_button: 'Edit {name}'
+            edit_main_container_button: 'Edit the main container'
     custom:
         hierarchical:
             reorganise: 'Reorganise:'
@@ -1577,6 +1656,38 @@ view:
     user:
         index:
             title: 'User list'
+            user-in-group: 'Users in group %label%'
+            user-not-in-group: 'Users not in group %label%'
+        permissions:
+            page_title: 'Permissions Overview'
+            table_headers:
+                archive: Archive
+                content_type: 'Content Type'
+                create: Create
+                delete: Delete
+                description: Description
+                edit: Edit
+                icon: Icon
+                publish: Publish
+                role: Role
+                show_link_create: 'Show link create'
+                show_link_search: 'Show link search'
+                specific_roles: 'Specif. Roles'
+                trash: Trash
+                view: View
+            titles:
+                content_type_permissions: 'Permissions of content types'
+                descriptions: { roles_functionalities_description: 'These roles are specifically for functionality and have nothing to do with content management. They are functional roles that grant access to specific CMS features.', roles_hierarchy_description: 'Access to a role implies access to all roles below it in the hierarchy. Hierarchical roles can be assigned to grant and limit access to the content type.' }
+                roles_hierarchy: 'Roles hierarchy'
+                roles_specific_functionalities: 'Roles for specific functionalities'
+        specific_permissions:
+            breadcrumb:
+                permission_overview: 'Permission Overview'
+                specific_role: 'specific roles'
+            titles:
+                permissions_overview: 'Permissions Overview'
+                specific_permissions: 'Permission for %content_type_singular_name%'
+                specific_roles: 'Specific roles of fields'
 views:
     data:
         edit-revision-html:

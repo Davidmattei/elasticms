@@ -159,7 +159,6 @@
                         {{ 'field.asset.info'|trans }}
                     </button>
                     <a href="{{ ems_asset_path(dataField.rawData, {_disposition: 'attachment'}) }}" class="btn btn-small btn-light"><i class="fa fa-download"></i>&nbsp;{{ 'field.asset.download'|trans }}</a>
-                    {# <a href="{{ path('ems.file.view', {'sha1':dataField.rawData.sha1, 'type':dataField.rawData.mimetype, 'name':dataField.rawData.filename }) }}" class="btn btn-small btn-light"><i class="fa fa-eye"></i>&nbsp;{{'View'|trans}}</a> #}
                 </div>
                 <div class="modal" tabindex="-1" role="dialog" id="indexed-details-revision_{{ tempId }}">
                     <div class="modal-dialog" role="document">

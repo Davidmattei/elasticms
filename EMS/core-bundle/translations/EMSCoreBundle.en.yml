@@ -258,10 +258,6 @@ user:
         excel: 'Excel export'
         csv: 'CSV export'
 view:
-    contenttype:
-        reorder_item:
-            edit_field_button: 'Edit %name%'
-            edit_main_container_button: 'Edit the main container'
     data:
         json-menu-nested-json-preview:
             field-type-not-found: 'The type definition associated to this item is missing (probably deleted).'
@@ -324,16 +320,6 @@ view:
                 show_link_search: 'Show link search'
                 role: 'Role'
                 description: 'Description'
-            roles_functionality:
-                role_api: 'Give access through the API.'
-                role_form_crm: 'Form CRM grants access to the mini CRM management tool included in the CMS.'
-                role_task_manager: 'Task Manager role for managing tasks.'
-                role_allow_align: 'Align environment grants access to a tool that allows bulk publishing of various documents.'
-                role_user_management: 'User Management role for managing users.'
-                role_copy_paste: 'Copy/Paste role for copying and pasting content on documents.'
-                role_default_search: 'Default Search role for default search functionality (deprecated).'
-                role_super_user: 'Super User role for super user functionalities.'
-                role_user_read: 'User Read role for accessing to CMS user accounts information through the API.'
         specific_permissions:
             breadcrumb:
                 permission_overview: 'Permission Overview'
@@ -389,107 +375,5 @@ revision:
     draft-in-progress:
         title: '%contentType% in progress'
         breadcrumb: '%contentType% in progress'
-'An Error Occurred': 'An Error Occurred'
-'Oops! An Error Occurred': 'Oops! An Error Occurred'
-'The server returned a %status_code%': 'The server returned a %status_code%'
-'With the message "%status_text%"':
-    '': 'With the message "%status_text%".'
-Notice: Notice
-'#': '#'
-Name: Name
-Label: Label
-Action: Action
-'All content types': 'All content types'
-'Logged in as': 'Logged in as'
-'User profile': 'User profile'
-Exit: Exit
-'Sign out': 'Sign out'
-'Core %version%': 'Core %version%'
-'with Symfony %version%': 'with Symfony %version%'
-Reorder: Reorder
-'Reorder the content type "%content_type%"': 'Reorder the content type "%content_type%"'
-'Reorder %name%''s fields': 'Reorder %name%''s fields'
-'This operation will not index the %object_name%, but initiate a draft only with a specific OUUID': 'This operation will not index the %object_name%, but initiate a draft only with a specific OUUID'
-'This operation will not index a new object ‘<em>%content_type%</em>’ immediately':
-    ' It will start a new draft without any previous revision':
-        ' <strong>This draft will not be visible</strong> in any environment <strong>until it has been finalized for the first time</strong>':
-            ' This means you will not be able to see it in any list view (such as the index, map, calendar':
-                '':
-                    '':
-                        '), but all drafts in progress can be found in the ‘Draft in progress’ section':
-                            '': 'This operation will not index a new object ‘<em>%content_type%</em>’ immediately. It will start a new draft without any previous revision. <strong>This draft will not be visible</strong> in any environment <strong>until it has been finalized for the first time</strong>. This means you will not be able to see it in any list view (such as the index, map, calendar...), but all drafts in progress can be found in the ‘Draft in progress’ section.'
-'About the <strong>object unique identifier</strong>: you are free to specify one (provided it has not been taken yet, of course)':
-    ' If you leave it <strong>empty</strong>, an object unique identifier <strong>will be generated</strong> during the save':
-        ' It is not possible to update the object unique identifier later':
-            '': 'About the <strong>object unique identifier</strong>: you are free to specify one (provided it has not been taken yet, of course). If you leave it <strong>empty</strong>, an object unique identifier <strong>will be generated</strong> during the save. It is not possible to update the object unique identifier later.'
-'Template is missing': 'Template is missing'
-Locked: Locked
-By: By
-Revisions: Revisions
-'Edit draft': 'Edit draft'
-'Discard this draft ?': 'Discard this draft ?'
-Discard: Discard
-Revision: Revision
-Documentation: Documentation
-Filters: Filters
-'Edit %entity_name%': 'Edit %entity_name%'
-'Search options': 'Search options'
-'New %entity_name%': 'New %entity_name%'
-'Align Environments': 'Align Environments'
-Environments: Environments
-'time to align environments?': 'time to align environments?'
-'Select Environments to compare': 'Select Environments to compare'
-'Content type': 'Content type'
-'Add managed alias': 'Add managed alias'
-'Edit managed alias': 'Edit managed alias'
-Add: Add
-show: Show
-hide: Hide
-'Asset options': 'Asset options'
-'Hash signature': 'Hash signature'
-'Extract content': 'Extract content'
-Info: Info
-View: View
-Clear: Clear
-Cancel: Cancel
-Edit: Edit
-'Not defined': 'Not defined'
-Download: Download
-'Title :': 'Title :'
-'Size :': 'Size :'
-'MIME Type :': 'MIME Type :'
-'Date :': 'Date :'
-'Author :': 'Author :'
-'Language :': 'Language :'
-'Content :': 'Content :'
-'To be treated': 'To be treated'
-'No result for this filters combinaison': 'No result for this filters combinaison'
-Notification: Notification
-'Created by': 'Created by'
-Date: Date
-Environment: Environment
-Warnings: Warnings
-Actions: Actions
-Inbox: Inbox
-Outbox: Outbox
-'No result to display': 'No result to display'
-'No pending notifications': 'No pending notifications'
-'Sort Options': 'Sort Options'
-'Add a Sort Option': 'Add a Sort Option'
-'Click on ''Add a Sort Option'' to create a first Sort Option': 'Click on ''Add a Sort Option'' to create a first Sort Option'
-'Aggregate Options': 'Aggregate Options'
-'Add an Aggregate Option': 'Add an Aggregate Option'
-'Click on ''Add an aggregate option'' to create a first Aggregate Option': 'Click on ''Add an aggregate option'' to create a first Aggregate Option'
-'Search Field Options': 'Search Field Options'
-'Add an Search Field Option': 'Add an Search Field Option'
-'Click on ''Add an search field option'' to create a first Search Field Option': 'Click on ''Add an search field option'' to create a first Search Field Option'
-'Add user': 'Add user'
-Views: Views
-'gallery view plugin': 'gallery view plugin'
-'Reorganise:': 'Reorganise:'
-'%date% Finalized by %user%': '%date% Finalized by %user%'
-'no revision in %env%': 'no revision in %env%'
-'Unpublish in %env%': 'Unpublish in %env%'
-'replace by revision %date%': 'replace by revision %date%'
 pick-a-release:
     title: 'Pick a release for "%label%"'
