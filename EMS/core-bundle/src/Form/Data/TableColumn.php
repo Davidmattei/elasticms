@@ -255,14 +255,6 @@ class TableColumn
     }
 
     /**
-     * @param array<string, mixed> $options
-     */
-    public function setLabelTransOption(array $options): void
-    {
-        $this->transLabelOptions = $options;
-    }
-
-    /**
      * @return array<string, mixed>
      */
     public function getTransLabelOptions(): array

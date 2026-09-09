@@ -47,7 +47,7 @@ class ReleaseRevisionDataTableType extends AbstractEntityTableType
                 $table->addTableAction(TableAbstract::REMOVE_ACTION, 'fa fa-minus', t('release.revision.actions.remove', [], 'emsco-core'), t('release.revision.actions.remove_confirm', [], 'emsco-core'));
                 break;
             case Release::APPLIED_STATUS:
-                $table->addColumnDefinition(new TemplateBlockTableColumn(t('release.revision.index.column.still_in_target', [], 'emsco-core'), 'stil_in_target', \sprintf('@%s/release/columns/release-revisions.html.twig', $this->templateNamespace)))->setLabelTransOption(['%target%' => $release->getEnvironmentTarget()->getLabel()]);
+                $table->addColumnDefinition(new TemplateBlockTableColumn(t('release.revision.index.column.still_in_target', ['target' => $release->getEnvironmentTarget()->getLabel()], 'emsco-core'), 'stil_in_target', \sprintf('@%s/release/columns/release-revisions.html.twig', $this->templateNamespace)));
                 $table->addColumnDefinition(new TemplateBlockTableColumn(t('release.revision.index.column.previous', [], 'emsco-core'), 'previous', \sprintf('@%s/release/columns/release-revisions.html.twig', $this->templateNamespace)));
                 $table->addDynamicItemGetAction(
                     route: Routes::VIEW_REVISIONS,

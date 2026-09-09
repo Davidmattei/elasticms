@@ -1128,7 +1128,7 @@ release:
                 minRevId: 'Environment source'
                 previous: 'Previous revision'
                 revision: Revision
-                still_in_target: 'Still in %target%'
+                still_in_target: 'Still in {target}'
             publish: 'List of documents available for publication'
             unpublish: 'List of documents available for unpublish'
         menu: 'Add documents'
