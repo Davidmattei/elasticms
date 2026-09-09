@@ -13,7 +13,7 @@
 
 {% block body %}
     {% include "@EMSCore/release/form.html.twig" with {
-    	label: 'release.edit.title',
+    	label: 'release.edit.title'|trans,
     } %}
 
     {% form_theme form '@EMSCore/form/forms.html.twig' %}

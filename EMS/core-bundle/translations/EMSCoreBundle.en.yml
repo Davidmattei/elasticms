@@ -1,56 +1,4 @@
 release:
-    actions:
-        add_publish: 'Add documents for publication'
-        add_unpublish: 'Add documents for unpublish'
-        delete: Delete
-        delete_confirm: 'Delete the Release?'
-        delete_selected: 'Delete selected'
-        delete_selected_confirm: 'Delete all selected Releases?'
-        edit: Edit
-        publish_release: 'Release now'
-        publish_confirm: 'Do you confirm ?'
-        set_status_canceled: 'Cancel release'
-        set_status_ready: 'Validate release'
-        set_status_wip: 'Rework release'
-        show: View
-    add:
-        title: 'Add a Release'
-    edit:
-        title: 'Edit a Release'
-    index:
-        column:
-            docs_count: '# Documents'
-        title: 'List of Releases'
-    menu: Releases
-    revision:
-        actions:
-            add_confirm: 'Do you confirm ?'
-            remove: 'Remove documents'
-        action:
-            publish: 'Add document for publication'
-            unpublish: 'Add document for unpublish'
-        index:
-            column:
-                CT: 'Content Type'
-                label: Label
-                minRevId: 'Environment source'
-                maxRevId: 'Environment target'
-                revision: Revision
-                document: Document
-                action: Action
-                previous: 'Previous revision'
-                not-applicable: 'not applicable'
-                still_in_target: 'Still in %target%'
-                compare: Compare
-            publish: 'List of documents available for publication'
-            unpublish: 'List of documents available for unpublish'
-        menu: 'Add documents'
-        view:
-            title: 'Release''s documents'
-        table:
-            rollback:
-                action: Rollback
-                confirm: 'Do you confirm ?'
     status:
         wip: Draft
         ready: Ready
@@ -58,8 +6,6 @@ release:
         canceled: Canceled
         scheduled: Scheduled
         rollbacked: 'Rolled back'
-    all_releases:
-        label: 'All releases'
 search:
     aggregate_option_label: 'Aggregate Option'
     search_field_option_label: 'Search Field Option'
@@ -125,16 +71,6 @@ task:
         action:
             edit_revision: 'Edit revision'
             go_revision: Revision
-        column:
-            version_next_tag: 'New version'
-            actions: Actions
-            assignee: Assignee
-            deadline: Deadline
-            modified: 'Last modification'
-            label: Document
-            requester: Requester
-            status: Status
-            title: Task
         tab:
             manager: 'All tasks'
             requester: 'Requested tasks'
@@ -224,34 +160,6 @@ task:
         submit: Search
         reset: Clear
 user:
-    action:
-        delete: Delete
-        delete_confirm: 'Delete this user?'
-        disable: Disable
-        disable_confirm: 'Disable this user?'
-        edit: Edit
-        generate_api: 'API key'
-        generate_api_confirm: 'Generate API key for this user?'
-        remove: Remove
-        remove_confirm: 'Remove this user from the group?'
-        switch: 'Switch user'
-    index:
-        column:
-            circles: Circles
-            displayname: 'Display name'
-            email: E-mail
-            email_notification: 'E-mail notifications'
-            enabled: Enabled
-            group: Group
-            id: 'User ID'
-            lastLogin: 'Last Login'
-            expirationDate: 'Expiration Date'
-            roles: Roles
-            username: Username
-            locale_preferred: 'Locale preferred'
-            wysiwyg_profile: 'WYSIWYG profile'
-            locale_ui: UI
-            user_group: Group
     add:
         button: 'Add user'
     export:

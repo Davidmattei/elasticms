@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace EMS\CoreBundle\Form\Data;
 
 use EMS\CommonBundle\Common\Spreadsheet\SpreadsheetValidation;
-use EMS\CoreBundle\EMSCoreBundle;
 use EMS\CoreBundle\Form\Data\Condition\ConditionInterface;
 use Symfony\Component\Translation\TranslatableMessage;
 
@@ -57,7 +56,7 @@ class TableColumn
             return $this->titleKey;
         }
 
-        return new TranslatableMessage($this->titleKey, $this->transLabelOptions, EMSCoreBundle::TRANS_DOMAIN);
+        return new TranslatableMessage($this->titleKey, $this->transLabelOptions);
     }
 
     public function getAttribute(): string
