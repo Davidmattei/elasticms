@@ -803,12 +803,14 @@ message:
     action_error: 'This page/action has encountered an error: {error_message}'
     action_updated: 'The action "{label}" has been updated'
     alias_added: 'A new alias "{alias_name}" has been added to the index "{index_name}"'
+    alias_too_many_indexes: 'There are too many indexes'
     analyzer_created: 'The analyzer "{label}" has been created'
     analyzer_deleted: 'The analyzer "{label}" has been deleted'
     analyzer_updated: 'The analyzer "{label}" has been updated'
     api_entity_created: 'Entity {entity} has been created with id {id}'
     api_entity_deleted: 'Entity {entity} "{name}" has been deleted with id {id}'
     api_entity_updated: 'Entity {entity} "{name}" has been updated with id {id}'
+    asset_extract_error: 'An issue has been raised while extracting information from the file {filename}: {error_message}<br>Please verify your input file and retry or add manually meta information within the info modal menu.'
     asset_extract_file_too_large: 'As this file is larger ({filesize}) than {max_size} its content has not been automatically extracted. You can either force the extraction or specify it manually in the "Info" menu.'
     channel_alias_not_found: 'The channel "{label}" cannot be registered as its alias "{alias}" is missing'
     channel_deleted: 'The channel "{name}" has been deleted'
@@ -823,6 +825,8 @@ message:
         About the <strong>object unique identifier</strong>: you are free to specify one (provided it has not been taken yet, of course). 
         If you leave it <strong>empty</strong>, an object unique identifier <strong>will be generated</strong> during the save. It is impossible to update the object unique identifier later.
     content_type_mapping_not_found: 'Mapping not found for the content type "{label}"'
+    content_type_reordered: 'Content type "{content_type}" has been reordered'
+    content_type_update_mapping_error: "Error on updating {environments}''s mapping: {elasticsearch_error}"
     contenttype_mappings_error: 'Mappings update for {content_type} in {environments} failed: {elasticsearch_dump}'
     contenttype_mappings_updated: 'Mappings successfully updated for content type {content_type} in {environments}'
     dashboard_deleted: 'The dashboard "{label}" has been deleted'
@@ -849,6 +853,9 @@ message:
     document_compared: 'Compared the revision {revision_id} of the document {content_type}:{ouuid} with the revision {compare_revision_id} of the document {compare_content_type}:{compare_ouuid}'
     document_copied: 'The content of the document "{label}" has been copied to the clipboard'
     document_duplicated: 'The document "{label}" has been used to initiate a new document'
+    entity_created: '{entity} {name} has been created'
+    entity_deleted: '{entity} {name} has been deleted'
+    entity_updated: '{entity} {name} has been updated'
     environment_alias_missing: 'The alias for the environment {environment} is missing, consider to rebuild a brand new alias'
     environment_alias_removed: 'The alias {alias} has been removed'
     environment_aligned: 'Environment {environment} and {with_environment} are aligned for those content types'
@@ -988,6 +995,10 @@ message:
     view_sorter_too_many_documents: 'This content type has too many documents ({total}) to be reordered all at once'
     view_updated: 'The view "{label}" has been updated'
     wysiwyg_invalid_config_format: 'Format not valid: {msg}'
+    wysiwyg_profile_deleted: 'Profile "{name}" has been deleted'
+    wysiwyg_profile_updated: 'Profile "{name}" has been updated'
+    wysiwyg_styles_set_deleted: 'Style set "{name}" has been deleted'
+    wysiwyg_styles_set_updated: 'Style set "{name}" has been updated'
     xliff_not_current_revision: 'The revision {revision_id} of {ouuid} is no longer the last revision. The translations were not imported.'
     xliff_too_many_translations: '{counter} translation documents while only one is expected for the translation id {translation_id} and the target locale {target_locale} in the environment {environment}'
 modal:
@@ -1356,25 +1367,25 @@ task:
         locked: 'Revision locked by {user} until {time}'
     mail:
         approved:
-            subject: 'Approved task "{title}" for "{document}"'
             action: approved
+            subject: 'Approved task "{title}" for "{document}"'
         assignee: Assignee
         assignee_changed:
-            subject: 'Assignee changed task "{title}" for "{document}"'
             action: 'changed assignee'
+            subject: 'Assignee changed task "{title}" for "{document}"'
         by_role: 'by role {role}'
         comment: Comment
         completed:
-            subject: 'Ready for validation, task "{title}" for "{document}"'
             action: completed
+            subject: 'Ready for validation, task "{title}" for "{document}"'
         created:
-            subject: 'New task "{title}" for "{document}"'
             action: created
+            subject: 'New task "{title}" for "{document}"'
         creator: Creator
         deadline: Deadline
         deleted:
-            subject: 'Deleted task "{title}" for "{document}"'
             action: deleted
+            subject: 'Deleted task "{title}" for "{document}"'
         description: Description
         from: 'From {sender}'
         greetings: 'Hello {receiver},'
@@ -1383,13 +1394,13 @@ task:
         overdue_or_active_list: 'Here is the list of overdue or active tasks.'
         process_urgently: 'Please process them urgently.'
         rejected:
-            subject: 'Rejected task "{title}" for "{document}"'
             action: rejected
+            subject: 'Rejected task "{title}" for "{document}"'
         task_has_been: 'A task has been {action} {role}.'
         title: Title
         updated:
-            subject: 'Update task "{title}" for "{document}"'
             action: updated
+            subject: 'Update task "{title}" for "{document}"'
     modal:
         title: 'Task: {title}'
     planned:

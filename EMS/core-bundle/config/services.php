@@ -587,7 +587,7 @@ return static function (ContainerConfigurator $container) {
 
     $services->set('ems.service.alias', AliasService::class)
         ->args([
-            service('logger'),
+            service('emsco.logger'),
             service(Client::class),
             service(EnvironmentRepository::class),
             service(ManagedAliasRepository::class),
@@ -666,35 +666,35 @@ return static function (ContainerConfigurator $container) {
     $services->set('ems.service.wysiwyg_profile', WysiwygProfileService::class)
         ->args([
             service('ems.repository.wysiwyg_profile'),
-            service('logger'),
+            service('emsco.logger'),
         ])
         ->tag('emsco.entity.service', ['priority' => 110]);
 
     $services->set('ems.service.aggregate_option', AggregateOptionService::class)
         ->args([
             service('doctrine'),
-            service('logger'),
+            service('emsco.logger'),
             service('translator'),
         ]);
 
     $services->set('ems.service.sort_option', SortOptionService::class)
         ->args([
             service('doctrine'),
-            service('logger'),
+            service('emsco.logger'),
             service('translator'),
         ]);
 
     $services->set('ems.service.search_field_option', SearchFieldOptionService::class)
         ->args([
             service('doctrine'),
-            service('logger'),
+            service('emsco.logger'),
             service('translator'),
         ]);
 
     $services->set('ems.service.wysiwyg_styles_set', WysiwygStylesSetService::class)
         ->args([
             service('ems.repository.wysiwyg_style_set'),
-            service('logger'),
+            service('emsco.logger'),
         ])
         ->tag('emsco.entity.service', ['priority' => 100]);
 

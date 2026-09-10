@@ -1,16 +1,4 @@
 service:
-    alias:
-        too_many_indexes: 'There is too many indexes'
-    asset_extractor:
-        extract_error: 'An issue has been raised while extracting information from the file %filename% : %error_message%<br>Please verify your input file and retry or add manually meta information within the info modal menu.'
-    contenttype:
-        field_not_found: 'Field %field_id% not found and ignored'
-        reordered: 'Content type "%contenttype% has been reordered'
-        update_mapping_exception: "Error on updating %environments%'s mapping : %elasticsearch_error%"
-    entity:
-        created: '%entity_type% %entity_name% has been created'
-        deleted: '%entity_type% %entity_name% has been deleted'
-        updated: '%entity_type% %entity_name% has been updated'
     notification:
         another_one_is_pending: 'Another notification %notification_name% is already pending for document "%label%" in %environment% by %notification_username%'
         notification_will_be_lost_finalize: 'An "%notification_name%" notification will be lost for this %contenttype% document (%ouuid%) on finalize'
@@ -34,9 +22,3 @@ service:
         publish_draft_error: 'A draft of the document "%label%" can''t be published in %environment% : %error_message%'
         revision_not_found_in_source: 'Missing revision in the environment %environment% for the document "%label%"'
         unpublished: 'The document "%label%" has been unpublished from %environment%'
-    wysiwyg_profile:
-        deleted: 'Profile %profile_name% has been deleted'
-        updated: 'Profile %profile_name% has been updated'
-    wysiwyg_styles_set:
-        deleted: 'Style set "%wysiwyg_styles_set_name% has been deleted'
-        updated: 'Style set "%wysiwyg_styles_set_name% has been updated'
