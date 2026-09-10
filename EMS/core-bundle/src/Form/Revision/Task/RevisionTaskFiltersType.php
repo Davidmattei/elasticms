@@ -7,7 +7,6 @@ namespace EMS\CoreBundle\Form\Revision\Task;
 use EMS\CoreBundle\Core\Revision\Task\DataTable\TasksDataTableContext;
 use EMS\CoreBundle\Core\Revision\Task\DataTable\TasksDataTableFilters;
 use EMS\CoreBundle\Core\Revision\Task\TaskStatus;
-use EMS\CoreBundle\EMSCoreBundle;
 use EMS\CoreBundle\Form\Field\SelectUserPropertyType;
 use EMS\CoreBundle\Service\ContentTypeService;
 use Symfony\Component\Form\AbstractType;
@@ -91,13 +90,11 @@ class RevisionTaskFiltersType extends AbstractType
             $builder->add('isOverdue', CheckboxType::class, [
                 'required' => false,
                 'label' => t('task.filter.is_overdue', [], 'emsco-core'),
-                'translation_domain' => EMSCoreBundle::TRANS_DOMAIN,
             ]);
         }
 
         $builder->add('submit', SubmitType::class, [
             'label' => t('task.filter.submit', [], 'emsco-core'),
-            'translation_domain' => EMSCoreBundle::TRANS_DOMAIN,
         ]);
     }
 

@@ -1355,11 +1355,26 @@ task:
         empty: 'No tasks for this document'
         locked: 'Revision locked by {user} until {time}'
     mail:
+        approved:
+            subject: 'Approved task "{title}" for "{document}"'
+            action: approved
         assignee: Assignee
+        assignee_changed:
+            subject: 'Assignee changed task "{title}" for "{document}"'
+            action: 'changed assignee'
         by_role: 'by role {role}'
         comment: Comment
+        completed:
+            subject: 'Ready for validation, task "{title}" for "{document}"'
+            action: completed
+        created:
+            subject: 'New task "{title}" for "{document}"'
+            action: created
         creator: Creator
         deadline: Deadline
+        deleted:
+            subject: 'Deleted task "{title}" for "{document}"'
+            action: deleted
         description: Description
         from: 'From {sender}'
         greetings: 'Hello {receiver},'
@@ -1367,8 +1382,14 @@ task:
         link_to_document: 'Link to document'
         overdue_or_active_list: 'Here is the list of overdue or active tasks.'
         process_urgently: 'Please process them urgently.'
+        rejected:
+            subject: 'Rejected task "{title}" for "{document}"'
+            action: rejected
         task_has_been: 'A task has been {action} {role}.'
         title: Title
+        updated:
+            subject: 'Update task "{title}" for "{document}"'
+            action: updated
     modal:
         title: 'Task: {title}'
     planned:
@@ -1376,6 +1397,14 @@ task:
     status:
         approved: Finished
         completed: Completed
+        history:
+            approved: '{user} approved the task'
+            completed: '{user} completed the task'
+            created: '{user} created the task'
+            planned: '{user} planned the task'
+            progress: 'The task became active for {assignee}'
+            rejected: '{user} rejected the task'
+            updated: '{user} updated the task'
         planned: Planned
         progress: Active
         rejected: Rejected
@@ -1388,6 +1417,10 @@ task:
             history: History
             info: Information
         title: 'Edit task : {title}'
+    validation:
+        approve: Approve
+        reject: Reject
+        send: Send
 title:
     asset_options: 'Asset options'
     content_type_create_ouuid: 'This operation will not index the {content_type}, but initiate a draft only with a specific OUUID'

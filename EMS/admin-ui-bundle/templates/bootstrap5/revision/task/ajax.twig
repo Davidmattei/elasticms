@@ -110,8 +110,6 @@
                     {% if attribute(formHandle, handleType) is defined %}
                         {{ form_widget(attribute(formHandle, handleType), {
                             id: "btn-task-handle-#{handleType}",
-                            label: "task.validation.#{handleType}"|trans,
-                            label_html: true,
                             attr: {
                                 class: "btn btn-sm btn-task-handle btn-primary task-icon-#{handleType}",
                                 'data-type': handleType,
@@ -316,10 +314,21 @@
                 <div class="timeline-item">
                     <span class="time"><i class="fa fa-clock-o"></i> {{ log.date.format(date_time_format) }}</span>
                     <h3 class="timeline-header bg-info">
-                        {{ "task.status.history.#{log.status}"|trans({
-                            'user': "<strong>#{log.username|emsco_display_name}</strong>",
-                            'assignee': "<strong>#{log.assignee|emsco_display_name}</strong>",
-                        })|raw }}
+                        {%- if log.status == 'approved' -%}
+                            {{ 'task.status.history.approved'|trans({ 'user': "<strong>#{log.username|emsco_display_name}</strong>" })|raw }}
+                        {%- elseif log.status == 'completed' -%}
+                            {{ 'task.status.history.completed'|trans({ 'user': "<strong>#{log.username|emsco_display_name}</strong>" })|raw }}
+                        {%- elseif log.status == 'created' -%}
+                            {{ 'task.status.history.created'|trans({ 'user': "<strong>#{log.username|emsco_display_name}</strong>" })|raw }}
+                        {%- elseif log.status == 'planned' -%}
+                            {{ 'task.status.history.planned'|trans({ 'user': "<strong>#{log.username|emsco_display_name}</strong>" })|raw }}
+                        {%- elseif log.status == 'progress' -%}
+                            {{ 'task.status.history.progress'|trans({ 'assignee': "<strong>#{log.assignee|emsco_display_name}</strong>" })|raw }}
+                        {%- elseif log.status == 'rejected' -%}
+                            {{ 'task.status.history.rejected'|trans({ 'user': "<strong>#{log.username|emsco_display_name}</strong>" })|raw }}
+                        {%- elseif log.status == 'updated' -%}
+                            {{ 'task.status.history.updated'|trans({ 'user': "<strong>#{log.username|emsco_display_name}</strong>" })|raw }}
+                        {%- endif -%}
                     </h3>
                     {% if log.comment %}<div class="timeline-body bg-gray-light">{{ log.comment }}</div>{% endif %}
                     {% if log.hasTaskData %}
