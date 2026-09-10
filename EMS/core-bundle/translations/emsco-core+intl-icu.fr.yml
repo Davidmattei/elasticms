@@ -951,6 +951,7 @@ message:
     revision_finalize_error: 'La révision {revision_id} pour le type de contenu "{content_type}" ne peut pas être finalisée, raison : {error_message}'
     revision_finalized: 'Le document "{label}" a été publié dans {environment}'
     revision_incomplete_request: 'Il est impossible d''enregistrer le document "{label}". Veuillez vérifier votre configuration PHP/Web (par ex. max_input_vars dans php.ini)'
+    revision_json_edit_draft_only: 'Seul un brouillon peut être édité en JSON'
     revision_loaded_from_auto_save: "Les données ont été chargées à partir d'une version enregistrée automatiquement"
     revision_locked: 'Le document "{label}" est actuellement verrouillé par {username}'
     revision_merge_error: 'La révision {ouuid} pour le type de contenu "{content_type}" ne peut pas être fusionnée/mise à jour, raison : {error_message}'

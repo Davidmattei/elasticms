@@ -951,6 +951,7 @@ message:
     revision_finalize_error: 'De revisie {revision_id} voor het content type "{content_type}" kan niet worden gefinaliseerd, reden: {error_message}'
     revision_finalized: 'Het document "{label}" is gepubliceerd in {environment}'
     revision_incomplete_request: 'Het is niet mogelijk om het document "{label}" op te slaan. Controleer uw PHP/webconfiguratie (bv. max_input_vars in php.ini)'
+    revision_json_edit_draft_only: 'Enkel een draft kan als JSON bewerkt worden'
     revision_loaded_from_auto_save: 'Gegevens zijn geladen vanuit een automatisch opgeslagen versie'
     revision_locked: 'Document "{label}" is momenteel vergrendeld door {username}'
     revision_merge_error: 'De revisie {ouuid} voor het content type "{content_type}" kan niet worden samengevoegd/bijgewerkt, reden: {error_message}'

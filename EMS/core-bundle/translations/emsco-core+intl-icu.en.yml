@@ -951,6 +951,7 @@ message:
     revision_finalize_error: 'The revision {revision_id} for the content type "{content_type}" cannot be finalized, reason: {error_message}'
     revision_finalized: 'The document "{label}" has been published in {environment}'
     revision_incomplete_request: 'It is impossible to save the document "{label}". Please check your PHP/Web configuration (i.e.: max_input_vars in php.ini)'
+    revision_json_edit_draft_only: 'Only a draft can be edited as JSON'
     revision_loaded_from_auto_save: 'Data were loaded from an auto-saved version'
     revision_locked: 'Document "{label}" is currently locked by {username}'
     revision_merge_error: 'The revision {ouuid} for the content type "{content_type}" cannot be merged/updated, reason: {error_message}'

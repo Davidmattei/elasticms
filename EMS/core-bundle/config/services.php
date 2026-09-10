@@ -458,7 +458,6 @@ return static function (ContainerConfigurator $container) {
     $services->set('ems_core.core_ui.flash_message_logger', FlashMessageLogger::class)
         ->args([
             service('request_stack'),
-            service('translator'),
         ]);
 
     $services->set('ems.view.manager', ViewManager::class)
