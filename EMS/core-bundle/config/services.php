@@ -700,7 +700,7 @@ return static function (ContainerConfigurator $container) {
 
     $services->set('ems.service.objectchoicecache', ObjectChoiceCacheService::class)
         ->args([
-            service('logger'),
+            service('emsco.logger'),
             service('ems.service.contenttype'),
             service('ems.service.revision'),
             service('security.authorization_checker'),
@@ -730,7 +730,7 @@ return static function (ContainerConfigurator $container) {
         ->args([
             service('doctrine'),
             service('ems.service.user'),
-            service('logger'),
+            service('emsco.logger'),
             service('ems.service.data'),
             service('ems_core.core_mail.mailer_service'),
             service('twig'),

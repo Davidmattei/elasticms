@@ -896,10 +896,23 @@ message:
     managed_alias_created: 'Managed alias "{managed_alias_label}" has been created'
     managed_alias_deleted: 'Managed alias "{managed_alias_label}" has been deleted'
     managed_alias_updated: 'Managed alias "{managed_alias_label}" has been updated'
+    notification_already_pending: 'Another notification {notification_name} is already pending for document "{label}" in {environment} by {notification_username}'
     notification_no_results: 'No result to display'
     notification_no_results_for_filter_combo: 'No result for this filters combination'
     notification_not_found: 'Notification #{notification_id} not found'
+    notification_send_error: 'Error while sending notification ({action_label}) for {content_type}: {error_message}'
+    notification_sent: '{notification_name} for document "{label}" in {environment} has been sent'
+    notification_treated: '{notification_name} for document "{label}" in {environment} has been {status}'
+    notification_updated: 'A "{notification_name}" notification has been {notification_status} for a "{content_type}" document ({ouuid})'
+    notification_will_be_lost_on_finalize: 'An "{notification_name}" notification will be lost for this {content_type} document ({ouuid}) on finalize'
+    object_choice_alias_not_found: 'Alias not found for content type {content_type}'
+    object_choice_content_type_not_found: 'Content type {content_type} not found'
+    object_choice_key_not_found: 'Object key {object_key} not found'
+    object_choice_limited_result_set: 'The data link picker is limited to the first {limit} of {count} documents'
     privilege_exception: 'You do not have enough privileges to edit this document'
+    publish_not_authorized: 'You can not (un)publish the content type {content_type}'
+    publish_not_in_circles: 'You can not (un)publish the content type {content_type} as you do not share any circle'
+    publish_not_in_default_environment: 'You can not (un)publish in the default environment {environment} of the document "{label}"'
     query_search_deleted: 'The query search "{label}" has been deleted'
     reindex_command_end: "The content type {content_type}''s documents have been reindexed in {environment} (index: {index})"
     reindex_command_environment_not_found: 'Environment named {environment} not found'
@@ -912,6 +925,7 @@ message:
     revision_added_to_release: 'Document "{label}" has been added to release "{release}"'
     revision_ajax_update_on_finalized: 'It is impossible to save the document "{label}" as this revision is already finalized'
     revision_already_in_release: 'This revision of document "{label}" was already in release "{release}"'
+    revision_already_published: 'The document "{label}" is already published in {environment}'
     revision_auto_publish_rollback: 'The document "{label}" has been silently published back in {environment}'
     revision_auto_save_off_with_auto_publish: 'The auto-save has been disabled as the auto-publish is enabled for the content type {content_type}. Press Ctrl+S (Cmd+S) to save and publish in {environment}'
     revision_cannot_delete_published: 'The document "{label}" cannot be deleted as it is published in {environment}'
@@ -930,6 +944,8 @@ message:
     revision_draft_cannot_be_added_to_release: 'Revision in draft mode can not be added to a release'
     revision_draft_created: 'A new draft has been initiated for the document "{label}"'
     revision_draft_deleted: 'Draft discard for the document "{label}"'
+    revision_draft_publish_error: 'A draft of the document "{label}" cannot be published in {environment}: {error_message}'
+    revision_draft_published: 'A draft of the document "{label}" has been published in {environment}'
     revision_draft_updated: 'Updated draft for the document "{label}"'
     revision_edit_draft_warning: 'You are editing an already published revision, it is safer to <a href="{path}" class="btn btn-primary"><span class="fa fa-pencil"></span> edit a draft</a>'
     revision_finalize_error: 'The revision {revision_id} for the content type "{content_type}" cannot be finalized, reason: {error_message}'
@@ -939,8 +955,10 @@ message:
     revision_locked: 'Document "{label}" is currently locked by {username}'
     revision_merge_error: 'The revision {ouuid} for the content type "{content_type}" cannot be merged/updated, reason: {error_message}'
     revision_not_found_in_environment: 'It is impossible to identify a revision for the document "{ouuid}" in the environment {environment}'
+    revision_not_found_in_source: 'Missing revision in the environment {environment} for the document "{ouuid}"'
     revision_not_in_target_environment: 'Document "{label}" is not published in target environment "{target}"'
     revision_only_super_can_finalize_archive: 'Only a super user can finalize an archived revision'
+    revision_publish_failed: 'The publication of the document "{label}" failed!'
     revision_published: 'The document "{label}" has been published in {environment}'
     revision_read_error: 'The revision for the content type "{content_type}" cannot be found, reason: {error_message}'
     revision_reindexed: 'The document "{label}" has been reindexed in {environment}'
@@ -1782,8 +1800,7 @@ view:
             action:
                 cancel: Cancel
                 edit: Edit
-                profile:
-                    title: 'Your profile'
+                profile: { title: 'Your profile' }
             alt:
                 user_profile_picture: "User profile's picture"
             display_name: 'Display name'
@@ -1818,9 +1835,7 @@ view:
                 view: View
             titles:
                 content_type_permissions: 'Permissions of content types'
-                descriptions:
-                    roles_functionalities_description: 'These roles are specifically for functionality and have nothing to do with content management. They are functional roles that grant access to specific CMS features.'
-                    roles_hierarchy_description: 'Access to a role implies access to all roles below it in the hierarchy. Hierarchical roles can be assigned to grant and limit access to the content type.'
+                descriptions: { roles_functionalities_description: 'These roles are specifically for functionality and have nothing to do with content management. They are functional roles that grant access to specific CMS features.', roles_hierarchy_description: 'Access to a role implies access to all roles below it in the hierarchy. Hierarchical roles can be assigned to grant and limit access to the content type.' }
                 roles_hierarchy: 'Roles hierarchy'
                 roles_specific_functionalities: 'Roles for specific functionalities'
         specific_permissions:
