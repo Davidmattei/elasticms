@@ -1800,7 +1800,8 @@ view:
             action:
                 cancel: Cancel
                 edit: Edit
-                profile: { title: 'Your profile' }
+                profile:
+                    title: 'Your profile'
             alt:
                 user_profile_picture: "User profile's picture"
             display_name: 'Display name'
@@ -1835,7 +1836,9 @@ view:
                 view: View
             titles:
                 content_type_permissions: 'Permissions of content types'
-                descriptions: { roles_functionalities_description: 'These roles are specifically for functionality and have nothing to do with content management. They are functional roles that grant access to specific CMS features.', roles_hierarchy_description: 'Access to a role implies access to all roles below it in the hierarchy. Hierarchical roles can be assigned to grant and limit access to the content type.' }
+                descriptions:
+                    roles_functionalities_description: 'These roles are specifically for functionality and have nothing to do with content management. They are functional roles that grant access to specific CMS features.'
+                    roles_hierarchy_description: 'Access to a role implies access to all roles below it in the hierarchy. Hierarchical roles can be assigned to grant and limit access to the content type.'
                 roles_hierarchy: 'Roles hierarchy'
                 roles_specific_functionalities: 'Roles for specific functionalities'
         specific_permissions:
