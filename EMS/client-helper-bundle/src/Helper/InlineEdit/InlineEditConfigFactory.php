@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *     document: DocumentInterface,
  *     path: string,
  *     element: string,
- *     content?: string,
+ *     content: ?string,
  *     attributes: array<string, scalar|null>
  * }
  */
