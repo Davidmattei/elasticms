@@ -16,7 +16,6 @@ import SearchForm from './plugins/searchForm'
 import Select from './plugins/select'
 import SortableList from './plugins/sortableList'
 import SymfonyCollection from './plugins/symfonyCollection'
-import Text from './plugins/text'
 import Tooltip from './plugins/tooltip'
 import WYSIWYG from './plugins/wysiwyg.ts'
 
@@ -55,7 +54,6 @@ class Core {
             new Select(),
             new SortableList(),
             new SymfonyCollection(),
-            new Text(),
             new Tooltip(),
             new WYSIWYG()
         ]
