@@ -73,7 +73,8 @@ export default class Sidebar {
             if (!href || href === '#') {
                 continue
             }
-            const matches = pathname === href || pathname.startsWith(href.endsWith('/') ? href : href + '/')
+            const matches =
+                pathname === href || pathname.startsWith(href.endsWith('/') ? href : href + '/')
             if (matches && href.length > bestMatchHrefLength) {
                 bestMatch = link
                 bestMatchHrefLength = href.length

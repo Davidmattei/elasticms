@@ -79,7 +79,7 @@ export default class CopyButton implements EmsModule {
         this.feedback.set(button, {
             icon,
             originalClass,
-            timeoutId: setTimeout(() => this.resetFeedback(button), FEEDBACK_DURATION),
+            timeoutId: setTimeout(() => this.resetFeedback(button), FEEDBACK_DURATION)
         })
     }
 

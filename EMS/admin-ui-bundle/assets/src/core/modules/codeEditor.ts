@@ -22,7 +22,8 @@ export default class CodeEditor implements EmsModule {
     }
 
     private init(ace: AceModule, container: HTMLElement): void {
-        const pre = container.tagName === 'DIV' ? container.querySelector<HTMLElement>('pre') : container
+        const pre =
+            container.tagName === 'DIV' ? container.querySelector<HTMLElement>('pre') : container
 
         if (!pre) {
             console.warn('PRE tag not found')
@@ -43,7 +44,7 @@ export default class CodeEditor implements EmsModule {
             readOnly: input === null || input.disabled,
             maxLines,
             ...(minLines ? { minLines: Number.parseInt(minLines) } : {}),
-            useWorker: false,
+            useWorker: false
         })
 
         ;(pre as any)._aceEditor = editor
@@ -59,7 +60,7 @@ export default class CodeEditor implements EmsModule {
             {
                 name: 'fullscreen',
                 bindKey: { win: 'F11', mac: 'Esc' },
-                exec: (editor: Ace.Editor) => this.toggleFullscreen(editor, pre, maxLines),
+                exec: (editor: Ace.Editor) => this.toggleFullscreen(editor, pre, maxLines)
             },
             {
                 name: 'showKeyboardShortcuts',
@@ -69,8 +70,8 @@ export default class CodeEditor implements EmsModule {
                         module.init(editor)
                         ;(editor as any).showKeyboardShortcuts()
                     })
-                },
-            },
+                }
+            }
         ])
     }
 

@@ -1,7 +1,6 @@
 import Button from './plugins/button'
 import Choice from './plugins/choice'
 import Collection from './plugins/collection'
-import Datatable from './plugins/datatable'
 import Datetime from './plugins/datetime'
 import File from './plugins/file'
 import Form from './plugins/form'
@@ -41,7 +40,6 @@ class Core {
             new Button(),
             new Choice(),
             new Collection(),
-            new Datatable(),
             new Datetime(),
             new File(),
             new Form(),

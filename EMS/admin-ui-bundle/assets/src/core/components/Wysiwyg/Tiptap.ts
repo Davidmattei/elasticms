@@ -186,7 +186,9 @@ export default class Tiptap {
                                     </div>
                                 `
                                 document.dispatchEvent(
-                                    new CustomEvent(EMS_ADDED_DOM_EVENT, { detail: { target: this.sourceContainer } })
+                                    new CustomEvent(EMS_ADDED_DOM_EVENT, {
+                                        detail: { target: this.sourceContainer }
+                                    })
                                 )
                                 tiptapEditor.toolbar.setDisabled(true, ['Source', 'Maximize'])
                             } else {
