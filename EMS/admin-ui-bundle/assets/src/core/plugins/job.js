@@ -3,21 +3,7 @@ import ajaxRequest from '../components/ajaxRequest'
 
 class Job {
     load(target) {
-        this.loadStartJob(target)
         this.loadRequestJob(target)
-    }
-
-    loadStartJob(target) {
-        $(target)
-            .find('[data-start-job-url]')
-            .each(function () {
-                $.ajax({
-                    type: 'POST',
-                    url: this.getAttribute('data-start-job-url')
-                }).always(function () {
-                    location.reload()
-                })
-            })
     }
 
     loadRequestJob(target) {
