@@ -1,0 +1,35 @@
+{
+    "name": "elasticms/table-bundle",
+    "description": "Configurable tables for Symfony and Twig",
+    "type": "symfony-bundle",
+    "keywords": [
+        "elasticms",
+        "table",
+        "datatable"
+    ],
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "EMS Community",
+            "homepage": "https://github.com/ems-project/elasticms/contributors"
+        }
+    ],
+    "require": {
+        "php": "^8.5",
+        "symfony/config": "7.4.*",
+        "symfony/dependency-injection": "7.4.*",
+        "symfony/http-kernel": "7.4.*",
+        "symfony/options-resolver": "7.4.*",
+        "symfony/twig-bundle": "7.4.*",
+        "twig/twig": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "EMS\\TableBundle\\": "src/"
+        }
+    },
+    "config": {
+        "lock": false,
+        "sort-packages": true
+    }
+}

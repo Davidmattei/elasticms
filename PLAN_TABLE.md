@@ -12,9 +12,84 @@ Principles:
 ---
 
 ## Phase 0 — Skeleton (no functionality)
-1. Create `EMS/table-bundle/`, following `EMS/form-bundle/composer.json`:
-   - `composer.json` (`elasticms/table-bundle`, `type: symfony-bundle`, require php ^8.5, symfony/twig-bundle, symfony/options-resolver, symfony/http-kernel 7.4.*).
-   - `src/EMSTableBundle.php` (AbstractBundle, config via `configure()` / `loadExtension()`), `config/services.php`, `templates/`, `tests/`.
+1. Create `EMS/table-bundle/` (PHP + Twig only, no `assets/`, `package.json` or `public/`).
+
+   Target structure:
+   ```
+   EMS/table-bundle/
+   ├── composer.json
+   ├── LICENSE              (copy of EMS/form-bundle/LICENSE, LGPL-3.0)
+   ├── README.md
+   ├── config/services.php
+   ├── src/EMSTableBundle.php
+   ├── templates/.gitkeep
+   ├── translations/.gitkeep
+   └── tests/Unit/EMSTableBundleTest.php
+   ```
+
+   - **`composer.json`**, same shape as `EMS/form-bundle/composer.json` (name, description, `type`, keywords, license, authors, `config.lock: false`, `sort-packages`):
+     ```json
+     {
+         "name": "elasticms/table-bundle",
+         "description": "Configurable tables for Symfony and Twig",
+         "type": "symfony-bundle",
+         "keywords": ["elasticms", "table", "datatable"],
+         "license": "LGPL-3.0-or-later",
+         "authors": [{"name": "EMS Community", "homepage": "https://github.com/ems-project/elasticms/contributors"}],
+         "require": {
+             "php": "^8.5",
+             "symfony/config": "7.4.*",
+             "symfony/dependency-injection": "7.4.*",
+             "symfony/http-kernel": "7.4.*",
+             "symfony/options-resolver": "7.4.*",
+             "symfony/twig-bundle": "7.4.*",
+             "twig/twig": "^3.8"
+         },
+         "autoload": {"psr-4": {"EMS\\TableBundle\\": "src/"}},
+         "config": {"lock": false, "sort-packages": true}
+     }
+     ```
+     - No `elasticms/*` requires (principle: independent of core/common/helpers). So no `EMS\Helpers\Standard\Json` either; use `\json_encode(..., JSON_THROW_ON_ERROR)` directly in the bundle.
+     - Versions must match the root `composer.json` (`monorepo-validate` checks this). All of the above are already in the root, so nothing new is needed there apart from step 3.
+     - No `autoload-dev`: test autoloading is in the root `composer.json` (step 3), like the other packages.
+   - **`src/EMSTableBundle.php`**, modern `AbstractBundle` style (like `EMS/admin-ui-bundle/src/EMSAdminUIBundle.php`, no `DependencyInjection/` folder):
+     ```php
+     <?php
+
+     declare(strict_types=1);
+
+     namespace EMS\TableBundle;
+
+     use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
+     use Symfony\Component\DependencyInjection\ContainerBuilder;
+     use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+     use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+
+     final class EMSTableBundle extends AbstractBundle
+     {
+         protected string $extensionAlias = 'ems_table';
+
+         #[\Override]
+         public function configure(DefinitionConfigurator $definition): void
+         {
+             $definition->rootNode()->children()->end();
+         }
+
+         /** @param array<string, mixed> $config */
+         #[\Override]
+         public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
+         {
+             $container->import('../config/services.php');
+         }
+     }
+     ```
+     - Config root `ems_table:` is empty in phase 0; phase 4 adds `dbal.connections` here.
+     - `getPath()` is not overridden: `AbstractBundle` already returns the bundle root (parent of `src/`), so `templates/` gives the `@EMSTable` namespace and `translations/` is picked up automatically.
+   - **`config/services.php`**: empty configurator with `defaults()->private()->autowire(false)`, same style as `EMS/admin-ui-bundle/config/services.php`. Service ids get the prefix `ems_table.`.
+   - **`templates/`** and **`translations/`**: only a `.gitkeep`; the content comes in phase 1.
+   - **`README.md`**: short, same format as `EMS/form-bundle/README.md` (title, one line of description, links to docs/issues/monorepo).
+   - **`tests/Unit/EMSTableBundleTest.php`** (namespace `EMS\TableBundle\Tests\Unit`): smoke test that builds a `ContainerBuilder`, registers the bundle extension, loads an empty `ems_table` config and compiles. This makes sure phpunit has something to run in phase 0 and catches DI mistakes early.
+   - Check after this step: `php -l` on the new PHP files; `composer validate EMS/table-bundle/composer.json` (the rest of the checks only work after steps 3–5).
 2. Create `EMS/table-js/`: `package.json` (`@elasticms/table`, `"type": "module"`, `exports` → `src/index.js` + `src/table.css`). Not published yet.
 3. Root `composer.json`: psr-4 `EMS\\TableBundle\\` + `EMS\\TableBundle\\Tests\\`, `replace` entry. Monorepo-builder picks up `EMS/*` automatically (`config/monorepo-builder.php`).
 4. Add paths to `config/phpstan.neon.dist`, `config/phpunit.xml.dist` and `config/php-cs-fixer.php` (like the other EMS packages).
@@ -93,10 +168,10 @@ Integration in admin, alongside the existing code:
 2. Upgrade notes in `docs/src` + `CHANGELOG-7.x.md` (BC break → agree on the target major/minor).
 3. Register the bundle in `elasticms-web`; demo web page with a table.
 4. npm publish step in `build/release` for `@elasticms/table`; version equal to the monorepo tag.
+5. Register `elasticms/table-bundle` for release: split repo in `.github/subtree-splitter-config.json`, `build/src/Release/Config.php` (`PACKAGES` + `COMPOSER_PACKAGES`), label in `.github/autolabeler.yml`.
 
 ---
 
 ## Verification (per phase)
 - PHP: `php vendor/bin/phpunit -c config/phpunit.xml.dist EMS/table-bundle/tests`, `composer phpstan`, `composer phpcs`, `composer monorepo-validate`.
 - JS: `npm test` in `EMS/table-js`.
-- Admin: `make start`, admin-ui Vite dev server, open the demo dashboard at http://localhost:8881. Check sort, search, paging, selection events and the no-JS rendering, and check that the existing DataTables.net pages still work unchanged.
