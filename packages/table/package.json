@@ -1,0 +1,18 @@
+{
+    "name": "@elasticms/table",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Vanilla JS tables for the elasticms table bundle",
+    "type": "module",
+    "license": "LGPL-3.0-or-later",
+    "exports": {
+        ".": "./src/index.js",
+        "./table.css": "./src/table.css"
+    },
+    "files": [
+        "src"
+    ],
+    "sideEffects": [
+        "*.css"
+    ]
+}

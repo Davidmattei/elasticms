@@ -90,7 +90,7 @@ Principles:
    - **`README.md`**: short, same format as `EMS/form-bundle/README.md` (title, one line of description, links to docs/issues/monorepo).
    - **`tests/Unit/EMSTableBundleTest.php`** (namespace `EMS\TableBundle\Tests\Unit`): smoke test that builds a `ContainerBuilder`, registers the bundle extension, loads an empty `ems_table` config and compiles. This makes sure phpunit has something to run in phase 0 and catches DI mistakes early.
    - Check after this step: `php -l` on the new PHP files; `composer validate EMS/table-bundle/composer.json` (the rest of the checks only work after steps 3–5).
-2. Create `EMS/table-js/`: `package.json` (`@elasticms/table`, `"type": "module"`, `exports` → `src/index.js` + `src/table.css`). Not published yet.
+2. Create `packages/table/` (npm packages live under `packages/`, Composer packages under `EMS/`): `package.json` (`@elasticms/table`, `"type": "module"`, `exports` → `src/index.js` + `src/table.css`). Not published yet.
 3. Root `composer.json`: psr-4 `EMS\\TableBundle\\` + `EMS\\TableBundle\\Tests\\`, `replace` entry. Monorepo-builder picks up `EMS/*` automatically (`config/monorepo-builder.php`).
 4. Add paths to `config/phpstan.neon.dist`, `config/phpunit.xml.dist` and `config/php-cs-fixer.php` (like the other EMS packages).
 5. `elasticms-admin/config/bundles.php`: `EMS\TableBundle\EMSTableBundle::class => ['all' => true]`.
@@ -127,7 +127,7 @@ Twig usage:
 ```
 
 ## Phase 2 — JS v1: `@elasticms/table`
-In `EMS/table-js/src/`:
+In `packages/table/src/`:
 1. `index.js`: `initTables(root = document)` finds `[data-ems-table]` and creates an `EmsTable` per element. It is idempotent, so it can safely run again after ajax or modal loads.
 2. `EmsTable`: client-side sort, search (debounced), paging, page size and selection checkboxes; reads the payload and checks `v`.
 3. Events on the element: `ems-table:draw`, `ems-table:selection` (`detail.selection`), plus a public API `element.emsTable`. No `window` globals.
@@ -174,4 +174,4 @@ Integration in admin, alongside the existing code:
 
 ## Verification (per phase)
 - PHP: `php vendor/bin/phpunit -c config/phpunit.xml.dist EMS/table-bundle/tests`, `composer phpstan`, `composer phpcs`, `composer monorepo-validate`.
-- JS: `npm test` in `EMS/table-js`.
+- JS: `npm test` in `packages/table`.
