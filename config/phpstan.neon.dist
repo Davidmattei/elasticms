@@ -20,6 +20,8 @@ parameters:
         - %currentWorkingDirectory%/EMS/helpers/src
         - %currentWorkingDirectory%/EMS/submission-bundle/config
         - %currentWorkingDirectory%/EMS/submission-bundle/src
+        - %currentWorkingDirectory%/EMS/table-bundle/config
+        - %currentWorkingDirectory%/EMS/table-bundle/src
         - %currentWorkingDirectory%/EMS/xliff/src
     excludePaths:
         - %currentWorkingDirectory%/vendor/*

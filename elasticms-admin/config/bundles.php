@@ -9,6 +9,7 @@ return [
     EMS\CoreBundle\EMSCoreBundle::class => ['all' => true],
     EMS\FormBundle\EMSFormBundle::class => ['all' => true],
     EMS\SubmissionBundle\EMSSubmissionBundle::class => ['all' => true],
+    EMS\TableBundle\EMSTableBundle::class => ['all' => true],
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Symfony\Bundle\MercureBundle\MercureBundle::class => ['all' => true],

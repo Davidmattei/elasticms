@@ -169,6 +169,7 @@
             "EMS\\FormBundle\\": "EMS/form-bundle/src/",
             "EMS\\Helpers\\": "EMS/helpers/src/",
             "EMS\\SubmissionBundle\\": "EMS/submission-bundle/src/",
+            "EMS\\TableBundle\\": "EMS/table-bundle/src/",
             "EMS\\Xliff\\": "EMS/xliff/src/",
             "Application\\Migrations\\Scripts\\": "EMS/core-bundle/migrations/scripts"
         }
@@ -184,6 +185,7 @@
             "EMS\\FormBundle\\Tests\\": "EMS/form-bundle/tests/",
             "EMS\\Helpers\\Tests\\": "EMS/helpers/tests/",
             "EMS\\SubmissionBundle\\Tests\\": "EMS/submission-bundle/tests/",
+            "EMS\\TableBundle\\Tests\\": "EMS/table-bundle/tests/",
             "EMS\\Xliff\\Tests\\": "EMS/xliff/tests/",
             "Build\\": "build/src/"
         }
@@ -196,6 +198,7 @@
         "elasticms/form-bundle": "self.version",
         "elasticms/helpers": "self.version",
         "elasticms/submission-bundle": "self.version",
+        "elasticms/table-bundle": "self.version",
         "elasticms/xliff": "self.version",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
